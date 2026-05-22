@@ -1,0 +1,17 @@
+# Godot 4 generated files
+.godot/
+
+# Exported projects
+*.translation
+export_presets.cfg
+export.cfg
+
+# macOS metadata
+.DS_Store
+
+# Windows metadata
+Thumbs.db
+
+# Build outputs
+build/
+dist/
