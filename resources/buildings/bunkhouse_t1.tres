@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "bunkhouse_t1"
+display_name = "Shared Bunkhouse"
+description = "Basic communal sleeping quarters. Cheap but cramped."
+category = "residential"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 40
+upkeep = 3
+staffing = 0
+workers_provided = 6
+morale_bonus = -5
+unlock_at_start = true
+upgrade_to = "row_houses_t2"
+upgrade_cost = 200
+upgrade_resources = {"wood": 25, "stone": 15}
+upgrade_population = 10
+upgrade_time_days = 5
+placeholder_color = Color(0.47, 0.62, 0.45, 1)
+special_notes = "Morale penalty due to cramped conditions"

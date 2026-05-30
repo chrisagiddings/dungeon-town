@@ -391,3 +391,91 @@ Buildings for town management and defense.
 ---
 
 *Data extracted from GDD §6. See `data/buildings.json` for machine-readable format.*
+
+---
+
+## Expanded Housing (Population Support)
+
+Housing supports three population types with different needs:
+
+| Type | Description | Housing Preferences |
+|------|-------------|---------------------|
+| Townsfolk | Generic workers (clerks, farmers, loggers) | Basic housing, tolerates sharing |
+| Specialists | Skilled NPCs (smiths, alchemists) | Better housing, workshop proximity |
+| Adventurers | Dungeon delvers | Lodging or private residence |
+
+### Housing by Population Type
+
+| Building | Tier | Size | Townsfolk | Specialists | Adventurers | Special |
+|----------|------|------|-----------|-------------|-------------|---------|
+| Worker Cottage | T1 | 1×1 | 2 | — | — | Basic |
+| Shared Bunkhouse | T1 | 2×2 | 6 | — | — | -5 morale |
+| Farmstead | T1 | 2×2 | 2 | — | — | +15% farm bonus |
+| Town House | T2 | 2×1 | 4 | — | — | — |
+| Row Houses | T2 | 3×1 | 8 | — | — | High density |
+| Craftsman's Dwelling | T2 | 2×2 | — | 2 | — | +10% workshop |
+| Manor | T3 | 3×2 | 8 | — | — | +5 morale |
+| Boarding House | T3 | 3×2 | 8 | — | 4 | Mixed occupancy |
+| Guild Dormitory | T3 | 2×3 | — | — | 6 | +5% XP, guild adjacent |
+| Estate Home | T4 | 3×3 | — | 2 | 2 | +15 morale, fame |
+| Adventurer's Lodge | T4 | 3×3 | — | — | 8 | +10% XP, storage |
+
+### Shared Bunkhouse (T1)
+- **Function:** Cheap communal housing for townsfolk
+- **Capacity:** 6 townsfolk
+- **Morale:** -5 (cramped conditions)
+- **Unlock:** Available at start
+- **Upgrade:** → Row Houses (T2)
+
+### Farmstead (T1)
+- **Function:** Farm worker housing with productivity bonus
+- **Capacity:** 2 townsfolk
+- **Special:** +15% output to adjacent Farms
+- **Unlock:** Farm T1 built
+
+### Row Houses (T2)
+- **Function:** Efficient high-density housing
+- **Capacity:** 8 townsfolk
+- **Upgrade from:** Shared Bunkhouse
+
+### Craftsman's Dwelling (T2)
+- **Function:** Housing for specialists with workshop bonus
+- **Capacity:** 2 specialists
+- **Special:** +10% efficiency to adjacent workshops
+- **Unlock:** Smithy T1 built, Pop ≥15
+- **Upgrade:** → Estate Home (T4)
+
+### Boarding House (T3)
+- **Function:** Mixed housing for workers and adventurers
+- **Capacity:** 8 townsfolk + 4 adventurers
+- **Income:** 2g/night per adventurer
+- **Staffing:** 1 worker
+- **Unlock:** Pop ≥25, Tavern T2
+
+### Guild Dormitory (T3)
+- **Function:** Adventurer housing with training facilities
+- **Capacity:** 6 adventurers
+- **Special:** +5% XP when adjacent to Guild Hall
+- **Income:** 3g/night per adventurer
+- **Staffing:** 1 worker
+- **Unlock:** Guild Hall T2
+- **Upgrade:** → Adventurer's Lodge (T4)
+
+### Estate Home (T4)
+- **Function:** Premium housing for specialists and adventurers
+- **Capacity:** 2 specialists + 2 adventurers
+- **Morale:** +15
+- **Special:** Increases town Fame when occupied
+- **Income:** 8g/night per adventurer
+- **Staffing:** 2 workers
+- **Upgrade from:** Craftsman's Dwelling
+
+### Adventurer's Lodge (T4)
+- **Function:** Premium adventurer facility with training
+- **Capacity:** 8 adventurers
+- **Morale:** +12
+- **Rest Quality:** 90% HP recovery
+- **Special:** +10% XP, equipment storage, passive XP while resting
+- **Income:** 5g/night per adventurer
+- **Staffing:** 2 workers
+- **Upgrade from:** Guild Dormitory

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "farmstead_t1"
+display_name = "Farmstead"
+description = "A small farmhouse with adjacent fields. Workers here boost nearby farm output."
+category = "residential"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 80
+upkeep = 4
+staffing = 0
+workers_provided = 2
+unlock_at_start = false
+unlock_prerequisites = ["farm_t1"]
+placeholder_color = Color(0.47, 0.62, 0.45, 1)
+special_notes = "+15% productivity to adjacent Farms"

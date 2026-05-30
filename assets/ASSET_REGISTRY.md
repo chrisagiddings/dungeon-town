@@ -304,3 +304,16 @@ All placeholder and production assets for Dungeon Town. Status tracks asset read
 
 *Last updated: M0 Bootstrap*
 *Total assets: 180+*
+
+### Expanded Housing
+
+| Asset Code | Description | Dimensions | Status | Notes |
+|------------|-------------|------------|--------|-------|
+| BLD_BUNKHOUSE_T1 | Shared Bunkhouse | 2×2 | ⬜ placeholder | Muted green |
+| BLD_FARMSTEAD_T1 | Farmstead | 2×2 | ⬜ placeholder | Muted green |
+| BLD_ROW_HOUSES_T2 | Row Houses | 3×1 | ⬜ placeholder | Muted green |
+| BLD_CRAFTSMAN_T2 | Craftsman's Dwelling | 2×2 | ⬜ placeholder | Muted green |
+| BLD_BOARDING_T3 | Boarding House | 3×2 | ⬜ placeholder | Muted green |
+| BLD_GUILD_DORM_T3 | Guild Dormitory | 2×3 | ⬜ placeholder | Muted green |
+| BLD_ESTATE_T4 | Estate Home | 3×3 | ⬜ placeholder | Muted green |
+| BLD_ADV_LODGE_T4 | Adventurer's Lodge | 3×3 | ⬜ placeholder | Muted green |

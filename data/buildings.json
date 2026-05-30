@@ -8,9 +8,14 @@
       "description": "Basic canvas shelters for weary adventurers. Not comfortable, but better than sleeping in the dungeon.",
       "category": "hospitality",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Provides basic overnight rest for adventurers",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": 6,
       "production": null,
       "provides": {
@@ -32,7 +37,10 @@
       "upgrade_to": "lodging_t2",
       "upgrade_requirements": {
         "gold": 200,
-        "resources": {"wood": 20, "stone": 10},
+        "resources": {
+          "wood": 20,
+          "stone": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 10,
@@ -47,9 +55,14 @@
       "description": "A proper inn with beds, hot meals available, and a common room for swapping tales.",
       "category": "hospitality",
       "tier": 2,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Provides standard rest with morale benefits",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": 16,
       "production": null,
       "provides": {
@@ -73,8 +86,13 @@
       "upgrade_to": "lodging_t3",
       "upgrade_requirements": {
         "gold": 800,
-        "resources": {"stone": 40, "iron_ingot": 20},
-        "prerequisites": ["tavern_t2"],
+        "resources": {
+          "stone": 40,
+          "iron_ingot": 20
+        },
+        "prerequisites": [
+          "tavern_t2"
+        ],
         "dungeon_depth": 0,
         "patron_count": 60,
         "population": 20,
@@ -88,9 +106,15 @@
       "description": "A prestigious establishment with private suites, fine dining, and amenities fit for heroes.",
       "category": "hospitality",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Full rest with stat buffs and private suites for residents",
-      "users": ["adventurers", "residents"],
+      "users": [
+        "adventurers",
+        "residents"
+      ],
       "capacity": 30,
       "capacity_suites": 6,
       "production": null,
@@ -118,7 +142,11 @@
       "upgrade_to": "lodging_t4",
       "upgrade_requirements": {
         "gold": 3000,
-        "resources": {"stone": 60, "steel": 40, "crystal": 5},
+        "resources": {
+          "stone": 60,
+          "steel": 40,
+          "crystal": 5
+        },
         "prerequisites": [],
         "dungeon_depth": 6,
         "patron_count": 0,
@@ -133,9 +161,16 @@
       "description": "The finest accommodations in the realm. Legendary adventurers demand nothing less.",
       "category": "hospitality",
       "tier": 4,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Exceptional rest with all stat bonuses and passive XP gain",
-      "users": ["adventurers", "residents", "legendary_adventurers"],
+      "users": [
+        "adventurers",
+        "residents",
+        "legendary_adventurers"
+      ],
       "capacity": 50,
       "capacity_suites": 12,
       "capacity_luxury_suites": 4,
@@ -145,7 +180,7 @@
         "hp_recovery": 1.0,
         "mana_recovery": 1.0,
         "morale_bonus": 15,
-        "stat_buff_all": 0.10,
+        "stat_buff_all": 0.1,
         "passive_xp": true,
         "attracts_veteran_plus": true
       },
@@ -173,9 +208,15 @@
       "description": "A humble drinking hole where adventurers can grab a meal and share stories.",
       "category": "hospitality",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Provides meals and minor morale boost",
-      "users": ["adventurers", "citizens"],
+      "users": [
+        "adventurers",
+        "citizens"
+      ],
       "capacity": 20,
       "production": null,
       "provides": {
@@ -197,8 +238,13 @@
       "upgrade_to": "tavern_t2",
       "upgrade_requirements": {
         "gold": 300,
-        "resources": {"wood": 20, "cloth": 10},
-        "prerequisites": ["bakery_t1"],
+        "resources": {
+          "wood": 20,
+          "cloth": 10
+        },
+        "prerequisites": [
+          "bakery_t1"
+        ],
         "dungeon_depth": 0,
         "patron_count": 30,
         "population": 0,
@@ -212,9 +258,16 @@
       "description": "A lively establishment with good food, flowing ale, and a rumor board for dungeon tips.",
       "category": "hospitality",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Good meals, ale, rumor board for dungeon intel",
-      "users": ["adventurers", "citizens", "bards"],
+      "users": [
+        "adventurers",
+        "citizens",
+        "bards"
+      ],
       "capacity": 40,
       "production": null,
       "provides": {
@@ -242,8 +295,13 @@
       "upgrade_to": "tavern_t3",
       "upgrade_requirements": {
         "gold": 1500,
-        "resources": {"stone": 30, "fine_cloth": 20},
-        "prerequisites": ["brewery_t2"],
+        "resources": {
+          "stone": 30,
+          "fine_cloth": 20
+        },
+        "prerequisites": [
+          "brewery_t2"
+        ],
         "dungeon_depth": 4,
         "patron_count": 200,
         "population": 0,
@@ -258,9 +316,17 @@
       "description": "The social heart of the town. Festivals, performances, and the best ale in the realm.",
       "category": "hospitality",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Exceptional dining, entertainment, quest rumor board",
-      "users": ["adventurers", "citizens", "bards", "merchants"],
+      "users": [
+        "adventurers",
+        "citizens",
+        "bards",
+        "merchants"
+      ],
       "capacity": 80,
       "production": null,
       "provides": {
@@ -296,9 +362,15 @@
       "description": "Simple communal baths. Cleanliness is next to godliness, and disease-free.",
       "category": "hospitality",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Sanitation, morale, minor curse resistance",
-      "users": ["adventurers", "citizens"],
+      "users": [
+        "adventurers",
+        "citizens"
+      ],
       "capacity": 15,
       "production": null,
       "provides": {
@@ -321,7 +393,10 @@
       "upgrade_to": "bathhouse_t2",
       "upgrade_requirements": {
         "gold": 600,
-        "resources": {"stone": 20, "crystal": 10},
+        "resources": {
+          "stone": 20,
+          "crystal": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 3,
         "patron_count": 0,
@@ -336,9 +411,15 @@
       "description": "Mineral-rich waters that soothe wounds and cleanse minor curses.",
       "category": "hospitality",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Sanitation, HP regen, curse cleansing",
-      "users": ["adventurers", "citizens"],
+      "users": [
+        "adventurers",
+        "citizens"
+      ],
       "capacity": 25,
       "production": null,
       "provides": {
@@ -363,7 +444,10 @@
       "upgrade_to": "bathhouse_t3",
       "upgrade_requirements": {
         "gold": 2000,
-        "resources": {"stone": 40, "crystal": 25},
+        "resources": {
+          "stone": 40,
+          "crystal": 25
+        },
         "prerequisites": [],
         "dungeon_depth": 6,
         "patron_count": 0,
@@ -378,9 +462,15 @@
       "description": "Magically infused waters that restore body, mind, and spirit.",
       "category": "hospitality",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Full restoration, strong curse resistance, weekly buff",
-      "users": ["adventurers", "citizens"],
+      "users": [
+        "adventurers",
+        "citizens"
+      ],
       "capacity": 40,
       "production": null,
       "provides": {
@@ -390,7 +480,12 @@
         "mana_regen": true,
         "curse_resistance": "strong",
         "morale_bonus": 25,
-        "weekly_buff_choice": ["strength", "speed", "luck", "insight"]
+        "weekly_buff_choice": [
+          "strength",
+          "speed",
+          "luck",
+          "insight"
+        ]
       },
       "income": {
         "base_gold_per_day": 200,
@@ -416,13 +511,23 @@
       "description": "Basic adventuring supplies: rations, torches, rope, and minor potions.",
       "category": "commerce",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Sells basic adventuring supplies",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
-        "sells": ["rations", "torches", "rope", "minor_health_potions"]
+        "sells": [
+          "rations",
+          "torches",
+          "rope",
+          "minor_health_potions"
+        ]
       },
       "income": {
         "base_gold_per_day": 60
@@ -439,7 +544,10 @@
       "upgrade_to": "store_t2",
       "upgrade_requirements": {
         "gold": 400,
-        "resources": {"wood": 20, "cloth": 10},
+        "resources": {
+          "wood": 20,
+          "cloth": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 50,
@@ -455,13 +563,23 @@
       "description": "Expanded inventory with better potions, maps, and gear accessories.",
       "category": "commerce",
       "tier": 2,
-      "footprint": [2, 3],
+      "footprint": [
+        2,
+        3
+      ],
       "function": "Broader supplies, unlocks caravan events",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
-        "sells": ["supplies", "potions", "maps", "gear_accessories"],
+        "sells": [
+          "supplies",
+          "potions",
+          "maps",
+          "gear_accessories"
+        ],
         "unlocks_caravan_events": true
       },
       "income": {
@@ -478,8 +596,13 @@
       "upgrade_to": "store_t3",
       "upgrade_requirements": {
         "gold": 2000,
-        "resources": {"stone": 30, "iron_ingot": 20},
-        "prerequisites": ["market_t1"],
+        "resources": {
+          "stone": 30,
+          "iron_ingot": 20
+        },
+        "prerequisites": [
+          "market_t1"
+        ],
         "dungeon_depth": 5,
         "patron_count": 0,
         "population": 0,
@@ -493,13 +616,24 @@
       "description": "Full catalog of supplies including rare items and dungeon-specific consumables.",
       "category": "commerce",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Full catalog, rare items, bulk discounts for residents",
-      "users": ["adventurers", "residents"],
+      "users": [
+        "adventurers",
+        "residents"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
-        "sells": ["full_catalog", "rare_items", "enchanted_accessories", "dungeon_specific_consumables"],
+        "sells": [
+          "full_catalog",
+          "rare_items",
+          "enchanted_accessories",
+          "dungeon_specific_consumables"
+        ],
         "resident_discount": true
       },
       "income": {
@@ -522,13 +656,20 @@
       "description": "Open-air market where local goods fetch better prices than imports.",
       "category": "commerce",
       "tier": 1,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Dynamic pricing hub for production chain goods",
-      "users": ["adventurers", "citizens", "production_buildings"],
+      "users": [
+        "adventurers",
+        "citizens",
+        "production_buildings"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
-        "price_bonus_local_goods": 0.20,
+        "price_bonus_local_goods": 0.2,
         "trade_goods": true
       },
       "income": {
@@ -546,7 +687,9 @@
       "upgrade_to": "market_t2",
       "upgrade_requirements": {
         "gold": 800,
-        "resources": {"stone": 20},
+        "resources": {
+          "stone": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -562,9 +705,16 @@
       "description": "Full trade hub with automatic supply routing between buildings.",
       "category": "commerce",
       "tier": 2,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Inter-building supply routing, supply/demand pricing",
-      "users": ["adventurers", "citizens", "production_buildings"],
+      "users": [
+        "adventurers",
+        "citizens",
+        "production_buildings"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -585,7 +735,10 @@
       "upgrade_to": "market_t3",
       "upgrade_requirements": {
         "gold": 3000,
-        "resources": {"stone": 50, "iron_ingot": 30},
+        "resources": {
+          "stone": 50,
+          "iron_ingot": 30
+        },
         "prerequisites": [],
         "dungeon_depth": 8,
         "patron_count": 0,
@@ -600,9 +753,16 @@
       "description": "Regional trade hub attracting merchants from across the realm.",
       "category": "commerce",
       "tier": 3,
-      "footprint": [5, 4],
+      "footprint": [
+        5,
+        4
+      ],
       "function": "Regional trade, traveling merchants, toll income",
-      "users": ["adventurers", "citizens", "merchants"],
+      "users": [
+        "adventurers",
+        "citizens",
+        "merchants"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -631,9 +791,14 @@
       "description": "Secure gold storage and fair rates for converting dungeon loot.",
       "category": "commerce",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Gold storage, loot conversion, adventurer deposits",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -650,13 +815,18 @@
       "unlock_conditions": {
         "available_at_start": false,
         "population": 25,
-        "prerequisites": ["guild_t1"]
+        "prerequisites": [
+          "guild_t1"
+        ]
       },
       "upgrade_from": null,
       "upgrade_to": "bank_t2",
       "upgrade_requirements": {
         "gold": 1200,
-        "resources": {"stone": 30, "iron_ingot": 10},
+        "resources": {
+          "stone": 30,
+          "iron_ingot": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -672,9 +842,15 @@
       "description": "Full banking services including loans, interest, and adventurer insurance.",
       "category": "commerce",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Loans, interest on deposits, death insurance",
-      "users": ["adventurers", "player"],
+      "users": [
+        "adventurers",
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -697,7 +873,10 @@
       "upgrade_to": "bank_t3",
       "upgrade_requirements": {
         "gold": 5000,
-        "resources": {"stone": 60, "steel": 20},
+        "resources": {
+          "stone": 60,
+          "steel": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 7,
         "patron_count": 0,
@@ -713,9 +892,16 @@
       "description": "Financial center with investments, futures trading, and inter-town routes.",
       "category": "commerce",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Investments, futures trading, trade routes",
-      "users": ["adventurers", "player", "merchants"],
+      "users": [
+        "adventurers",
+        "player",
+        "merchants"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -744,9 +930,14 @@
       "description": "Marketplace for rare dungeon loot. The town takes a cut of every sale.",
       "category": "commerce",
       "tier": 1,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Rare item trading, premium loot sales",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -761,14 +952,19 @@
       "resource_requirements": null,
       "unlock_conditions": {
         "available_at_start": false,
-        "prerequisites": ["bank_t2"],
+        "prerequisites": [
+          "bank_t2"
+        ],
         "dungeon_depth": 7
       },
       "upgrade_from": null,
       "upgrade_to": "auction_t2",
       "upgrade_requirements": {
         "gold": 5000,
-        "resources": {"stone": 50, "steel": 20},
+        "resources": {
+          "stone": 50,
+          "steel": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 10,
         "patron_count": 0,
@@ -783,9 +979,15 @@
       "description": "Legendary items change hands here. Wealthy merchants visit from afar.",
       "category": "commerce",
       "tier": 2,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Legendary items, cross-region reputation, commissions",
-      "users": ["adventurers", "merchants"],
+      "users": [
+        "adventurers",
+        "merchants"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -814,14 +1016,21 @@
       "description": "A basic forge producing iron weapons and armor for novice adventurers.",
       "category": "gear",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces Common quality iron weapons and armor",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "common",
         "armor": "common",
-        "materials": ["iron"]
+        "materials": [
+          "iron"
+        ]
       },
       "provides": null,
       "income": {
@@ -839,8 +1048,12 @@
       "upgrade_to": "smith_t2",
       "upgrade_requirements": {
         "gold": 500,
-        "resources": {"iron_ingot": 30},
-        "prerequisites": ["mine_t1"],
+        "resources": {
+          "iron_ingot": 30
+        },
+        "prerequisites": [
+          "mine_t1"
+        ],
         "dungeon_depth": 0,
         "patron_count": 100,
         "population": 0,
@@ -854,15 +1067,27 @@
       "description": "An established forge working iron and steel into Uncommon gear.",
       "category": "gear",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces Uncommon quality weapons, armor, shields, tools",
-      "users": ["adventurers", "citizens"],
+      "users": [
+        "adventurers",
+        "citizens"
+      ],
       "capacity": null,
       "production": {
         "weapons": "uncommon",
         "armor": "uncommon",
-        "materials": ["iron", "steel"],
-        "additional": ["shields", "tools"]
+        "materials": [
+          "iron",
+          "steel"
+        ],
+        "additional": [
+          "shields",
+          "tools"
+        ]
       },
       "provides": null,
       "income": {
@@ -882,7 +1107,10 @@
       "upgrade_to": "smith_t3",
       "upgrade_requirements": {
         "gold": 2000,
-        "resources": {"steel": 50, "gemstones": 10},
+        "resources": {
+          "steel": 50,
+          "gemstones": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 5,
         "patron_count": 500,
@@ -897,14 +1125,21 @@
       "description": "A master smithy producing Rare steel gear with enchantable slots.",
       "category": "gear",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces Rare quality gear with enchantable slots",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "rare",
         "armor": "rare",
-        "materials": ["steel"],
+        "materials": [
+          "steel"
+        ],
         "enchantable": true
       },
       "provides": null,
@@ -925,8 +1160,14 @@
       "upgrade_to": "smith_t4",
       "upgrade_requirements": {
         "gold": 8000,
-        "resources": {"steel": 100, "crystal": 20, "dragon_scale": 5},
-        "prerequisites": ["guild_t3"],
+        "resources": {
+          "steel": 100,
+          "crystal": 20,
+          "dragon_scale": 5
+        },
+        "prerequisites": [
+          "guild_t3"
+        ],
         "dungeon_depth": 12,
         "patron_count": 0,
         "population": 0,
@@ -940,14 +1181,23 @@
       "description": "Where legends are made. Mithril and dragon scale become weapons of myth.",
       "category": "gear",
       "tier": 4,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Produces Epic-Legendary quality gear and unique named weapons",
-      "users": ["adventurers", "legendary_adventurers"],
+      "users": [
+        "adventurers",
+        "legendary_adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "legendary",
         "armor": "legendary",
-        "materials": ["mithril", "dragon_scale"],
+        "materials": [
+          "mithril",
+          "dragon_scale"
+        ],
         "named_weapons": true
       },
       "provides": null,
@@ -976,13 +1226,23 @@
       "description": "Simple booth crafting bows, crossbows, and ammunition.",
       "category": "gear",
       "tier": 1,
-      "footprint": [2, 1],
+      "footprint": [
+        2,
+        1
+      ],
       "function": "Produces Common quality ranged weapons and ammo",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "common",
-        "types": ["bows", "crossbows", "arrows", "bolts"]
+        "types": [
+          "bows",
+          "crossbows",
+          "arrows",
+          "bolts"
+        ]
       },
       "provides": null,
       "income": {
@@ -996,13 +1256,18 @@
       },
       "unlock_conditions": {
         "available_at_start": false,
-        "prerequisites": ["lumber_t1"]
+        "prerequisites": [
+          "lumber_t1"
+        ]
       },
       "upgrade_from": null,
       "upgrade_to": "fletcher_t2",
       "upgrade_requirements": {
         "gold": 400,
-        "resources": {"wood": 20, "leather": 20},
+        "resources": {
+          "wood": 20,
+          "leather": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 50,
@@ -1017,14 +1282,26 @@
       "description": "Full workshop producing composite weapons and specialty arrows.",
       "category": "gear",
       "tier": 2,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces Uncommon ranged weapons and specialty ammo",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "uncommon",
-        "types": ["composite_bows", "hunting_crossbows"],
-        "specialty_arrows": ["fire", "poison", "piercing"]
+        "types": [
+          "composite_bows",
+          "hunting_crossbows"
+        ],
+        "specialty_arrows": [
+          "fire",
+          "poison",
+          "piercing"
+        ]
       },
       "provides": null,
       "income": {
@@ -1045,7 +1322,10 @@
       "upgrade_to": "fletcher_t3",
       "upgrade_requirements": {
         "gold": 1500,
-        "resources": {"steel": 30, "arcane_dust": 10},
+        "resources": {
+          "steel": 30,
+          "arcane_dust": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 6,
         "patron_count": 200,
@@ -1060,14 +1340,25 @@
       "description": "Master crafters producing enchanted bows and elemental ammunition.",
       "category": "gear",
       "tier": 3,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces Rare-Epic ranged weapons and class-specific gear",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
         "weapons": "epic",
-        "types": ["enchanted_bows", "elemental_arrows"],
-        "class_specific": ["ranger", "rogue"]
+        "types": [
+          "enchanted_bows",
+          "elemental_arrows"
+        ],
+        "class_specific": [
+          "ranger",
+          "rogue"
+        ]
       },
       "provides": null,
       "income": {
@@ -1093,12 +1384,21 @@
       "description": "A humble shop brewing minor potions and remedies.",
       "category": "gear",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces minor health potions, antidotes, bandages",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
-        "potions": ["minor_health", "basic_antidote", "bandages"]
+        "potions": [
+          "minor_health",
+          "basic_antidote",
+          "bandages"
+        ]
       },
       "provides": null,
       "income": {
@@ -1116,8 +1416,13 @@
       "upgrade_to": "alchemist_t2",
       "upgrade_requirements": {
         "gold": 600,
-        "resources": {"stone": 20, "crystal": 30},
-        "prerequisites": ["herb_t2"],
+        "resources": {
+          "stone": 20,
+          "crystal": 30
+        },
+        "prerequisites": [
+          "herb_t2"
+        ],
         "dungeon_depth": 0,
         "patron_count": 200,
         "population": 0,
@@ -1131,12 +1436,23 @@
       "description": "A proper laboratory producing standard potions and elixirs.",
       "category": "gear",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces health/mana potions, buff elixirs, all antidotes",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
-        "potions": ["health", "mana", "buff_elixirs", "all_antidotes", "smoke_bombs"]
+        "potions": [
+          "health",
+          "mana",
+          "buff_elixirs",
+          "all_antidotes",
+          "smoke_bombs"
+        ]
       },
       "provides": null,
       "income": {
@@ -1156,8 +1472,12 @@
       "upgrade_to": "alchemist_t3",
       "upgrade_requirements": {
         "gold": 3000,
-        "resources": {"crystal": 30},
-        "prerequisites": ["arcane_t1"],
+        "resources": {
+          "crystal": 30
+        },
+        "prerequisites": [
+          "arcane_t1"
+        ],
         "dungeon_depth": 7,
         "patron_count": 500,
         "population": 0,
@@ -1171,12 +1491,21 @@
       "description": "Master alchemists brewing legendary elixirs and transmuting materials.",
       "category": "gear",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces supreme potions, legendary elixirs, transmutation",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
-        "potions": ["major", "supreme", "legendary_elixirs"],
+        "potions": [
+          "major",
+          "supreme",
+          "legendary_elixirs"
+        ],
         "transmutation": true,
         "philosophers_stone": true
       },
@@ -1206,12 +1535,22 @@
       "description": "Mystic trinkets and spell components for the magically inclined.",
       "category": "gear",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Sells spell components, cantrip scrolls, basic staves",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
-        "items": ["spell_components", "cantrip_scrolls", "basic_staves", "basic_wands"]
+        "items": [
+          "spell_components",
+          "cantrip_scrolls",
+          "basic_staves",
+          "basic_wands"
+        ]
       },
       "provides": null,
       "income": {
@@ -1230,14 +1569,20 @@
       "upgrade_to": "arcane_t2",
       "upgrade_requirements": {
         "gold": 1000,
-        "resources": {"crystal": 20, "arcane_dust": 50},
+        "resources": {
+          "crystal": 20,
+          "arcane_dust": 50
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
         "population": 0,
         "reputation": null,
         "time_days": 12,
-        "resident_class": ["wizard", "sorcerer"]
+        "resident_class": [
+          "wizard",
+          "sorcerer"
+        ]
       }
     },
     {
@@ -1246,13 +1591,24 @@
       "description": "Full magical services: scrolls, enchanted gear, identify services.",
       "category": "gear",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Full scroll library, enchanted gear, spell tomes, identify",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": {
-        "items": ["full_scroll_library", "enchanted_gear", "spell_tomes"],
-        "services": ["identify"]
+        "items": [
+          "full_scroll_library",
+          "enchanted_gear",
+          "spell_tomes"
+        ],
+        "services": [
+          "identify"
+        ]
       },
       "provides": null,
       "income": {
@@ -1272,14 +1628,19 @@
       "upgrade_to": "arcane_t3",
       "upgrade_requirements": {
         "gold": 5000,
-        "resources": {"crystal": 40, "soul_crystal": 10},
+        "resources": {
+          "crystal": 40,
+          "soul_crystal": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 10,
         "patron_count": 0,
         "population": 0,
         "reputation": null,
         "time_days": 20,
-        "faction": {"mages_circle": "allied"}
+        "faction": {
+          "mages_circle": "allied"
+        }
       }
     },
     {
@@ -1288,13 +1649,25 @@
       "description": "The pinnacle of magical craft. Legendary gear and portal scrolls.",
       "category": "gear",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Legendary arcane gear, custom enchantments, portal scrolls",
-      "users": ["adventurers", "legendary_adventurers"],
+      "users": [
+        "adventurers",
+        "legendary_adventurers"
+      ],
       "capacity": null,
       "production": {
-        "items": ["legendary_arcane_gear", "portal_scrolls"],
-        "services": ["custom_enchantments", "permanent_buff_inscriptions"]
+        "items": [
+          "legendary_arcane_gear",
+          "portal_scrolls"
+        ],
+        "services": [
+          "custom_enchantments",
+          "permanent_buff_inscriptions"
+        ]
       },
       "provides": null,
       "income": {
@@ -1322,13 +1695,18 @@
       "description": "A humble shrine offering basic healing and death rites.",
       "category": "services",
       "tier": 1,
-      "footprint": [1, 1],
+      "footprint": [
+        1,
+        1
+      ],
       "function": "Basic healing, death rites for morale management",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
-        "healing": 0.20,
+        "healing": 0.2,
         "healing_cost": 5,
         "death_rites": true
       },
@@ -1348,7 +1726,10 @@
       "upgrade_to": "temple_t2",
       "upgrade_requirements": {
         "gold": 500,
-        "resources": {"stone": 20, "cloth": 10},
+        "resources": {
+          "stone": 20,
+          "cloth": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1357,7 +1738,9 @@
         "time_days": 10,
         "temple_age_days": 15,
         "cleric_visits": 3,
-        "faction": {"holy_orders": "neutral"}
+        "faction": {
+          "holy_orders": "neutral"
+        }
       }
     },
     {
@@ -1366,9 +1749,14 @@
       "description": "A proper temple with full healing, blessings, and minor resurrection.",
       "category": "services",
       "tier": 2,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Full healing, divine blessing, minor resurrection",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -1396,14 +1784,19 @@
       "upgrade_to": "temple_t3",
       "upgrade_requirements": {
         "gold": 2500,
-        "resources": {"stone": 30, "crystal": 20},
+        "resources": {
+          "stone": 30,
+          "crystal": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 6,
         "patron_count": 0,
         "population": 0,
         "reputation": null,
         "time_days": 15,
-        "faction": {"holy_orders": "friendly"}
+        "faction": {
+          "holy_orders": "friendly"
+        }
       }
     },
     {
@@ -1412,9 +1805,15 @@
       "description": "A magnificent cathedral offering full resurrection and miracles.",
       "category": "services",
       "tier": 3,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Full resurrection, powerful blessings, curse removal, miracles",
-      "users": ["adventurers", "legendary_adventurers"],
+      "users": [
+        "adventurers",
+        "legendary_adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -1427,7 +1826,10 @@
       },
       "income": {
         "base_gold_per_day": 300,
-        "resurrection_fees": {"min": 250, "max": 1000}
+        "resurrection_fees": {
+          "min": 250,
+          "max": 1000
+        }
       },
       "upkeep": 50,
       "staffing": 5,
@@ -1450,9 +1852,14 @@
       "description": "The adventurers' first stop. Registration, basic quests, and guild benefits.",
       "category": "services",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Adventurer registration, basic quest board, guild benefits",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -1475,7 +1882,10 @@
       "upgrade_to": "guild_t2",
       "upgrade_requirements": {
         "gold": 700,
-        "resources": {"stone": 20, "wood": 20},
+        "resources": {
+          "stone": 20,
+          "wood": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 3,
         "patron_count": 30,
@@ -1490,15 +1900,25 @@
       "description": "Full guild services: training, ranks, faction contacts, materials exchange.",
       "category": "services",
       "tier": 2,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Full quests, training, guild ranks, materials exchange",
-      "users": ["adventurers", "player"],
+      "users": [
+        "adventurers",
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
         "quest_board_size": 10,
         "training_xp_bonus": 0.05,
-        "guild_ranks": ["initiate", "bronze", "silver"],
+        "guild_ranks": [
+          "initiate",
+          "bronze",
+          "silver"
+        ],
         "faction_contacts": true,
         "materials_exchange": true,
         "resource_quests": true
@@ -1519,7 +1939,10 @@
       "upgrade_to": "guild_t3",
       "upgrade_requirements": {
         "gold": 3000,
-        "resources": {"stone": 40, "iron_ingot": 20},
+        "resources": {
+          "stone": 40,
+          "iron_ingot": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 7,
         "patron_count": 100,
@@ -1534,17 +1957,29 @@
       "description": "The pinnacle of guild services. Tournaments, expeditions, and legendary ranks.",
       "category": "services",
       "tier": 3,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Epic quests, advanced training, tournaments, legendary ranks",
-      "users": ["adventurers", "legendary_adventurers", "player"],
+      "users": [
+        "adventurers",
+        "legendary_adventurers",
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
         "quest_board_size": 20,
         "out_of_town_expeditions": true,
-        "training_xp_bonus": 0.10,
+        "training_xp_bonus": 0.1,
         "subclass_abilities": true,
-        "guild_ranks": ["gold", "platinum", "diamond", "legendary"],
+        "guild_ranks": [
+          "gold",
+          "platinum",
+          "diamond",
+          "legendary"
+        ],
         "inter_faction_quests": true,
         "tournaments": true
       },
@@ -1571,12 +2006,19 @@
       "description": "Basic farmland producing grain for the town.",
       "category": "production",
       "tier": 1,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces grain",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"grain": 10}
+        "output": {
+          "grain": 10
+        }
       },
       "provides": null,
       "income": {
@@ -1592,7 +2034,9 @@
       "upgrade_to": "farm_t2",
       "upgrade_requirements": {
         "gold": 300,
-        "resources": {"wood": 20},
+        "resources": {
+          "wood": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1607,12 +2051,19 @@
       "description": "Expanded farmland with irrigation for increased yield.",
       "category": "production",
       "tier": 2,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Produces more grain",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"grain": 25}
+        "output": {
+          "grain": 25
+        }
       },
       "provides": null,
       "income": {
@@ -1629,7 +2080,10 @@
       "upgrade_to": "farm_t3",
       "upgrade_requirements": {
         "gold": 1000,
-        "resources": {"stone": 30, "iron_ingot": 10},
+        "resources": {
+          "stone": 30,
+          "iron_ingot": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1644,12 +2098,20 @@
       "description": "A grand estate producing massive quantities plus rare crops.",
       "category": "production",
       "tier": 3,
-      "footprint": [5, 5],
+      "footprint": [
+        5,
+        5
+      ],
       "function": "Produces grain and rare crops",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"grain": 50, "rare_crops": 2}
+        "output": {
+          "grain": 50,
+          "rare_crops": 2
+        }
       },
       "provides": null,
       "income": {
@@ -1672,12 +2134,19 @@
       "description": "A small garden growing medicinal herbs.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces herbs",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"herbs": 8}
+        "output": {
+          "herbs": 8
+        }
       },
       "provides": null,
       "income": {
@@ -1693,7 +2162,9 @@
       "upgrade_to": "herb_t2",
       "upgrade_requirements": {
         "gold": 400,
-        "resources": {"wood": 15},
+        "resources": {
+          "wood": 15
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1708,12 +2179,19 @@
       "description": "An expanded garden with a variety of medicinal plants.",
       "category": "production",
       "tier": 2,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces more herbs",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"herbs": 20}
+        "output": {
+          "herbs": 20
+        }
       },
       "provides": null,
       "income": {
@@ -1730,7 +2208,10 @@
       "upgrade_to": "herb_t3",
       "upgrade_requirements": {
         "gold": 1200,
-        "resources": {"stone": 20, "arcane_dust": 5},
+        "resources": {
+          "stone": 20,
+          "arcane_dust": 5
+        },
         "prerequisites": [],
         "dungeon_depth": 5,
         "patron_count": 0,
@@ -1745,12 +2226,20 @@
       "description": "A magically-enhanced garden producing rare magical herbs.",
       "category": "production",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Produces herbs and magical herbs",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"herbs": 40, "magical_herbs": 5}
+        "output": {
+          "herbs": 40,
+          "magical_herbs": 5
+        }
       },
       "provides": null,
       "income": {
@@ -1775,12 +2264,19 @@
       "description": "A camp for harvesting timber from the surrounding forest.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces wood",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"wood": 15}
+        "output": {
+          "wood": 15
+        }
       },
       "provides": null,
       "income": {
@@ -1796,7 +2292,9 @@
       "upgrade_to": "lumber_t2",
       "upgrade_requirements": {
         "gold": 350,
-        "resources": {"iron_ingot": 10},
+        "resources": {
+          "iron_ingot": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1811,12 +2309,19 @@
       "description": "An organized operation with better tools and more workers.",
       "category": "production",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces more wood",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"wood": 35}
+        "output": {
+          "wood": 35
+        }
       },
       "provides": null,
       "income": {
@@ -1839,12 +2344,19 @@
       "description": "A stone quarry providing building materials.",
       "category": "production",
       "tier": 1,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces stone",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"stone": 12}
+        "output": {
+          "stone": 12
+        }
       },
       "provides": null,
       "income": {
@@ -1860,7 +2372,9 @@
       "upgrade_to": "quarry_t2",
       "upgrade_requirements": {
         "gold": 600,
-        "resources": {"iron_ingot": 20},
+        "resources": {
+          "iron_ingot": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1875,12 +2389,19 @@
       "description": "A deeper quarry accessing better stone deposits.",
       "category": "production",
       "tier": 2,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Produces more stone",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"stone": 30}
+        "output": {
+          "stone": 30
+        }
       },
       "provides": null,
       "income": {
@@ -1897,8 +2418,12 @@
       "upgrade_to": "quarry_t3",
       "upgrade_requirements": {
         "gold": 2000,
-        "resources": {"steel": 30},
-        "prerequisites": ["mine_t2"],
+        "resources": {
+          "steel": 30
+        },
+        "prerequisites": [
+          "mine_t2"
+        ],
         "dungeon_depth": 0,
         "patron_count": 0,
         "population": 0,
@@ -1912,12 +2437,19 @@
       "description": "A massive quarry operation with industrial-scale output.",
       "category": "production",
       "tier": 3,
-      "footprint": [4, 4],
+      "footprint": [
+        4,
+        4
+      ],
       "function": "Produces large amounts of stone",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"stone": 60}
+        "output": {
+          "stone": 60
+        }
       },
       "provides": null,
       "income": {
@@ -1940,12 +2472,19 @@
       "description": "A mine extracting iron ore from the earth.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces iron ore",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"iron_ore": 8}
+        "output": {
+          "iron_ore": 8
+        }
       },
       "provides": null,
       "income": {
@@ -1961,7 +2500,10 @@
       "upgrade_to": "mine_t2",
       "upgrade_requirements": {
         "gold": 800,
-        "resources": {"wood": 30, "stone": 20},
+        "resources": {
+          "wood": 30,
+          "stone": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -1976,12 +2518,19 @@
       "description": "A deeper mine accessing richer ore veins.",
       "category": "production",
       "tier": 2,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces more iron ore",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"iron_ore": 20}
+        "output": {
+          "iron_ore": 20
+        }
       },
       "provides": null,
       "income": {
@@ -1998,7 +2547,10 @@
       "upgrade_to": "mine_t3",
       "upgrade_requirements": {
         "gold": 4000,
-        "resources": {"steel": 50, "crystal": 10},
+        "resources": {
+          "steel": 50,
+          "crystal": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 15,
         "patron_count": 0,
@@ -2013,12 +2565,19 @@
       "description": "A legendary mine accessing mithril deposits.",
       "category": "production",
       "tier": 3,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Produces mithril ore",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"mithril_ore": 2}
+        "output": {
+          "mithril_ore": 2
+        }
       },
       "provides": null,
       "income": {
@@ -2041,13 +2600,22 @@
       "description": "A furnace for smelting iron ore into ingots.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Converts iron ore to iron ingots",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"iron_ingot": 5},
-        "input": {"iron_ore": 8}
+        "output": {
+          "iron_ingot": 5
+        },
+        "input": {
+          "iron_ore": 8
+        }
       },
       "provides": null,
       "income": {
@@ -2065,8 +2633,12 @@
       "upgrade_to": "smelter_t2",
       "upgrade_requirements": {
         "gold": 700,
-        "resources": {"stone": 30},
-        "prerequisites": ["mine_t1"],
+        "resources": {
+          "stone": 30
+        },
+        "prerequisites": [
+          "mine_t1"
+        ],
         "dungeon_depth": 0,
         "patron_count": 0,
         "population": 0,
@@ -2080,13 +2652,23 @@
       "description": "An advanced foundry capable of producing steel.",
       "category": "production",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces steel",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"steel": 4},
-        "input": {"iron_ingot": 6, "coal": 4}
+        "output": {
+          "steel": 4
+        },
+        "input": {
+          "iron_ingot": 6,
+          "coal": 4
+        }
       },
       "provides": null,
       "income": {
@@ -2106,8 +2688,13 @@
       "upgrade_to": "smelter_t3",
       "upgrade_requirements": {
         "gold": 3000,
-        "resources": {"stone": 50, "crystal": 15},
-        "prerequisites": ["mine_t3"],
+        "resources": {
+          "stone": 50,
+          "crystal": 15
+        },
+        "prerequisites": [
+          "mine_t3"
+        ],
         "dungeon_depth": 15,
         "patron_count": 0,
         "population": 0,
@@ -2121,13 +2708,22 @@
       "description": "A legendary foundry capable of smelting mithril.",
       "category": "production",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Produces mithril ingots",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"mithril_ingot": 1},
-        "input": {"mithril_ore": 2}
+        "output": {
+          "mithril_ingot": 1
+        },
+        "input": {
+          "mithril_ore": 2
+        }
       },
       "provides": null,
       "income": {
@@ -2152,13 +2748,22 @@
       "description": "A brewery producing ale for the tavern.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces ale from grain",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"ale": 6},
-        "input": {"grain": 10}
+        "output": {
+          "ale": 6
+        },
+        "input": {
+          "grain": 10
+        }
       },
       "provides": null,
       "income": {
@@ -2176,8 +2781,13 @@
       "upgrade_to": "brewery_t2",
       "upgrade_requirements": {
         "gold": 500,
-        "resources": {"wood": 20, "stone": 10},
-        "prerequisites": ["farm_t1"],
+        "resources": {
+          "wood": 20,
+          "stone": 10
+        },
+        "prerequisites": [
+          "farm_t1"
+        ],
         "dungeon_depth": 0,
         "patron_count": 0,
         "population": 0,
@@ -2191,13 +2801,23 @@
       "description": "An expanded brewery with special brews.",
       "category": "production",
       "tier": 2,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Produces ale and special brews",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"ale": 15, "special_brew": 2},
-        "input": {"grain": 20}
+        "output": {
+          "ale": 15,
+          "special_brew": 2
+        },
+        "input": {
+          "grain": 20
+        }
       },
       "provides": null,
       "income": {
@@ -2222,13 +2842,22 @@
       "description": "A bakery turning grain into bread.",
       "category": "production",
       "tier": 1,
-      "footprint": [2, 1],
+      "footprint": [
+        2,
+        1
+      ],
       "function": "Produces bread from grain",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"bread": 8},
-        "input": {"grain": 6}
+        "output": {
+          "bread": 8
+        },
+        "input": {
+          "grain": 6
+        }
       },
       "provides": null,
       "income": {
@@ -2246,8 +2875,12 @@
       "upgrade_to": "bakery_t2",
       "upgrade_requirements": {
         "gold": 300,
-        "resources": {"stone": 10},
-        "prerequisites": ["farm_t1"],
+        "resources": {
+          "stone": 10
+        },
+        "prerequisites": [
+          "farm_t1"
+        ],
         "dungeon_depth": 0,
         "patron_count": 0,
         "population": 0,
@@ -2261,13 +2894,22 @@
       "description": "A larger bakery with higher output.",
       "category": "production",
       "tier": 2,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Produces more bread",
-      "users": ["production_chain"],
+      "users": [
+        "production_chain"
+      ],
       "capacity": null,
       "production": {
-        "output": {"bread": 20},
-        "input": {"grain": 12}
+        "output": {
+          "bread": 20
+        },
+        "input": {
+          "grain": 12
+        }
       },
       "provides": null,
       "income": {
@@ -2292,9 +2934,14 @@
       "description": "A simple cottage housing town workers.",
       "category": "residential",
       "tier": 1,
-      "footprint": [1, 1],
+      "footprint": [
+        1,
+        1
+      ],
       "function": "Houses workers for staffing buildings",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": 2,
       "production": null,
       "provides": {
@@ -2313,7 +2960,10 @@
       "upgrade_to": "house_t2",
       "upgrade_requirements": {
         "gold": 150,
-        "resources": {"wood": 15, "stone": 10},
+        "resources": {
+          "wood": 15,
+          "stone": 10
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -2328,9 +2978,14 @@
       "description": "A comfortable home for town citizens.",
       "category": "residential",
       "tier": 2,
-      "footprint": [2, 1],
+      "footprint": [
+        2,
+        1
+      ],
       "function": "Houses more workers",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": 4,
       "production": null,
       "provides": {
@@ -2350,7 +3005,10 @@
       "upgrade_to": "house_t3",
       "upgrade_requirements": {
         "gold": 500,
-        "resources": {"stone": 25, "wood": 15},
+        "resources": {
+          "stone": 25,
+          "wood": 15
+        },
         "prerequisites": [],
         "dungeon_depth": 0,
         "patron_count": 0,
@@ -2365,9 +3023,14 @@
       "description": "A grand manor housing wealthy citizens.",
       "category": "residential",
       "tier": 3,
-      "footprint": [3, 2],
+      "footprint": [
+        3,
+        2
+      ],
       "function": "Houses workers and provides morale",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": 8,
       "production": null,
       "provides": {
@@ -2394,9 +3057,14 @@
       "description": "The administrative center of the town.",
       "category": "civic",
       "tier": 1,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Town policy, upgrade center, population cap",
-      "users": ["player"],
+      "users": [
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2417,7 +3085,10 @@
       "upgrade_to": "mayor_t2",
       "upgrade_requirements": {
         "gold": 1000,
-        "resources": {"stone": 40, "wood": 30},
+        "resources": {
+          "stone": 40,
+          "wood": 30
+        },
         "prerequisites": [],
         "dungeon_depth": 3,
         "patron_count": 0,
@@ -2432,9 +3103,14 @@
       "description": "A proper town hall for a growing settlement.",
       "category": "civic",
       "tier": 2,
-      "footprint": [4, 3],
+      "footprint": [
+        4,
+        3
+      ],
       "function": "Expanded policy, higher population cap",
-      "users": ["player"],
+      "users": [
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2455,7 +3131,10 @@
       "upgrade_to": "mayor_t3",
       "upgrade_requirements": {
         "gold": 5000,
-        "resources": {"stone": 80, "steel": 30},
+        "resources": {
+          "stone": 80,
+          "steel": 30
+        },
         "prerequisites": [],
         "dungeon_depth": 7,
         "patron_count": 0,
@@ -2470,9 +3149,14 @@
       "description": "A magnificent seat of power for a legendary town.",
       "category": "civic",
       "tier": 3,
-      "footprint": [5, 4],
+      "footprint": [
+        5,
+        4
+      ],
       "function": "Full policy suite, maximum population cap",
-      "users": ["player"],
+      "users": [
+        "player"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2499,9 +3183,14 @@
       "description": "A small outpost for town guards.",
       "category": "civic",
       "tier": 1,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Crime prevention, basic town defense",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2521,7 +3210,10 @@
       "upgrade_to": "guard_t2",
       "upgrade_requirements": {
         "gold": 400,
-        "resources": {"stone": 20, "iron_ingot": 15},
+        "resources": {
+          "stone": 20,
+          "iron_ingot": 15
+        },
         "prerequisites": [],
         "dungeon_depth": 2,
         "patron_count": 0,
@@ -2536,9 +3228,14 @@
       "description": "A tower providing better visibility and defense.",
       "category": "civic",
       "tier": 2,
-      "footprint": [2, 2],
+      "footprint": [
+        2,
+        2
+      ],
       "function": "Enhanced defense, early warning",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2560,7 +3257,10 @@
       "upgrade_to": "guard_t3",
       "upgrade_requirements": {
         "gold": 1500,
-        "resources": {"stone": 50, "steel": 20},
+        "resources": {
+          "stone": 50,
+          "steel": 20
+        },
         "prerequisites": [],
         "dungeon_depth": 5,
         "patron_count": 0,
@@ -2575,9 +3275,14 @@
       "description": "A full garrison with active patrols.",
       "category": "civic",
       "tier": 3,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Strong defense, active patrols, raid reduction",
-      "users": ["citizens"],
+      "users": [
+        "citizens"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2606,9 +3311,14 @@
       "description": "The maw of the dungeon. Adventure awaits within.",
       "category": "special",
       "tier": 1,
-      "footprint": [3, 3],
+      "footprint": [
+        3,
+        3
+      ],
       "function": "Entry point to the dungeon",
-      "users": ["adventurers"],
+      "users": [
+        "adventurers"
+      ],
       "capacity": null,
       "production": null,
       "provides": {
@@ -2627,6 +3337,381 @@
       "upgrade_from": null,
       "upgrade_to": null,
       "upgrade_requirements": null
+    },
+    {
+      "id": "bunkhouse_t1",
+      "display_name": "Shared Bunkhouse",
+      "description": "Basic communal sleeping quarters. Cheap but cramped.",
+      "category": "residential",
+      "tier": 1,
+      "footprint": [
+        2,
+        2
+      ],
+      "function": "Houses multiple townsfolk in shared quarters",
+      "users": [
+        "townsfolk"
+      ],
+      "capacity": 6,
+      "capacity_by_type": {
+        "townsfolk": 6,
+        "specialists": 0,
+        "adventurers": 0
+      },
+      "production": null,
+      "provides": {
+        "workers": 6,
+        "morale_penalty": -5
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 3,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "row_houses_t2",
+      "upgrade_requirements": {
+        "gold": 200,
+        "resources": {
+          "wood": 25,
+          "stone": 15
+        },
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 10,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "farmstead_t1",
+      "display_name": "Farmstead",
+      "description": "A small farmhouse with adjacent fields. Workers here boost nearby farm output.",
+      "category": "residential",
+      "tier": 1,
+      "footprint": [
+        2,
+        2
+      ],
+      "function": "Houses farm workers with productivity bonus",
+      "users": [
+        "townsfolk"
+      ],
+      "capacity": 2,
+      "capacity_by_type": {
+        "townsfolk": 2,
+        "specialists": 0,
+        "adventurers": 0
+      },
+      "production": null,
+      "provides": {
+        "workers": 2,
+        "farm_productivity_bonus": 0.15
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 4,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "prerequisites": [
+          "farm_t1"
+        ]
+      },
+      "upgrade_from": null,
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Must be placed adjacent to a Farm for bonus"
+    },
+    {
+      "id": "row_houses_t2",
+      "display_name": "Row Houses",
+      "description": "Connected townhomes offering efficient housing density.",
+      "category": "residential",
+      "tier": 2,
+      "footprint": [
+        3,
+        1
+      ],
+      "function": "Efficient high-density housing for townsfolk",
+      "users": [
+        "townsfolk"
+      ],
+      "capacity": 8,
+      "capacity_by_type": {
+        "townsfolk": 8,
+        "specialists": 0,
+        "adventurers": 0
+      },
+      "production": null,
+      "provides": {
+        "workers": 8
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 8,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bunkhouse_t1"
+      },
+      "upgrade_from": "bunkhouse_t1",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "craftsman_dwelling_t2",
+      "display_name": "Craftsman's Dwelling",
+      "description": "A comfortable home with attached workshop space for skilled workers.",
+      "category": "residential",
+      "tier": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "function": "Houses specialists with workshop proximity bonus",
+      "users": [
+        "specialists"
+      ],
+      "capacity": 2,
+      "capacity_by_type": {
+        "townsfolk": 0,
+        "specialists": 2,
+        "adventurers": 0
+      },
+      "production": null,
+      "provides": {
+        "workers": 2,
+        "workshop_efficiency_bonus": 0.1
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "prerequisites": [
+          "smith_t1"
+        ],
+        "population": 15
+      },
+      "upgrade_from": null,
+      "upgrade_to": "estate_home_t4",
+      "upgrade_requirements": {
+        "gold": 800,
+        "resources": {
+          "stone": 30,
+          "wood": 20
+        },
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 30,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "boarding_house_t3",
+      "display_name": "Boarding House",
+      "description": "A large house offering rooms for rent to workers and travelers alike.",
+      "category": "residential",
+      "tier": 3,
+      "footprint": [
+        3,
+        2
+      ],
+      "function": "Mixed housing for townsfolk and adventurers",
+      "users": [
+        "townsfolk",
+        "adventurers"
+      ],
+      "capacity": 12,
+      "capacity_by_type": {
+        "townsfolk": 8,
+        "specialists": 0,
+        "adventurers": 4
+      },
+      "production": null,
+      "provides": {
+        "workers": 8,
+        "adventurer_beds": 4,
+        "morale_bonus": 5
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_adventurer_gold": 2
+      },
+      "upkeep": 15,
+      "staffing": 1,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "population": 25,
+        "prerequisites": [
+          "tavern_t2"
+        ]
+      },
+      "upgrade_from": null,
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "guild_dormitory_t3",
+      "display_name": "Guild Dormitory",
+      "description": "Barracks-style housing for guild members with training facilities.",
+      "category": "residential",
+      "tier": 3,
+      "footprint": [
+        2,
+        3
+      ],
+      "function": "Adventurer housing with guild training bonus",
+      "users": [
+        "adventurers"
+      ],
+      "capacity": 6,
+      "capacity_by_type": {
+        "townsfolk": 0,
+        "specialists": 0,
+        "adventurers": 6
+      },
+      "production": null,
+      "provides": {
+        "adventurer_beds": 6,
+        "training_xp_bonus": 0.05,
+        "morale_bonus": 8
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_adventurer_gold": 3
+      },
+      "upkeep": 20,
+      "staffing": 1,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "prerequisites": [
+          "guild_t2"
+        ]
+      },
+      "upgrade_from": null,
+      "upgrade_to": "adventurer_lodge_t4",
+      "upgrade_requirements": {
+        "gold": 1500,
+        "resources": {
+          "stone": 50,
+          "steel": 20
+        },
+        "prerequisites": [
+          "guild_t3"
+        ],
+        "dungeon_depth": 8,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      },
+      "special": "Must be adjacent to Guild Hall for training bonus"
+    },
+    {
+      "id": "estate_home_t4",
+      "display_name": "Estate Home",
+      "description": "A grand residence for wealthy citizens and accomplished adventurers.",
+      "category": "residential",
+      "tier": 4,
+      "footprint": [
+        3,
+        3
+      ],
+      "function": "Premium housing for specialists and adventurers",
+      "users": [
+        "specialists",
+        "adventurers"
+      ],
+      "capacity": 4,
+      "capacity_by_type": {
+        "townsfolk": 0,
+        "specialists": 2,
+        "adventurers": 2
+      },
+      "production": null,
+      "provides": {
+        "workers": 2,
+        "adventurer_beds": 2,
+        "morale_bonus": 15,
+        "prestige_bonus": true
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_adventurer_gold": 8
+      },
+      "upkeep": 30,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "craftsman_dwelling_t2"
+      },
+      "upgrade_from": "craftsman_dwelling_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Increases town Fame when occupied"
+    },
+    {
+      "id": "adventurer_lodge_t4",
+      "display_name": "Adventurer's Lodge",
+      "description": "A dedicated facility for adventurers with training grounds and equipment storage.",
+      "category": "residential",
+      "tier": 4,
+      "footprint": [
+        3,
+        3
+      ],
+      "function": "Premium adventurer housing with training area",
+      "users": [
+        "adventurers"
+      ],
+      "capacity": 8,
+      "capacity_by_type": {
+        "townsfolk": 0,
+        "specialists": 0,
+        "adventurers": 8
+      },
+      "production": null,
+      "provides": {
+        "adventurer_beds": 8,
+        "training_xp_bonus": 0.1,
+        "equipment_storage": true,
+        "morale_bonus": 12,
+        "rest_quality": 0.9
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_adventurer_gold": 5
+      },
+      "upkeep": 40,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "guild_dormitory_t3"
+      },
+      "upgrade_from": "guild_dormitory_t3",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Adventurers gain passive XP while resting here"
     }
   ]
 }
