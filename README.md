@@ -17,14 +17,14 @@ A dungeon-themed colony sim built in Godot 4.
 
 ```bash
 cd game/
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://tests/unit -gexit
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit
 ```
 
 ### From the Godot editor
 
 1. Open the project in Godot 4.6
 2. Enable the GUT plugin: **Project → Project Settings → Plugins → GUT → Enable**
-3. Open the **GUT** panel (bottom dock)
+3. Open the **GUT** panel (bottom dock) — test directories are pre-configured via `.gutconfig.json`
 4. Click **Run All**
 
 ### Test structure
