@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "notice_board_t1"
+display_name = "Notice Board"
+description = "A public notice board where adventurers find work and townsfolk share news."
+category = "civic"
+tier = 1
+footprint = Vector2i(1, 1)
+build_cost = 50
+upkeep = 2
+base_income = 0
+staffing = 0
+unlock_at_start = true
+upgrade_to = "notice_board_t2"
+upgrade_cost = 400
+upgrade_time_days = 5
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

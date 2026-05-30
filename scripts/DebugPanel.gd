@@ -13,6 +13,8 @@ const MARGIN:        float = 10.0
 var _log_output: RichTextLabel
 var _log_lines: Array[String] = []
 var _last_adv_id: String = ""
+var _place_idx: int = 0
+var _place_btn: Button = null
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 
@@ -61,7 +63,9 @@ func _build_ui() -> void:
 	var row3 := HBoxContainer.new()
 	row3.add_theme_constant_override("separation", 4)
 	vbox.add_child(row3)
-	_btn(row3, "Place Building", _on_place_building)
+	_place_btn = _btn_ref(row3, "Place Building", _on_place_building)
+	EventBus.building_placement_cancelled.connect(_on_placement_cancelled)
+	EventBus.building_placed.connect(func(_id, _origin): _on_placement_cancelled())
 
 	# Log label
 	var log_hdr := Label.new()
@@ -85,6 +89,15 @@ func _btn(parent: HBoxContainer, label: String, cb: Callable) -> void:
 	b.custom_minimum_size.y = 26
 	b.pressed.connect(cb)
 	parent.add_child(b)
+
+func _btn_ref(parent: HBoxContainer, label: String, cb: Callable) -> Button:
+	var b := Button.new()
+	b.text = label
+	b.add_theme_font_size_override("font_size", 11)
+	b.custom_minimum_size.y = 26
+	b.pressed.connect(cb)
+	parent.add_child(b)
+	return b
 
 # ── Button Callbacks ──────────────────────────────────────────────────────────
 
@@ -136,17 +149,27 @@ func _on_place_building() -> void:
 		return
 	if placer.is_placing():
 		placer.exit_placement_mode()
+		if _place_btn:
+			_place_btn.text = "Place Building"
 		return
-	# Use lodging_t1 as the test building
-	var data: BuildingData = DataRegistry.get_building("lodging_t1") as BuildingData
-	if data == null:
-		# Fallback: build a minimal inline stub so the button works before DataRegistry is seeded
-		data = BuildingData.new()
-		data.id           = "lodging_t1"
-		data.display_name = "Tent Camp"
-		data.category     = "hospitality"
-		data.footprint    = Vector2i(2, 2)
+	var buildings := DataRegistry.get_buildings_by_tier(1)
+	# Filter out fixed-position buildings (dungeon entrance)
+	buildings = buildings.filter(func(b: BuildingData) -> bool: return not b.fixed_position)
+	if buildings.is_empty():
+		EventBus.debug_log_message.emit("No T1 buildings registered")
+		return
+	# Sort by id for consistent cycling order
+	buildings.sort_custom(func(a: BuildingData, b: BuildingData) -> bool: return a.id < b.id)
+	_place_idx = _place_idx % buildings.size()
+	var data: BuildingData = buildings[_place_idx]
+	_place_idx = (_place_idx + 1) % buildings.size()
+	if _place_btn:
+		_place_btn.text = "Place: %s" % data.display_name
 	placer.enter_placement_mode(data)
+
+func _on_placement_cancelled() -> void:
+	if _place_btn:
+		_place_btn.text = "Place Building"
 
 # ── Log ───────────────────────────────────────────────────────────────────────
 
