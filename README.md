@@ -1,13 +1,39 @@
-# Dungeon Town — M0 Bootstrap
+# Dungeon Town
 
-A dungeon-themed colony sim built in Godot 4. This is the **M0 vertical slice**: a runnable foundation with town grid, dungeon entrance, day/night cycle, and an adventurer loop stub.
+A dungeon-themed colony sim built in Godot 4.
 
 ---
 
 ## Requirements
 
-- **Godot 4.2+** (tested with 4.2.x / 4.3.x, GL Compatibility renderer)
-- No plugins or additional dependencies required
+- **Godot 4.6** (GL Compatibility renderer)
+- **GUT v9.6.0** — included in `addons/gut/` (no separate install needed)
+
+---
+
+## Running Tests
+
+### From the terminal (headless)
+
+```bash
+cd game/
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://tests/unit -gexit
+```
+
+### From the Godot editor
+
+1. Open the project in Godot 4.6
+2. Enable the GUT plugin: **Project → Project Settings → Plugins → GUT → Enable**
+3. Open the **GUT** panel (bottom dock)
+4. Click **Run All**
+
+### Test structure
+
+```
+tests/
+├── unit/          # Pure logic tests (no scene required)
+└── integration/   # Tests that require a running scene tree
+```
 
 ---
 
