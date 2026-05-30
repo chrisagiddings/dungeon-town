@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "mayor_t1"
+display_name = "Mayor's Hall"
+description = "The administrative center of the town."
+category = "civic"
+tier = 1
+footprint = Vector2i(3, 3)
+build_cost = 300
+upkeep = 20
+staffing = 2
+unlock_at_start = true
+upgrade_to = "mayor_t2"
+upgrade_cost = 1000
+upgrade_resources = {"stone": 40, "wood": 30}
+upgrade_dungeon_depth = 3
+upgrade_population = 25
+upgrade_time_days = 15
+placeholder_color = Color(0.25, 0.41, 0.88, 1)
+special_notes = "Increases population cap by 20"

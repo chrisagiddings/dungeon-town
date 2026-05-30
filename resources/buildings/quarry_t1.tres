@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "quarry_t1"
+display_name = "Quarry"
+description = "A stone quarry providing building materials."
+category = "production"
+tier = 1
+footprint = Vector2i(3, 3)
+build_cost = 150
+upkeep = 8
+staffing = 3
+produces = {"stone": 12}
+unlock_at_start = true
+upgrade_to = "quarry_t2"
+upgrade_cost = 600
+upgrade_resources = {"iron_ingot": 20}
+upgrade_time_days = 10
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

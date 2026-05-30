@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "smith_t1"
+display_name = "Village Smith"
+description = "A basic forge producing iron weapons and armor for novice adventurers."
+category = "gear"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 200
+upkeep = 15
+base_income = 80
+staffing = 2
+gear_quality = "common"
+unlock_at_start = true
+upgrade_to = "smith_t2"
+upgrade_cost = 500
+upgrade_resources = {"iron_ingot": 30}
+upgrade_prerequisites = ["mine_t1"]
+upgrade_patron_count = 100
+upgrade_time_days = 8
+placeholder_color = Color(0.55, 0.56, 0.58, 1)

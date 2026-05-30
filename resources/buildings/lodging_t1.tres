@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "lodging_t1"
+display_name = "Tent Camp"
+description = "Basic canvas shelters for weary adventurers. Not comfortable, but better than sleeping in the dungeon."
+category = "hospitality"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 100
+upkeep = 5
+base_income = 0
+income_per_guest = 1
+staffing = 1
+capacity = 6
+rest_quality = 0.5
+morale_bonus = 0
+unlock_at_start = true
+upgrade_to = "lodging_t2"
+upgrade_cost = 200
+upgrade_resources = {"wood": 20, "stone": 10}
+upgrade_patron_count = 10
+upgrade_time_days = 5
+placeholder_color = Color(0.96, 0.65, 0.14, 1)

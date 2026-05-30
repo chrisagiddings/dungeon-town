@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "dungeon_entrance"
+display_name = "Dungeon Entrance"
+description = "The maw of the dungeon. Adventure awaits within."
+category = "special"
+tier = 1
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 0
+staffing = 0
+unlock_at_start = true
+fixed_position = true
+placeholder_color = Color(0.25, 0.2, 0.35, 1)
+special_notes = "Entry point to the dungeon. Cannot be moved or upgraded."

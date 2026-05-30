@@ -1,0 +1,2632 @@
+{
+  "$schema": "./buildings.schema.json",
+  "version": "1.0.0",
+  "buildings": [
+    {
+      "id": "lodging_t1",
+      "display_name": "Tent Camp",
+      "description": "Basic canvas shelters for weary adventurers. Not comfortable, but better than sleeping in the dungeon.",
+      "category": "hospitality",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Provides basic overnight rest for adventurers",
+      "users": ["adventurers"],
+      "capacity": 6,
+      "production": null,
+      "provides": {
+        "rest_quality": 0.5,
+        "hp_recovery": 0.5,
+        "morale_bonus": 0
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_guest_gold": 1
+      },
+      "upkeep": 5,
+      "staffing": 1,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "lodging_t2",
+      "upgrade_requirements": {
+        "gold": 200,
+        "resources": {"wood": 20, "stone": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 10,
+        "population": 0,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "lodging_t2",
+      "display_name": "Wayfarers Inn",
+      "description": "A proper inn with beds, hot meals available, and a common room for swapping tales.",
+      "category": "hospitality",
+      "tier": 2,
+      "footprint": [3, 3],
+      "function": "Provides standard rest with morale benefits",
+      "users": ["adventurers"],
+      "capacity": 16,
+      "production": null,
+      "provides": {
+        "rest_quality": 0.75,
+        "hp_recovery": 0.75,
+        "morale_bonus": 5,
+        "generates_bonds": true
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_guest_gold": 3
+      },
+      "upkeep": 15,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "lodging_t1"
+      },
+      "upgrade_from": "lodging_t1",
+      "upgrade_to": "lodging_t3",
+      "upgrade_requirements": {
+        "gold": 800,
+        "resources": {"stone": 40, "iron_ingot": 20},
+        "prerequisites": ["tavern_t2"],
+        "dungeon_depth": 0,
+        "patron_count": 60,
+        "population": 20,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "lodging_t3",
+      "display_name": "Grand Inn",
+      "description": "A prestigious establishment with private suites, fine dining, and amenities fit for heroes.",
+      "category": "hospitality",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Full rest with stat buffs and private suites for residents",
+      "users": ["adventurers", "residents"],
+      "capacity": 30,
+      "capacity_suites": 6,
+      "production": null,
+      "provides": {
+        "rest_quality": 1.0,
+        "hp_recovery": 1.0,
+        "morale_bonus": 10,
+        "stat_buff_damage": 0.05,
+        "stat_buff_defense": 0.05,
+        "loyalty_bonus": true
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_guest_gold": 6,
+        "per_suite_gold": 12
+      },
+      "upkeep": 30,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "lodging_t2"
+      },
+      "upgrade_from": "lodging_t2",
+      "upgrade_to": "lodging_t4",
+      "upgrade_requirements": {
+        "gold": 3000,
+        "resources": {"stone": 60, "steel": 40, "crystal": 5},
+        "prerequisites": [],
+        "dungeon_depth": 6,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": "known",
+        "time_days": 20
+      }
+    },
+    {
+      "id": "lodging_t4",
+      "display_name": "Legendary Rest",
+      "description": "The finest accommodations in the realm. Legendary adventurers demand nothing less.",
+      "category": "hospitality",
+      "tier": 4,
+      "footprint": [4, 4],
+      "function": "Exceptional rest with all stat bonuses and passive XP gain",
+      "users": ["adventurers", "residents", "legendary_adventurers"],
+      "capacity": 50,
+      "capacity_suites": 12,
+      "capacity_luxury_suites": 4,
+      "production": null,
+      "provides": {
+        "rest_quality": 1.0,
+        "hp_recovery": 1.0,
+        "mana_recovery": 1.0,
+        "morale_bonus": 15,
+        "stat_buff_all": 0.10,
+        "passive_xp": true,
+        "attracts_veteran_plus": true
+      },
+      "income": {
+        "base_gold_per_day": 0,
+        "per_guest_gold": 10,
+        "per_suite_gold": 25,
+        "per_luxury_suite_gold": 50
+      },
+      "upkeep": 60,
+      "staffing": 8,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "lodging_t3"
+      },
+      "upgrade_from": "lodging_t3",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Legendary adventurers will ONLY stay here"
+    },
+    {
+      "id": "tavern_t1",
+      "display_name": "Rough Tavern",
+      "description": "A humble drinking hole where adventurers can grab a meal and share stories.",
+      "category": "hospitality",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Provides meals and minor morale boost",
+      "users": ["adventurers", "citizens"],
+      "capacity": 20,
+      "production": null,
+      "provides": {
+        "food_need": true,
+        "morale_bonus": 5
+      },
+      "income": {
+        "base_gold_per_day": 50
+      },
+      "upkeep": 10,
+      "staffing": 2,
+      "resource_requirements": {
+        "grain": 10
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "tavern_t2",
+      "upgrade_requirements": {
+        "gold": 300,
+        "resources": {"wood": 20, "cloth": 10},
+        "prerequisites": ["bakery_t1"],
+        "dungeon_depth": 0,
+        "patron_count": 30,
+        "population": 0,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "tavern_t2",
+      "display_name": "Busy Tavern",
+      "description": "A lively establishment with good food, flowing ale, and a rumor board for dungeon tips.",
+      "category": "hospitality",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Good meals, ale, rumor board for dungeon intel",
+      "users": ["adventurers", "citizens", "bards"],
+      "capacity": 40,
+      "production": null,
+      "provides": {
+        "food_need": true,
+        "morale_bonus": 10,
+        "ale_morale_bonus": 15,
+        "ale_speed_buff": true,
+        "rumor_board": true,
+        "bard_performance": true
+      },
+      "income": {
+        "base_gold_per_day": 150
+      },
+      "upkeep": 25,
+      "staffing": 4,
+      "resource_requirements": {
+        "grain": 15,
+        "ale": 8
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "tavern_t1"
+      },
+      "upgrade_from": "tavern_t1",
+      "upgrade_to": "tavern_t3",
+      "upgrade_requirements": {
+        "gold": 1500,
+        "resources": {"stone": 30, "fine_cloth": 20},
+        "prerequisites": ["brewery_t2"],
+        "dungeon_depth": 4,
+        "patron_count": 200,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      },
+      "special": "Bard adventurer residents provide +5 town-wide morale"
+    },
+    {
+      "id": "tavern_t3",
+      "display_name": "Grand Tavern",
+      "description": "The social heart of the town. Festivals, performances, and the best ale in the realm.",
+      "category": "hospitality",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Exceptional dining, entertainment, quest rumor board",
+      "users": ["adventurers", "citizens", "bards", "merchants"],
+      "capacity": 80,
+      "production": null,
+      "provides": {
+        "food_need": true,
+        "morale_bonus": 20,
+        "premium_ale": true,
+        "entertainment_events": true,
+        "quest_rumor_board": true,
+        "generates_positive_events": true
+      },
+      "income": {
+        "base_gold_per_day": 400,
+        "event_income": true
+      },
+      "upkeep": 50,
+      "staffing": 6,
+      "resource_requirements": {
+        "grain": 25,
+        "ale": 15
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "tavern_t2"
+      },
+      "upgrade_from": "tavern_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Generates 1 random positive event per 30 in-game days"
+    },
+    {
+      "id": "bathhouse_t1",
+      "display_name": "Public Baths",
+      "description": "Simple communal baths. Cleanliness is next to godliness, and disease-free.",
+      "category": "hospitality",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Sanitation, morale, minor curse resistance",
+      "users": ["adventurers", "citizens"],
+      "capacity": 15,
+      "production": null,
+      "provides": {
+        "sanitation": true,
+        "disease_prevention": true,
+        "morale_bonus": 8,
+        "curse_resistance": "minor"
+      },
+      "income": {
+        "base_gold_per_day": 30
+      },
+      "upkeep": 10,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "population": 15
+      },
+      "upgrade_from": null,
+      "upgrade_to": "bathhouse_t2",
+      "upgrade_requirements": {
+        "gold": 600,
+        "resources": {"stone": 20, "crystal": 10},
+        "prerequisites": [],
+        "dungeon_depth": 3,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "bathhouse_t2",
+      "display_name": "Healing Baths",
+      "description": "Mineral-rich waters that soothe wounds and cleanse minor curses.",
+      "category": "hospitality",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Sanitation, HP regen, curse cleansing",
+      "users": ["adventurers", "citizens"],
+      "capacity": 25,
+      "production": null,
+      "provides": {
+        "sanitation": true,
+        "disease_prevention": true,
+        "hp_regen_between_runs": true,
+        "curse_cleanse": "minor",
+        "morale_bonus": 15
+      },
+      "income": {
+        "base_gold_per_day": 80,
+        "per_healing_visit_gold": 5
+      },
+      "upkeep": 20,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bathhouse_t1"
+      },
+      "upgrade_from": "bathhouse_t1",
+      "upgrade_to": "bathhouse_t3",
+      "upgrade_requirements": {
+        "gold": 2000,
+        "resources": {"stone": 40, "crystal": 25},
+        "prerequisites": [],
+        "dungeon_depth": 6,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "bathhouse_t3",
+      "display_name": "Arcane Spa",
+      "description": "Magically infused waters that restore body, mind, and spirit.",
+      "category": "hospitality",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Full restoration, strong curse resistance, weekly buff",
+      "users": ["adventurers", "citizens"],
+      "capacity": 40,
+      "production": null,
+      "provides": {
+        "sanitation": true,
+        "disease_prevention": true,
+        "hp_regen": true,
+        "mana_regen": true,
+        "curse_resistance": "strong",
+        "morale_bonus": 25,
+        "weekly_buff_choice": ["strength", "speed", "luck", "insight"]
+      },
+      "income": {
+        "base_gold_per_day": 200,
+        "premium_services": true
+      },
+      "upkeep": 40,
+      "staffing": 5,
+      "resource_requirements": {
+        "crystal": 2,
+        "herbs": 5
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bathhouse_t2"
+      },
+      "upgrade_from": "bathhouse_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "store_t1",
+      "display_name": "General Store",
+      "description": "Basic adventuring supplies: rations, torches, rope, and minor potions.",
+      "category": "commerce",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Sells basic adventuring supplies",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "sells": ["rations", "torches", "rope", "minor_health_potions"]
+      },
+      "income": {
+        "base_gold_per_day": 60
+      },
+      "upkeep": 10,
+      "staffing": 1,
+      "resource_requirements": {
+        "imports": true
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "store_t2",
+      "upgrade_requirements": {
+        "gold": 400,
+        "resources": {"wood": 20, "cloth": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 50,
+        "population": 0,
+        "reputation": null,
+        "time_days": 7,
+        "supply_chains_active": 3
+      }
+    },
+    {
+      "id": "store_t2",
+      "display_name": "Trading Post",
+      "description": "Expanded inventory with better potions, maps, and gear accessories.",
+      "category": "commerce",
+      "tier": 2,
+      "footprint": [2, 3],
+      "function": "Broader supplies, unlocks caravan events",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "sells": ["supplies", "potions", "maps", "gear_accessories"],
+        "unlocks_caravan_events": true
+      },
+      "income": {
+        "base_gold_per_day": 150
+      },
+      "upkeep": 20,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "store_t1"
+      },
+      "upgrade_from": "store_t1",
+      "upgrade_to": "store_t3",
+      "upgrade_requirements": {
+        "gold": 2000,
+        "resources": {"stone": 30, "iron_ingot": 20},
+        "prerequisites": ["market_t1"],
+        "dungeon_depth": 5,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "store_t3",
+      "display_name": "Emporium",
+      "description": "Full catalog of supplies including rare items and dungeon-specific consumables.",
+      "category": "commerce",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Full catalog, rare items, bulk discounts for residents",
+      "users": ["adventurers", "residents"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "sells": ["full_catalog", "rare_items", "enchanted_accessories", "dungeon_specific_consumables"],
+        "resident_discount": true
+      },
+      "income": {
+        "base_gold_per_day": 400
+      },
+      "upkeep": 40,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "store_t2"
+      },
+      "upgrade_from": "store_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "market_t1",
+      "display_name": "Market Stalls",
+      "description": "Open-air market where local goods fetch better prices than imports.",
+      "category": "commerce",
+      "tier": 1,
+      "footprint": [3, 2],
+      "function": "Dynamic pricing hub for production chain goods",
+      "users": ["adventurers", "citizens", "production_buildings"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "price_bonus_local_goods": 0.20,
+        "trade_goods": true
+      },
+      "income": {
+        "base_gold_per_day": 100,
+        "scales_with_supply_chains": true
+      },
+      "upkeep": 15,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "production_buildings": 3
+      },
+      "upgrade_from": null,
+      "upgrade_to": "market_t2",
+      "upgrade_requirements": {
+        "gold": 800,
+        "resources": {"stone": 20},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15,
+        "supply_chains_active": 5
+      }
+    },
+    {
+      "id": "market_t2",
+      "display_name": "Town Market",
+      "description": "Full trade hub with automatic supply routing between buildings.",
+      "category": "commerce",
+      "tier": 2,
+      "footprint": [4, 3],
+      "function": "Inter-building supply routing, supply/demand pricing",
+      "users": ["adventurers", "citizens", "production_buildings"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "auto_supply_routing": true,
+        "dynamic_pricing": true
+      },
+      "income": {
+        "base_gold_per_day": 250
+      },
+      "upkeep": 30,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "market_t1"
+      },
+      "upgrade_from": "market_t1",
+      "upgrade_to": "market_t3",
+      "upgrade_requirements": {
+        "gold": 3000,
+        "resources": {"stone": 50, "iron_ingot": 30},
+        "prerequisites": [],
+        "dungeon_depth": 8,
+        "patron_count": 0,
+        "population": 40,
+        "reputation": null,
+        "time_days": 20
+      }
+    },
+    {
+      "id": "market_t3",
+      "display_name": "Grand Bazaar",
+      "description": "Regional trade hub attracting merchants from across the realm.",
+      "category": "commerce",
+      "tier": 3,
+      "footprint": [5, 4],
+      "function": "Regional trade, traveling merchants, toll income",
+      "users": ["adventurers", "citizens", "merchants"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "regional_trade": true,
+        "traveling_merchants": true,
+        "rare_goods_rotation": true
+      },
+      "income": {
+        "base_gold_per_day": 600,
+        "toll_income": true
+      },
+      "upkeep": 60,
+      "staffing": 8,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "market_t2"
+      },
+      "upgrade_from": "market_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "bank_t1",
+      "display_name": "Money Changer",
+      "description": "Secure gold storage and fair rates for converting dungeon loot.",
+      "category": "commerce",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Gold storage, loot conversion, adventurer deposits",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "gold_storage": true,
+        "loot_conversion": true,
+        "adventurer_banking": true
+      },
+      "income": {
+        "transaction_fee_percent": 2
+      },
+      "upkeep": 20,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "population": 25,
+        "prerequisites": ["guild_t1"]
+      },
+      "upgrade_from": null,
+      "upgrade_to": "bank_t2",
+      "upgrade_requirements": {
+        "gold": 1200,
+        "resources": {"stone": 30, "iron_ingot": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10,
+        "gold_transacted": 5000
+      }
+    },
+    {
+      "id": "bank_t2",
+      "display_name": "Town Bank",
+      "description": "Full banking services including loans, interest, and adventurer insurance.",
+      "category": "commerce",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Loans, interest on deposits, death insurance",
+      "users": ["adventurers", "player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "loans": true,
+        "deposit_interest": true,
+        "death_insurance": true
+      },
+      "income": {
+        "loan_interest": true,
+        "transaction_fees": true
+      },
+      "upkeep": 35,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bank_t1"
+      },
+      "upgrade_from": "bank_t1",
+      "upgrade_to": "bank_t3",
+      "upgrade_requirements": {
+        "gold": 5000,
+        "resources": {"stone": 60, "steel": 20},
+        "prerequisites": [],
+        "dungeon_depth": 7,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15,
+        "gold_transacted": 25000
+      }
+    },
+    {
+      "id": "bank_t3",
+      "display_name": "Grand Exchange",
+      "description": "Financial center with investments, futures trading, and inter-town routes.",
+      "category": "commerce",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Investments, futures trading, trade routes",
+      "users": ["adventurers", "player", "merchants"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "investments": true,
+        "futures_trading": true,
+        "trade_routes": true
+      },
+      "income": {
+        "investment_returns": true,
+        "trade_route_income": true
+      },
+      "upkeep": 80,
+      "staffing": 6,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bank_t2"
+      },
+      "upgrade_from": "bank_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "auction_t1",
+      "display_name": "Auction House",
+      "description": "Marketplace for rare dungeon loot. The town takes a cut of every sale.",
+      "category": "commerce",
+      "tier": 1,
+      "footprint": [3, 3],
+      "function": "Rare item trading, premium loot sales",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "rare_item_trading": true,
+        "premium_loot_prices": true
+      },
+      "income": {
+        "auction_cut_percent": 10
+      },
+      "upkeep": 40,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "prerequisites": ["bank_t2"],
+        "dungeon_depth": 7
+      },
+      "upgrade_from": null,
+      "upgrade_to": "auction_t2",
+      "upgrade_requirements": {
+        "gold": 5000,
+        "resources": {"stone": 50, "steel": 20},
+        "prerequisites": [],
+        "dungeon_depth": 10,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": "renowned",
+        "time_days": 20
+      }
+    },
+    {
+      "id": "auction_t2",
+      "display_name": "Grand Auction House",
+      "description": "Legendary items change hands here. Wealthy merchants visit from afar.",
+      "category": "commerce",
+      "tier": 2,
+      "footprint": [4, 4],
+      "function": "Legendary items, cross-region reputation, commissions",
+      "users": ["adventurers", "merchants"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "legendary_item_trading": true,
+        "cross_region_reputation": true,
+        "item_commissions": true
+      },
+      "income": {
+        "auction_cut_percent": 15,
+        "commission_fees": true
+      },
+      "upkeep": 80,
+      "staffing": 5,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "auction_t1"
+      },
+      "upgrade_from": "auction_t1",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "smith_t1",
+      "display_name": "Village Smith",
+      "description": "A basic forge producing iron weapons and armor for novice adventurers.",
+      "category": "gear",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces Common quality iron weapons and armor",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "common",
+        "armor": "common",
+        "materials": ["iron"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 80
+      },
+      "upkeep": 15,
+      "staffing": 2,
+      "resource_requirements": {
+        "iron_ingot": 5
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "smith_t2",
+      "upgrade_requirements": {
+        "gold": 500,
+        "resources": {"iron_ingot": 30},
+        "prerequisites": ["mine_t1"],
+        "dungeon_depth": 0,
+        "patron_count": 100,
+        "population": 0,
+        "reputation": null,
+        "time_days": 8
+      }
+    },
+    {
+      "id": "smith_t2",
+      "display_name": "Town Smithy",
+      "description": "An established forge working iron and steel into Uncommon gear.",
+      "category": "gear",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Produces Uncommon quality weapons, armor, shields, tools",
+      "users": ["adventurers", "citizens"],
+      "capacity": null,
+      "production": {
+        "weapons": "uncommon",
+        "armor": "uncommon",
+        "materials": ["iron", "steel"],
+        "additional": ["shields", "tools"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 200
+      },
+      "upkeep": 30,
+      "staffing": 3,
+      "resource_requirements": {
+        "iron_ingot": 8,
+        "steel": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "smith_t1"
+      },
+      "upgrade_from": "smith_t1",
+      "upgrade_to": "smith_t3",
+      "upgrade_requirements": {
+        "gold": 2000,
+        "resources": {"steel": 50, "gemstones": 10},
+        "prerequisites": [],
+        "dungeon_depth": 5,
+        "patron_count": 500,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "smith_t3",
+      "display_name": "Master Forge",
+      "description": "A master smithy producing Rare steel gear with enchantable slots.",
+      "category": "gear",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Produces Rare quality gear with enchantable slots",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "rare",
+        "armor": "rare",
+        "materials": ["steel"],
+        "enchantable": true
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 500
+      },
+      "upkeep": 60,
+      "staffing": 4,
+      "resource_requirements": {
+        "steel": 10,
+        "gemstones": 1
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "smith_t2"
+      },
+      "upgrade_from": "smith_t2",
+      "upgrade_to": "smith_t4",
+      "upgrade_requirements": {
+        "gold": 8000,
+        "resources": {"steel": 100, "crystal": 20, "dragon_scale": 5},
+        "prerequisites": ["guild_t3"],
+        "dungeon_depth": 12,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 25
+      }
+    },
+    {
+      "id": "smith_t4",
+      "display_name": "Legendary Forge",
+      "description": "Where legends are made. Mithril and dragon scale become weapons of myth.",
+      "category": "gear",
+      "tier": 4,
+      "footprint": [4, 4],
+      "function": "Produces Epic-Legendary quality gear and unique named weapons",
+      "users": ["adventurers", "legendary_adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "legendary",
+        "armor": "legendary",
+        "materials": ["mithril", "dragon_scale"],
+        "named_weapons": true
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 1500,
+        "commission_fees": true
+      },
+      "upkeep": 120,
+      "staffing": 6,
+      "resource_requirements": {
+        "mithril": 2,
+        "dragon_scale": 1
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "smith_t3"
+      },
+      "upgrade_from": "smith_t3",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Named weapons become town lore items that attract Legendary adventurers"
+    },
+    {
+      "id": "fletcher_t1",
+      "display_name": "Fletcher's Stall",
+      "description": "Simple booth crafting bows, crossbows, and ammunition.",
+      "category": "gear",
+      "tier": 1,
+      "footprint": [2, 1],
+      "function": "Produces Common quality ranged weapons and ammo",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "common",
+        "types": ["bows", "crossbows", "arrows", "bolts"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 60
+      },
+      "upkeep": 10,
+      "staffing": 1,
+      "resource_requirements": {
+        "wood": 5,
+        "leather": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "prerequisites": ["lumber_t1"]
+      },
+      "upgrade_from": null,
+      "upgrade_to": "fletcher_t2",
+      "upgrade_requirements": {
+        "gold": 400,
+        "resources": {"wood": 20, "leather": 20},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 50,
+        "population": 0,
+        "reputation": null,
+        "time_days": 7
+      }
+    },
+    {
+      "id": "fletcher_t2",
+      "display_name": "Fletcher's Workshop",
+      "description": "Full workshop producing composite weapons and specialty arrows.",
+      "category": "gear",
+      "tier": 2,
+      "footprint": [2, 2],
+      "function": "Produces Uncommon ranged weapons and specialty ammo",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "uncommon",
+        "types": ["composite_bows", "hunting_crossbows"],
+        "specialty_arrows": ["fire", "poison", "piercing"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 160
+      },
+      "upkeep": 25,
+      "staffing": 2,
+      "resource_requirements": {
+        "wood": 8,
+        "leather": 4,
+        "herbs": 1
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "fletcher_t1"
+      },
+      "upgrade_from": "fletcher_t1",
+      "upgrade_to": "fletcher_t3",
+      "upgrade_requirements": {
+        "gold": 1500,
+        "resources": {"steel": 30, "arcane_dust": 10},
+        "prerequisites": [],
+        "dungeon_depth": 6,
+        "patron_count": 200,
+        "population": 0,
+        "reputation": null,
+        "time_days": 12
+      }
+    },
+    {
+      "id": "fletcher_t3",
+      "display_name": "Master Fletcher",
+      "description": "Master crafters producing enchanted bows and elemental ammunition.",
+      "category": "gear",
+      "tier": 3,
+      "footprint": [3, 2],
+      "function": "Produces Rare-Epic ranged weapons and class-specific gear",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "weapons": "epic",
+        "types": ["enchanted_bows", "elemental_arrows"],
+        "class_specific": ["ranger", "rogue"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 400
+      },
+      "upkeep": 50,
+      "staffing": 3,
+      "resource_requirements": {
+        "steel": 3,
+        "arcane_dust": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "fletcher_t2"
+      },
+      "upgrade_from": "fletcher_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "alchemist_t1",
+      "display_name": "Apothecary",
+      "description": "A humble shop brewing minor potions and remedies.",
+      "category": "gear",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces minor health potions, antidotes, bandages",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "potions": ["minor_health", "basic_antidote", "bandages"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 70
+      },
+      "upkeep": 10,
+      "staffing": 1,
+      "resource_requirements": {
+        "herbs": 8
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "alchemist_t2",
+      "upgrade_requirements": {
+        "gold": 600,
+        "resources": {"stone": 20, "crystal": 30},
+        "prerequisites": ["herb_t2"],
+        "dungeon_depth": 0,
+        "patron_count": 200,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "alchemist_t2",
+      "display_name": "Alchemist's Lab",
+      "description": "A proper laboratory producing standard potions and elixirs.",
+      "category": "gear",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Produces health/mana potions, buff elixirs, all antidotes",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "potions": ["health", "mana", "buff_elixirs", "all_antidotes", "smoke_bombs"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 200
+      },
+      "upkeep": 25,
+      "staffing": 2,
+      "resource_requirements": {
+        "herbs": 15,
+        "arcane_dust": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "alchemist_t1"
+      },
+      "upgrade_from": "alchemist_t1",
+      "upgrade_to": "alchemist_t3",
+      "upgrade_requirements": {
+        "gold": 3000,
+        "resources": {"crystal": 30},
+        "prerequisites": ["arcane_t1"],
+        "dungeon_depth": 7,
+        "patron_count": 500,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "alchemist_t3",
+      "display_name": "Grand Alchemist",
+      "description": "Master alchemists brewing legendary elixirs and transmuting materials.",
+      "category": "gear",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Produces supreme potions, legendary elixirs, transmutation",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "potions": ["major", "supreme", "legendary_elixirs"],
+        "transmutation": true,
+        "philosophers_stone": true
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 600
+      },
+      "upkeep": 50,
+      "staffing": 4,
+      "resource_requirements": {
+        "herbs": 20,
+        "crystal": 2,
+        "void_essence": 1
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "alchemist_t2"
+      },
+      "upgrade_from": "alchemist_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Philosopher's Stone reduces all production costs 10% for 30 days"
+    },
+    {
+      "id": "arcane_t1",
+      "display_name": "Curio Shop",
+      "description": "Mystic trinkets and spell components for the magically inclined.",
+      "category": "gear",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Sells spell components, cantrip scrolls, basic staves",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "items": ["spell_components", "cantrip_scrolls", "basic_staves", "basic_wands"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 100
+      },
+      "upkeep": 15,
+      "staffing": 1,
+      "resource_requirements": {
+        "arcane_dust": 5
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "dungeon_depth": 3
+      },
+      "upgrade_from": null,
+      "upgrade_to": "arcane_t2",
+      "upgrade_requirements": {
+        "gold": 1000,
+        "resources": {"crystal": 20, "arcane_dust": 50},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 12,
+        "resident_class": ["wizard", "sorcerer"]
+      }
+    },
+    {
+      "id": "arcane_t2",
+      "display_name": "Arcane Workshop",
+      "description": "Full magical services: scrolls, enchanted gear, identify services.",
+      "category": "gear",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Full scroll library, enchanted gear, spell tomes, identify",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": {
+        "items": ["full_scroll_library", "enchanted_gear", "spell_tomes"],
+        "services": ["identify"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 300
+      },
+      "upkeep": 35,
+      "staffing": 2,
+      "resource_requirements": {
+        "crystal": 3,
+        "arcane_dust": 8
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "arcane_t1"
+      },
+      "upgrade_from": "arcane_t1",
+      "upgrade_to": "arcane_t3",
+      "upgrade_requirements": {
+        "gold": 5000,
+        "resources": {"crystal": 40, "soul_crystal": 10},
+        "prerequisites": [],
+        "dungeon_depth": 10,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 20,
+        "faction": {"mages_circle": "allied"}
+      }
+    },
+    {
+      "id": "arcane_t3",
+      "display_name": "Grand Arcanum",
+      "description": "The pinnacle of magical craft. Legendary gear and portal scrolls.",
+      "category": "gear",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Legendary arcane gear, custom enchantments, portal scrolls",
+      "users": ["adventurers", "legendary_adventurers"],
+      "capacity": null,
+      "production": {
+        "items": ["legendary_arcane_gear", "portal_scrolls"],
+        "services": ["custom_enchantments", "permanent_buff_inscriptions"]
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 1000
+      },
+      "upkeep": 80,
+      "staffing": 5,
+      "resource_requirements": {
+        "crystal": 8,
+        "soul_crystal": 1,
+        "void_essence": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "arcane_t2"
+      },
+      "upgrade_from": "arcane_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Unlocks Mages Circle faction quest line"
+    },
+    {
+      "id": "temple_t1",
+      "display_name": "Roadside Shrine",
+      "description": "A humble shrine offering basic healing and death rites.",
+      "category": "services",
+      "tier": 1,
+      "footprint": [1, 1],
+      "function": "Basic healing, death rites for morale management",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "healing": 0.20,
+        "healing_cost": 5,
+        "death_rites": true
+      },
+      "income": {
+        "base_gold_per_day": 40,
+        "healing_fees": true
+      },
+      "upkeep": 5,
+      "staffing": 1,
+      "resource_requirements": {
+        "herbs": 3
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "temple_t2",
+      "upgrade_requirements": {
+        "gold": 500,
+        "resources": {"stone": 20, "cloth": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10,
+        "temple_age_days": 15,
+        "cleric_visits": 3,
+        "faction": {"holy_orders": "neutral"}
+      }
+    },
+    {
+      "id": "temple_t2",
+      "display_name": "Town Temple",
+      "description": "A proper temple with full healing, blessings, and minor resurrection.",
+      "category": "services",
+      "tier": 2,
+      "footprint": [3, 3],
+      "function": "Full healing, divine blessing, minor resurrection",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "healing": 1.0,
+        "curse_removal": "minor",
+        "disease_removal": true,
+        "divine_blessing": true,
+        "resurrection": "minor"
+      },
+      "income": {
+        "base_gold_per_day": 120,
+        "service_fees": true
+      },
+      "upkeep": 25,
+      "staffing": 3,
+      "resource_requirements": {
+        "herbs": 8,
+        "cloth": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "temple_t1"
+      },
+      "upgrade_from": "temple_t1",
+      "upgrade_to": "temple_t3",
+      "upgrade_requirements": {
+        "gold": 2500,
+        "resources": {"stone": 30, "crystal": 20},
+        "prerequisites": [],
+        "dungeon_depth": 6,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15,
+        "faction": {"holy_orders": "friendly"}
+      }
+    },
+    {
+      "id": "temple_t3",
+      "display_name": "Grand Cathedral",
+      "description": "A magnificent cathedral offering full resurrection and miracles.",
+      "category": "services",
+      "tier": 3,
+      "footprint": [4, 4],
+      "function": "Full resurrection, powerful blessings, curse removal, miracles",
+      "users": ["adventurers", "legendary_adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "healing": 1.0,
+        "curse_removal": "all",
+        "resurrection": "full",
+        "divine_blessing_strength": 0.15,
+        "divine_blessing_duration": 3,
+        "weekly_miracle": true
+      },
+      "income": {
+        "base_gold_per_day": 300,
+        "resurrection_fees": {"min": 250, "max": 1000}
+      },
+      "upkeep": 50,
+      "staffing": 5,
+      "resource_requirements": {
+        "crystal": 4,
+        "herbs": 15
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "temple_t2"
+      },
+      "upgrade_from": "temple_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Attracts Paladin and Cleric legendary adventurers exclusively"
+    },
+    {
+      "id": "guild_t1",
+      "display_name": "Guild Post",
+      "description": "The adventurers' first stop. Registration, basic quests, and guild benefits.",
+      "category": "services",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Adventurer registration, basic quest board, guild benefits",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "registration": true,
+        "registration_fee": 10,
+        "quest_board_size": 3,
+        "morale_bonus": 3
+      },
+      "income": {
+        "registration_fees": true,
+        "quest_reward_cut_percent": 5
+      },
+      "upkeep": 15,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "guild_t2",
+      "upgrade_requirements": {
+        "gold": 700,
+        "resources": {"stone": 20, "wood": 20},
+        "prerequisites": [],
+        "dungeon_depth": 3,
+        "patron_count": 30,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "guild_t2",
+      "display_name": "Guild Hall",
+      "description": "Full guild services: training, ranks, faction contacts, materials exchange.",
+      "category": "services",
+      "tier": 2,
+      "footprint": [3, 3],
+      "function": "Full quests, training, guild ranks, materials exchange",
+      "users": ["adventurers", "player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "quest_board_size": 10,
+        "training_xp_bonus": 0.05,
+        "guild_ranks": ["initiate", "bronze", "silver"],
+        "faction_contacts": true,
+        "materials_exchange": true,
+        "resource_quests": true
+      },
+      "income": {
+        "base_gold_per_day": 200,
+        "quest_fees": true,
+        "materials_exchange_tax": true
+      },
+      "upkeep": 35,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "guild_t1"
+      },
+      "upgrade_from": "guild_t1",
+      "upgrade_to": "guild_t3",
+      "upgrade_requirements": {
+        "gold": 3000,
+        "resources": {"stone": 40, "iron_ingot": 20},
+        "prerequisites": [],
+        "dungeon_depth": 7,
+        "patron_count": 100,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "guild_t3",
+      "display_name": "Grand Guild",
+      "description": "The pinnacle of guild services. Tournaments, expeditions, and legendary ranks.",
+      "category": "services",
+      "tier": 3,
+      "footprint": [4, 4],
+      "function": "Epic quests, advanced training, tournaments, legendary ranks",
+      "users": ["adventurers", "legendary_adventurers", "player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "quest_board_size": 20,
+        "out_of_town_expeditions": true,
+        "training_xp_bonus": 0.10,
+        "subclass_abilities": true,
+        "guild_ranks": ["gold", "platinum", "diamond", "legendary"],
+        "inter_faction_quests": true,
+        "tournaments": true
+      },
+      "income": {
+        "base_gold_per_day": 600,
+        "tournament_income": true,
+        "materials_exchange_tax": true
+      },
+      "upkeep": 60,
+      "staffing": 6,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "guild_t2"
+      },
+      "upgrade_from": "guild_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null,
+      "special": "Veteran+ adventurers will only commit to residency in towns with Grand Guild"
+    },
+    {
+      "id": "farm_t1",
+      "display_name": "Farm",
+      "description": "Basic farmland producing grain for the town.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [3, 3],
+      "function": "Produces grain",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"grain": 10}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 5,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "farm_t2",
+      "upgrade_requirements": {
+        "gold": 300,
+        "resources": {"wood": 20},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "farm_t2",
+      "display_name": "Large Farm",
+      "description": "Expanded farmland with irrigation for increased yield.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [4, 4],
+      "function": "Produces more grain",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"grain": 25}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "farm_t1"
+      },
+      "upgrade_from": "farm_t1",
+      "upgrade_to": "farm_t3",
+      "upgrade_requirements": {
+        "gold": 1000,
+        "resources": {"stone": 30, "iron_ingot": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "farm_t3",
+      "display_name": "Estate Farm",
+      "description": "A grand estate producing massive quantities plus rare crops.",
+      "category": "production",
+      "tier": 3,
+      "footprint": [5, 5],
+      "function": "Produces grain and rare crops",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"grain": 50, "rare_crops": 2}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 20,
+      "staffing": 5,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "farm_t2"
+      },
+      "upgrade_from": "farm_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "herb_t1",
+      "display_name": "Herb Garden",
+      "description": "A small garden growing medicinal herbs.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces herbs",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"herbs": 8}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 3,
+      "staffing": 1,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "herb_t2",
+      "upgrade_requirements": {
+        "gold": 400,
+        "resources": {"wood": 15},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 7
+      }
+    },
+    {
+      "id": "herb_t2",
+      "display_name": "Herbalist Grove",
+      "description": "An expanded garden with a variety of medicinal plants.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [3, 3],
+      "function": "Produces more herbs",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"herbs": 20}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 8,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "herb_t1"
+      },
+      "upgrade_from": "herb_t1",
+      "upgrade_to": "herb_t3",
+      "upgrade_requirements": {
+        "gold": 1200,
+        "resources": {"stone": 20, "arcane_dust": 5},
+        "prerequisites": [],
+        "dungeon_depth": 5,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 12
+      }
+    },
+    {
+      "id": "herb_t3",
+      "display_name": "Arcane Garden",
+      "description": "A magically-enhanced garden producing rare magical herbs.",
+      "category": "production",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Produces herbs and magical herbs",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"herbs": 40, "magical_herbs": 5}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 15,
+      "staffing": 3,
+      "resource_requirements": {
+        "arcane_dust": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "herb_t2"
+      },
+      "upgrade_from": "herb_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "lumber_t1",
+      "display_name": "Lumber Camp",
+      "description": "A camp for harvesting timber from the surrounding forest.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces wood",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"wood": 15}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 5,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "lumber_t2",
+      "upgrade_requirements": {
+        "gold": 350,
+        "resources": {"iron_ingot": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "lumber_t2",
+      "display_name": "Logging Camp",
+      "description": "An organized operation with better tools and more workers.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Produces more wood",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"wood": 35}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "lumber_t1"
+      },
+      "upgrade_from": "lumber_t1",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "quarry_t1",
+      "display_name": "Quarry",
+      "description": "A stone quarry providing building materials.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [3, 3],
+      "function": "Produces stone",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"stone": 12}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 8,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "quarry_t2",
+      "upgrade_requirements": {
+        "gold": 600,
+        "resources": {"iron_ingot": 20},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 10
+      }
+    },
+    {
+      "id": "quarry_t2",
+      "display_name": "Deep Quarry",
+      "description": "A deeper quarry accessing better stone deposits.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [4, 3],
+      "function": "Produces more stone",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"stone": 30}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 15,
+      "staffing": 5,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "quarry_t1"
+      },
+      "upgrade_from": "quarry_t1",
+      "upgrade_to": "quarry_t3",
+      "upgrade_requirements": {
+        "gold": 2000,
+        "resources": {"steel": 30},
+        "prerequisites": ["mine_t2"],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "quarry_t3",
+      "display_name": "Grand Quarry",
+      "description": "A massive quarry operation with industrial-scale output.",
+      "category": "production",
+      "tier": 3,
+      "footprint": [4, 4],
+      "function": "Produces large amounts of stone",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"stone": 60}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 25,
+      "staffing": 8,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "quarry_t2"
+      },
+      "upgrade_from": "quarry_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "mine_t1",
+      "display_name": "Mine",
+      "description": "A mine extracting iron ore from the earth.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces iron ore",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"iron_ore": 8}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "mine_t2",
+      "upgrade_requirements": {
+        "gold": 800,
+        "resources": {"wood": 30, "stone": 20},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 12
+      }
+    },
+    {
+      "id": "mine_t2",
+      "display_name": "Deep Mine",
+      "description": "A deeper mine accessing richer ore veins.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [3, 3],
+      "function": "Produces more iron ore",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"iron_ore": 20}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 20,
+      "staffing": 5,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "mine_t1"
+      },
+      "upgrade_from": "mine_t1",
+      "upgrade_to": "mine_t3",
+      "upgrade_requirements": {
+        "gold": 4000,
+        "resources": {"steel": 50, "crystal": 10},
+        "prerequisites": [],
+        "dungeon_depth": 15,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 20
+      }
+    },
+    {
+      "id": "mine_t3",
+      "display_name": "Mithril Mine",
+      "description": "A legendary mine accessing mithril deposits.",
+      "category": "production",
+      "tier": 3,
+      "footprint": [4, 3],
+      "function": "Produces mithril ore",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"mithril_ore": 2}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 40,
+      "staffing": 8,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "mine_t2"
+      },
+      "upgrade_from": "mine_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "smelter_t1",
+      "display_name": "Smelter",
+      "description": "A furnace for smelting iron ore into ingots.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Converts iron ore to iron ingots",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"iron_ingot": 5},
+        "input": {"iron_ore": 8}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 2,
+      "resource_requirements": {
+        "iron_ore": 8
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "smelter_t2",
+      "upgrade_requirements": {
+        "gold": 700,
+        "resources": {"stone": 30},
+        "prerequisites": ["mine_t1"],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 8
+      }
+    },
+    {
+      "id": "smelter_t2",
+      "display_name": "Steel Foundry",
+      "description": "An advanced foundry capable of producing steel.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Produces steel",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"steel": 4},
+        "input": {"iron_ingot": 6, "coal": 4}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 20,
+      "staffing": 3,
+      "resource_requirements": {
+        "iron_ingot": 6,
+        "coal": 4
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "smelter_t1"
+      },
+      "upgrade_from": "smelter_t1",
+      "upgrade_to": "smelter_t3",
+      "upgrade_requirements": {
+        "gold": 3000,
+        "resources": {"stone": 50, "crystal": 15},
+        "prerequisites": ["mine_t3"],
+        "dungeon_depth": 15,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "smelter_t3",
+      "display_name": "Mithril Foundry",
+      "description": "A legendary foundry capable of smelting mithril.",
+      "category": "production",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Produces mithril ingots",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"mithril_ingot": 1},
+        "input": {"mithril_ore": 2}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 40,
+      "staffing": 4,
+      "resource_requirements": {
+        "mithril_ore": 2
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "smelter_t2"
+      },
+      "upgrade_from": "smelter_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "brewery_t1",
+      "display_name": "Brewery",
+      "description": "A brewery producing ale for the tavern.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Produces ale from grain",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"ale": 6},
+        "input": {"grain": 10}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 8,
+      "staffing": 2,
+      "resource_requirements": {
+        "grain": 10
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "brewery_t2",
+      "upgrade_requirements": {
+        "gold": 500,
+        "resources": {"wood": 20, "stone": 10},
+        "prerequisites": ["farm_t1"],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 7
+      }
+    },
+    {
+      "id": "brewery_t2",
+      "display_name": "Large Brewery",
+      "description": "An expanded brewery with special brews.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [3, 2],
+      "function": "Produces ale and special brews",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"ale": 15, "special_brew": 2},
+        "input": {"grain": 20}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 15,
+      "staffing": 3,
+      "resource_requirements": {
+        "grain": 20
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "brewery_t1"
+      },
+      "upgrade_from": "brewery_t1",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "bakery_t1",
+      "display_name": "Bakery",
+      "description": "A bakery turning grain into bread.",
+      "category": "production",
+      "tier": 1,
+      "footprint": [2, 1],
+      "function": "Produces bread from grain",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"bread": 8},
+        "input": {"grain": 6}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 5,
+      "staffing": 1,
+      "resource_requirements": {
+        "grain": 6
+      },
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "bakery_t2",
+      "upgrade_requirements": {
+        "gold": 300,
+        "resources": {"stone": 10},
+        "prerequisites": ["farm_t1"],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 5
+      }
+    },
+    {
+      "id": "bakery_t2",
+      "display_name": "Large Bakery",
+      "description": "A larger bakery with higher output.",
+      "category": "production",
+      "tier": 2,
+      "footprint": [2, 2],
+      "function": "Produces more bread",
+      "users": ["production_chain"],
+      "capacity": null,
+      "production": {
+        "output": {"bread": 20},
+        "input": {"grain": 12}
+      },
+      "provides": null,
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 10,
+      "staffing": 2,
+      "resource_requirements": {
+        "grain": 12
+      },
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "bakery_t1"
+      },
+      "upgrade_from": "bakery_t1",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "house_t1",
+      "display_name": "Worker Cottage",
+      "description": "A simple cottage housing town workers.",
+      "category": "residential",
+      "tier": 1,
+      "footprint": [1, 1],
+      "function": "Houses workers for staffing buildings",
+      "users": ["citizens"],
+      "capacity": 2,
+      "production": null,
+      "provides": {
+        "workers": 2
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 2,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "house_t2",
+      "upgrade_requirements": {
+        "gold": 150,
+        "resources": {"wood": 15, "stone": 10},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 0,
+        "reputation": null,
+        "time_days": 3
+      }
+    },
+    {
+      "id": "house_t2",
+      "display_name": "Town House",
+      "description": "A comfortable home for town citizens.",
+      "category": "residential",
+      "tier": 2,
+      "footprint": [2, 1],
+      "function": "Houses more workers",
+      "users": ["citizens"],
+      "capacity": 4,
+      "production": null,
+      "provides": {
+        "workers": 4
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 5,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "house_t1"
+      },
+      "upgrade_from": "house_t1",
+      "upgrade_to": "house_t3",
+      "upgrade_requirements": {
+        "gold": 500,
+        "resources": {"stone": 25, "wood": 15},
+        "prerequisites": [],
+        "dungeon_depth": 0,
+        "patron_count": 0,
+        "population": 20,
+        "reputation": null,
+        "time_days": 7
+      }
+    },
+    {
+      "id": "house_t3",
+      "display_name": "Manor",
+      "description": "A grand manor housing wealthy citizens.",
+      "category": "residential",
+      "tier": 3,
+      "footprint": [3, 2],
+      "function": "Houses workers and provides morale",
+      "users": ["citizens"],
+      "capacity": 8,
+      "production": null,
+      "provides": {
+        "workers": 8,
+        "morale_bonus": 5
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 15,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "house_t2"
+      },
+      "upgrade_from": "house_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "mayor_t1",
+      "display_name": "Mayor's Hall",
+      "description": "The administrative center of the town.",
+      "category": "civic",
+      "tier": 1,
+      "footprint": [3, 3],
+      "function": "Town policy, upgrade center, population cap",
+      "users": ["player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "population_cap_increase": 20,
+        "policy_center": true,
+        "upgrade_center": true
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 20,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "mayor_t2",
+      "upgrade_requirements": {
+        "gold": 1000,
+        "resources": {"stone": 40, "wood": 30},
+        "prerequisites": [],
+        "dungeon_depth": 3,
+        "patron_count": 0,
+        "population": 25,
+        "reputation": null,
+        "time_days": 15
+      }
+    },
+    {
+      "id": "mayor_t2",
+      "display_name": "Town Hall",
+      "description": "A proper town hall for a growing settlement.",
+      "category": "civic",
+      "tier": 2,
+      "footprint": [4, 3],
+      "function": "Expanded policy, higher population cap",
+      "users": ["player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "population_cap_increase": 40,
+        "expanded_policies": true
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 40,
+      "staffing": 4,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "mayor_t1"
+      },
+      "upgrade_from": "mayor_t1",
+      "upgrade_to": "mayor_t3",
+      "upgrade_requirements": {
+        "gold": 5000,
+        "resources": {"stone": 80, "steel": 30},
+        "prerequisites": [],
+        "dungeon_depth": 7,
+        "patron_count": 0,
+        "population": 50,
+        "reputation": "known",
+        "time_days": 25
+      }
+    },
+    {
+      "id": "mayor_t3",
+      "display_name": "Grand Hall",
+      "description": "A magnificent seat of power for a legendary town.",
+      "category": "civic",
+      "tier": 3,
+      "footprint": [5, 4],
+      "function": "Full policy suite, maximum population cap",
+      "users": ["player"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "population_cap_increase": 60,
+        "full_policy_suite": true
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 80,
+      "staffing": 6,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "mayor_t2"
+      },
+      "upgrade_from": "mayor_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "guard_t1",
+      "display_name": "Guard Post",
+      "description": "A small outpost for town guards.",
+      "category": "civic",
+      "tier": 1,
+      "footprint": [2, 2],
+      "function": "Crime prevention, basic town defense",
+      "users": ["citizens"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "crime_prevention": true,
+        "defense_rating": 10
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 15,
+      "staffing": 2,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": "guard_t2",
+      "upgrade_requirements": {
+        "gold": 400,
+        "resources": {"stone": 20, "iron_ingot": 15},
+        "prerequisites": [],
+        "dungeon_depth": 2,
+        "patron_count": 0,
+        "population": 15,
+        "reputation": null,
+        "time_days": 8
+      }
+    },
+    {
+      "id": "guard_t2",
+      "display_name": "Watchtower",
+      "description": "A tower providing better visibility and defense.",
+      "category": "civic",
+      "tier": 2,
+      "footprint": [2, 2],
+      "function": "Enhanced defense, early warning",
+      "users": ["citizens"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "crime_prevention": true,
+        "defense_rating": 25,
+        "early_warning": true
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 25,
+      "staffing": 3,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "guard_t1"
+      },
+      "upgrade_from": "guard_t1",
+      "upgrade_to": "guard_t3",
+      "upgrade_requirements": {
+        "gold": 1500,
+        "resources": {"stone": 50, "steel": 20},
+        "prerequisites": [],
+        "dungeon_depth": 5,
+        "patron_count": 0,
+        "population": 30,
+        "reputation": null,
+        "time_days": 12
+      }
+    },
+    {
+      "id": "guard_t3",
+      "display_name": "Garrison",
+      "description": "A full garrison with active patrols.",
+      "category": "civic",
+      "tier": 3,
+      "footprint": [3, 3],
+      "function": "Strong defense, active patrols, raid reduction",
+      "users": ["citizens"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "crime_prevention": true,
+        "defense_rating": 50,
+        "active_patrol": true,
+        "raid_damage_reduction": 0.5
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 50,
+      "staffing": 6,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": false,
+        "upgrade_from": "guard_t2"
+      },
+      "upgrade_from": "guard_t2",
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    },
+    {
+      "id": "dungeon_entrance",
+      "display_name": "Dungeon Entrance",
+      "description": "The maw of the dungeon. Adventure awaits within.",
+      "category": "special",
+      "tier": 1,
+      "footprint": [3, 3],
+      "function": "Entry point to the dungeon",
+      "users": ["adventurers"],
+      "capacity": null,
+      "production": null,
+      "provides": {
+        "dungeon_access": true
+      },
+      "income": {
+        "base_gold_per_day": 0
+      },
+      "upkeep": 0,
+      "staffing": 0,
+      "resource_requirements": null,
+      "unlock_conditions": {
+        "available_at_start": true,
+        "fixed_position": true
+      },
+      "upgrade_from": null,
+      "upgrade_to": null,
+      "upgrade_requirements": null
+    }
+  ]
+}

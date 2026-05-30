@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "tavern_t1"
+display_name = "Rough Tavern"
+description = "A humble drinking hole where adventurers can grab a meal and share stories."
+category = "hospitality"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 150
+upkeep = 10
+base_income = 50
+staffing = 2
+capacity = 20
+morale_bonus = 5
+unlock_at_start = true
+upgrade_to = "tavern_t2"
+upgrade_cost = 300
+upgrade_resources = {"wood": 20, "cloth": 10}
+upgrade_prerequisites = ["bakery_t1"]
+upgrade_patron_count = 30
+upgrade_time_days = 5
+placeholder_color = Color(0.96, 0.65, 0.14, 1)

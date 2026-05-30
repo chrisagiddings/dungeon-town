@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "farm_t1"
+display_name = "Farm"
+description = "Basic farmland producing grain for the town."
+category = "production"
+tier = 1
+footprint = Vector2i(3, 3)
+build_cost = 100
+upkeep = 5
+staffing = 2
+produces = {"grain": 10}
+unlock_at_start = true
+upgrade_to = "farm_t2"
+upgrade_cost = 300
+upgrade_resources = {"wood": 20}
+upgrade_time_days = 5
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

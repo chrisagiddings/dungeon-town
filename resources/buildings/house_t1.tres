@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "house_t1"
+display_name = "Worker Cottage"
+description = "A simple cottage housing town workers."
+category = "residential"
+tier = 1
+footprint = Vector2i(1, 1)
+build_cost = 50
+upkeep = 2
+staffing = 0
+workers_provided = 2
+unlock_at_start = true
+upgrade_to = "house_t2"
+upgrade_cost = 150
+upgrade_resources = {"wood": 15, "stone": 10}
+upgrade_time_days = 3
+placeholder_color = Color(0.47, 0.62, 0.45, 1)
