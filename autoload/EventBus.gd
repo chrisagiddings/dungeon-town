@@ -26,5 +26,10 @@ signal dungeon_run_completed(adventurer_id: String, loot: Dictionary)
 signal sim_speed_changed(new_speed: float)
 signal sim_paused(is_paused: bool)
 
+# ── Building Placement ────────────────────────────────────────────────────────
+signal building_placement_started(building_data: BuildingData)
+signal building_placed(building_id: String, origin: Vector2i)
+signal building_placement_cancelled()
+
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)

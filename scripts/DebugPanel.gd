@@ -53,9 +53,15 @@ func _build_ui() -> void:
 	var row2 := HBoxContainer.new()
 	row2.add_theme_constant_override("separation", 4)
 	vbox.add_child(row2)
-	_btn(row2, "Dungeon Run",  _on_dungeon_run)
-	_btn(row2, "Speed Cycle",  _on_speed_cycle)
-	_btn(row2, "Pause/Play",   _on_pause_toggle)
+	_btn(row2, "Dungeon Run",    _on_dungeon_run)
+	_btn(row2, "Speed Cycle",    _on_speed_cycle)
+	_btn(row2, "Pause/Play",     _on_pause_toggle)
+
+	# Row 3 buttons
+	var row3 := HBoxContainer.new()
+	row3.add_theme_constant_override("separation", 4)
+	vbox.add_child(row3)
+	_btn(row3, "Place Building", _on_place_building)
 
 	# Log label
 	var log_hdr := Label.new()
@@ -122,6 +128,25 @@ func _on_speed_cycle() -> void:
 
 func _on_pause_toggle() -> void:
 	GameState.set_paused(not GameState.is_paused)
+
+func _on_place_building() -> void:
+	var placer: BuildingPlacer = _find("BuildingPlacer")
+	if not placer:
+		EventBus.debug_log_message.emit("ERROR: BuildingPlacer not found in scene")
+		return
+	if placer.is_placing():
+		placer.exit_placement_mode()
+		return
+	# Use lodging_t1 as the test building
+	var data: BuildingData = DataRegistry.get_building("lodging_t1") as BuildingData
+	if data == null:
+		# Fallback: build a minimal inline stub so the button works before DataRegistry is seeded
+		data = BuildingData.new()
+		data.id           = "lodging_t1"
+		data.display_name = "Tent Camp"
+		data.category     = "hospitality"
+		data.footprint    = Vector2i(2, 2)
+	placer.enter_placement_mode(data)
 
 # ── Log ───────────────────────────────────────────────────────────────────────
 
