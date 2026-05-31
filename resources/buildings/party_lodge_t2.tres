@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "party_lodge_t2"
+display_name = "Party Stronghold"
+description = "A fortified compound for veteran parties. Trophy rooms, private planning chambers, and bonded party amenities."
+category = "residential"
+tier = 2
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 28
+capacity = 5
+income_per_guest = 18
+rest_quality = 1.0
+morale_bonus = 20
+max_instances = 0
+min_patron_tier = 3
+upgrade_from = "party_lodge_t1"
+upgrade_to = "party_lodge_t3"
+upgrade_cost = 3500
+upgrade_resources = {"steel": 20, "stone": 40, "fine_cloth": 10}
+upgrade_dungeon_depth = 6
+upgrade_time_days = 15
+placeholder_color = Color(0.45, 0.35, 0.65, 1)
+special_notes = "Requires party bond score 50+. Provides full rest, +10% party stats next run, and weekly party event option."

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "bardic_college_t1"
+display_name = "Bardic College"
+description = "A lively college of music, lore, and social arts. Bards train and perform here, boosting town morale and spreading dungeon intelligence."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 3)
+build_cost = 300
+upkeep = 15
+staffing = 2
+capacity = 8
+base_income = 100
+morale_bonus = 8
+max_instances = 1
+unlock_at_start = false
+unlock_prerequisites = ["tavern_t2"]
+upgrade_to = "bardic_college_t2"
+upgrade_cost = 1200
+upgrade_resources = {"fine_cloth": 10, "arcane_dust": 8}
+upgrade_time_days = 8
+construction_days = 2
+placeholder_color = Color(0.80, 0.40, 0.75, 1)
+special_notes = "Only one Bardic College per town. Attracts Bards exclusively. Passive town-wide morale bonus while active."

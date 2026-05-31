@@ -87,6 +87,7 @@ class_name BuildingData
 @export_group("Special")
 @export_multiline var special_notes: String = ""  ## Any special mechanics
 @export var fixed_position: bool = false  ## Cannot be moved (dungeon entrance)
+@export var max_instances: int = 0  ## 0 = unlimited; 1 = only one allowed in town (e.g. Mayor's Hall, each guild type)
 
 # ── Helper Methods ────────────────────────────────────────────────────────────
 

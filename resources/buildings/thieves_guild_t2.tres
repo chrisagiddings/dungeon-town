@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "thieves_guild_t2"
+display_name = "Thieves Guild Hall"
+description = "An established criminal network. Fence premium loot, run shadow contracts, and provide assassination and infiltration services."
+category = "services"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 25
+staffing = 4
+capacity = 20
+base_income = 200
+max_instances = 1
+upgrade_from = "thieves_guild_t1"
+upgrade_cost = 3000
+upgrade_resources = {"shadow_essence": 15, "void_essence": 5}
+upgrade_dungeon_depth = 5
+upgrade_time_days = 15
+placeholder_color = Color(0.15, 0.10, 0.20, 1)

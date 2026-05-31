@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "bardic_college_t2"
+display_name = "Grand Bardic College"
+description = "A renowned college hosting legendary performers. Major morale bonuses, festival events, and inter-faction diplomacy through music."
+category = "services"
+tier = 2
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 28
+staffing = 4
+capacity = 20
+base_income = 300
+morale_bonus = 18
+max_instances = 1
+upgrade_from = "bardic_college_t1"
+upgrade_cost = 3500
+upgrade_resources = {"fine_cloth": 25, "fae_crystal": 10, "arcane_dust": 20}
+upgrade_dungeon_depth = 4
+upgrade_time_days = 15
+placeholder_color = Color(0.90, 0.30, 0.85, 1)

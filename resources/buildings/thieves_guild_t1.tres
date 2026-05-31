@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "thieves_guild_t1"
+display_name = "Thieves Guild"
+description = "A shadowy hall for Rogues and Warlocks. Fences stolen goods, offers shadow contracts, and provides black market access."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 250
+upkeep = 15
+staffing = 2
+capacity = 10
+base_income = 80
+max_instances = 1
+unlock_at_start = false
+unlock_dungeon_depth = 2
+upgrade_to = "thieves_guild_t2"
+upgrade_cost = 1000
+upgrade_resources = {"shadow_essence": 5, "gold": 500}
+upgrade_time_days = 10
+construction_days = 2
+placeholder_color = Color(0.20, 0.15, 0.25, 1)
+special_notes = "Only one Thieves Guild permitted per town. Attracts Rogues and Warlocks. Minor Holy Orders reputation penalty while active."

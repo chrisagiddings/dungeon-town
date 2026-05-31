@@ -44,7 +44,8 @@ func _process(_delta: float) -> void:
 	if tile != _preview_origin:
 		_preview_origin = tile
 		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint) \
-			and not _has_road_conflict(_preview_origin, _active_data.footprint)
+			and not _has_road_conflict(_preview_origin, _active_data.footprint) \
+			and not _exceeds_instance_limit(_active_data)
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -172,6 +173,15 @@ func _cancel_placement() -> void:
 	EventBus.building_placement_cancelled.emit()
 	EventBus.debug_log_message.emit("Placement cancelled")
 	exit_placement_mode()
+
+func _exceeds_instance_limit(data: BuildingData) -> bool:
+	if data.max_instances <= 0:
+		return false
+	var count: int = 0
+	for p in _grid.get_placements():
+		if p["data_id"] == data.id:
+			count += 1
+	return count >= data.max_instances
 
 func _has_road_conflict(origin: Vector2i, footprint: Vector2i) -> bool:
 	if _road_grid == null:

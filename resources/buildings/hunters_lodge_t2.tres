@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "hunters_lodge_t2"
+display_name = "Druids Circle"
+description = "A sacred grove and lodge. Full wilderness mastery, druidic rituals, moon-cycle bonuses, and beast companion training."
+category = "services"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 18
+staffing = 3
+capacity = 16
+base_income = 180
+max_instances = 1
+upgrade_from = "hunters_lodge_t1"
+upgrade_cost = 2000
+upgrade_resources = {"moon_silver": 5, "fae_crystal": 8}
+upgrade_dungeon_depth = 4
+upgrade_time_days = 12
+placeholder_color = Color(0.25, 0.65, 0.20, 1)

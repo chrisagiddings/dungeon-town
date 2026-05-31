@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "party_lodge_t1"
+display_name = "Party Lodge"
+description = "Shared quarters reserved for established adventuring parties. A party that has run at least 10 dungeons together qualifies. Provides bonuses to party chemistry."
+category = "residential"
+tier = 1
+footprint = Vector2i(3, 2)
+build_cost = 400
+upkeep = 15
+capacity = 5
+income_per_guest = 8
+rest_quality = 0.85
+morale_bonus = 10
+max_instances = 0
+min_patron_tier = 2
+unlock_at_start = false
+unlock_prerequisites = ["guild_t1"]
+upgrade_to = "party_lodge_t2"
+upgrade_cost = 1500
+upgrade_resources = {"stone": 25, "wood": 20}
+upgrade_time_days = 8
+construction_days = 2
+placeholder_color = Color(0.55, 0.45, 0.75, 1)
+special_notes = "Only parties with 10+ shared runs can claim a lodge room. Provides +5% party chemistry bonus per night rested together."

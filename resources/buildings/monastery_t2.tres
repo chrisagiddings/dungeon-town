@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "monastery_t2"
+display_name = "Grand Monastery"
+description = "A revered seat of martial and spiritual mastery. Advanced ki training, void mastery instruction, and tournament hosting."
+category = "services"
+tier = 2
+footprint = Vector2i(4, 4)
+build_cost = 0
+upkeep = 25
+staffing = 4
+capacity = 20
+base_income = 200
+max_instances = 1
+upgrade_from = "monastery_t1"
+upgrade_cost = 4000
+upgrade_resources = {"crystal": 20, "soul_crystal": 4, "void_essence": 3}
+upgrade_dungeon_depth = 6
+upgrade_time_days = 18
+placeholder_color = Color(0.50, 0.45, 0.32, 1)
