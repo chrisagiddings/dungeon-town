@@ -11,6 +11,22 @@ const PRODUCTION := Color(0.55, 0.39, 0.21)       # Earthy brown — farms, mine
 const RESIDENTIAL := Color(0.47, 0.62, 0.45)      # Muted green — housing
 const CIVIC := Color(0.25, 0.41, 0.88)            # Royal blue — guild, temple, mayor
 
+# ── Item Quality (RPG standard colours) ──────────────────────────────────────
+const QUALITY_COMMON    := Color(0.78, 0.78, 0.78)  # Silver-white
+const QUALITY_UNCOMMON  := Color(0.12, 0.75, 0.12)  # Green
+const QUALITY_RARE      := Color(0.10, 0.45, 1.00)  # Blue
+const QUALITY_EPIC      := Color(0.64, 0.21, 0.93)  # Purple
+const QUALITY_LEGENDARY := Color(1.00, 0.50, 0.00)  # Orange
+
+static func get_quality_color(quality: String) -> Color:
+	match quality.to_lower():
+		"common":    return QUALITY_COMMON
+		"uncommon":  return QUALITY_UNCOMMON
+		"rare":      return QUALITY_RARE
+		"epic":      return QUALITY_EPIC
+		"legendary": return QUALITY_LEGENDARY
+	return Color.WHITE
+
 # ── Entity Types ──────────────────────────────────────────────────────────────
 const ADVENTURER := Color(0.0, 0.85, 0.95)        # Bright cyan
 const CITIZEN := Color(0.95, 0.93, 0.88)          # Warm white

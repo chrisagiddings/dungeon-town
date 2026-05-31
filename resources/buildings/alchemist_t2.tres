@@ -18,4 +18,5 @@ upgrade_cost = 600
 upgrade_resources = {"stone": 20, "crystal": 30}
 upgrade_patron_count = 200
 upgrade_time_days = 10
+gear_quality = "uncommon"
 placeholder_color = Color(0.55, 0.56, 0.58, 1)

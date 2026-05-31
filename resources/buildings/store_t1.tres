@@ -20,4 +20,5 @@ upgrade_cost = 400
 upgrade_resources = {"wood": 20, "cloth": 10}
 upgrade_patron_count = 50
 upgrade_time_days = 7
+gear_quality = "common"
 placeholder_color = Color(0.93, 0.79, 0.13, 1)

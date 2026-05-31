@@ -16,6 +16,7 @@ var _staff_label:    Label
 var _cap_label:      Label
 var _produces_label: Label
 var _consumes_label: Label
+var _quality_label:  Label
 var _req_container:  VBoxContainer
 var _upgrade_btn:   Button
 var _construction_label: Label
@@ -145,6 +146,14 @@ func _refresh() -> void:
 	else:
 		_consumes_label.visible = false
 
+	# Gear / item quality
+	if data.gear_quality != "" and data.gear_quality != "none":
+		_quality_label.text     = "Quality:  %s" % data.gear_quality.capitalize()
+		_quality_label.modulate = PlaceholderColors.get_quality_color(data.gear_quality)
+		_quality_label.visible  = true
+	else:
+		_quality_label.visible = false
+
 	# Under construction state
 	var under_construction: bool = _manager != null and _manager.is_under_construction(_current_instance)
 	if under_construction:
@@ -181,6 +190,7 @@ func _show_construction_state() -> void:
 	_town_name_row.visible      = false
 	_produces_label.visible     = false
 	_consumes_label.visible     = false
+	_quality_label.visible      = false
 	_demolish_btn.hide()
 
 func _show_upgrade_requirements(data: BuildingData) -> void:
@@ -286,6 +296,11 @@ func _build_ui() -> void:
 	_consumes_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	_consumes_label.visible = false
 	vbox.add_child(_consumes_label)
+
+	_quality_label = Label.new()
+	_quality_label.add_theme_font_size_override("font_size", 12)
+	_quality_label.visible = false
+	vbox.add_child(_quality_label)
 
 	_add_sep(vbox)
 
