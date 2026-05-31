@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "store_t3"
+display_name = "Emporium"
+description = "Full supply catalog, rare items, enchanted accessories."
+category = "commerce"
+tier = 3
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 20
+base_income = 400
+staffing = 3
+upgrade_cost = 2000
+upgrade_resources = {"stone": 30, "iron_ingot": 20}
+upgrade_dungeon_depth = 5
+upgrade_patron_count = 200
+upgrade_time_days = 10
+upgrade_from = "store_t2"
+placeholder_color = Color(0.93, 0.79, 0.13, 1)

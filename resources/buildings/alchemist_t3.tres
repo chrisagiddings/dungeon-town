@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "alchemist_t3"
+display_name = "Grand Alchemist"
+description = "Major and supreme potions, legendary elixirs, transmutation."
+category = "gear"
+tier = 3
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 25
+base_income = 600
+staffing = 3
+upgrade_cost = 3000
+upgrade_resources = {"crystal": 30, "arcane_dust": 50}
+upgrade_dungeon_depth = 7
+upgrade_patron_count = 500
+upgrade_time_days = 15
+upgrade_from = "alchemist_t2"
+placeholder_color = Color(0.55, 0.56, 0.58, 1)
