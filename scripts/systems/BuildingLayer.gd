@@ -43,9 +43,10 @@ func _draw() -> void:
 			var days: int = _manager.days_remaining(instance_id)
 			label = "Building... (%dd)" % days
 		else:
-			var data: BuildingData = DataRegistry.get_building(placement["data_id"]) as BuildingData
-			color = data.placeholder_color if data else PlaceholderColors.get_building_color(placement["category"])
-			label = data.display_name if data else placement["data_id"]
+			var data_id: String     = placement.get("data_id", "")
+			var data: BuildingData  = DataRegistry.get_building(data_id) as BuildingData
+			color = data.placeholder_color if data else PlaceholderColors.get_building_color(placement.get("category", ""))
+			label = data.display_name if data else data_id
 
 		_draw_footprint(placement["origin"] as Vector2i, placement["footprint"] as Vector2i, color, label)
 
