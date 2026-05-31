@@ -20,5 +20,6 @@ upgrade_resources = {"stone": 20, "iron_ingot": 15}
 upgrade_dungeon_depth = 2
 upgrade_population = 15
 upgrade_time_days = 8
+construction_days = 1
 placeholder_color = Color(0.25, 0.41, 0.88, 1)
 special_notes = "Defense rating: 10"

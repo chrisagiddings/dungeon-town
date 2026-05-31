@@ -19,4 +19,5 @@ upgrade_to = "quarry_t2"
 upgrade_cost = 600
 upgrade_resources = {"iron_ingot": 20}
 upgrade_time_days = 10
+construction_days = 2
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

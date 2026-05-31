@@ -17,6 +17,7 @@ var _cap_label:     Label
 var _req_container: VBoxContainer
 var _upgrade_btn:   Button
 var _construction_label: Label
+var _construction_bar:   ProgressBar
 var _demolish_btn:  Button
 var _confirm_row:   HBoxContainer
 
@@ -38,6 +39,8 @@ func _ready() -> void:
 	EventBus.building_demolished.connect(_on_building_demolished)
 	EventBus.building_upgrade_started.connect(_on_upgrade_started)
 	EventBus.building_upgrade_completed.connect(_on_upgrade_completed)
+	EventBus.building_construction_started.connect(_on_construction_started)
+	EventBus.building_construction_completed.connect(_on_construction_completed)
 	EventBus.day_started.connect(_on_day_started)
 	EventBus.road_tile_selected.connect(func(_t): hide())
 
@@ -64,6 +67,14 @@ func _on_upgrade_started(instance_id: String, _target: String, _day: int) -> voi
 func _on_upgrade_completed(old_instance_id: String, new_instance_id: String) -> void:
 	if _current_instance == old_instance_id:
 		_current_instance = new_instance_id
+		_refresh()
+
+func _on_construction_started(instance_id: String, _complete_day: int) -> void:
+	if _current_instance == instance_id:
+		_refresh()
+
+func _on_construction_completed(instance_id: String) -> void:
+	if _current_instance == instance_id:
 		_refresh()
 
 func _on_day_started(_day: int) -> void:
@@ -107,17 +118,21 @@ func _refresh() -> void:
 	if data.upgrade_to != "":
 		_show_upgrade_requirements(data)
 	else:
-		_req_container.visible = false
-		_upgrade_btn.visible   = false
+		_req_container.visible      = false
+		_upgrade_btn.visible        = false
 		_construction_label.visible = false
+		_construction_bar.visible   = false
 
 	_demolish_btn.show()
 
 func _show_construction_state() -> void:
 	_clear_requirements()
-	var days: int = _manager.days_remaining(_current_instance) if _manager else 0
+	var days:     int   = _manager.days_remaining(_current_instance)    if _manager else 0
+	var progress: float = _manager.construction_progress(_current_instance) if _manager else 0.0
 	_construction_label.text    = "Under Construction — %d day%s remaining" % [days, "s" if days != 1 else ""]
 	_construction_label.visible = true
+	_construction_bar.value     = progress
+	_construction_bar.visible   = true
 	_req_container.visible      = false
 	_upgrade_btn.visible        = false
 	_demolish_btn.hide()
@@ -125,6 +140,7 @@ func _show_construction_state() -> void:
 func _show_upgrade_requirements(data: BuildingData) -> void:
 	_clear_requirements()
 	_construction_label.visible = false
+	_construction_bar.visible   = false
 
 	var result := UpgradeRequirementChecker.evaluate(data, _grid)
 	var can_upgrade: bool = result["can_upgrade"]
@@ -218,6 +234,15 @@ func _build_ui() -> void:
 	_construction_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	_construction_label.visible = false
 	vbox.add_child(_construction_label)
+
+	# Construction progress bar
+	_construction_bar = ProgressBar.new()
+	_construction_bar.min_value = 0.0
+	_construction_bar.max_value = 1.0
+	_construction_bar.value     = 0.0
+	_construction_bar.custom_minimum_size.y = 14
+	_construction_bar.visible   = false
+	vbox.add_child(_construction_bar)
 
 	# Requirements list
 	_req_container = VBoxContainer.new()

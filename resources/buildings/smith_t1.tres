@@ -22,4 +22,5 @@ upgrade_resources = {"iron_ingot": 30}
 upgrade_prerequisites = ["mine_t1"]
 upgrade_patron_count = 100
 upgrade_time_days = 8
+construction_days = 2
 placeholder_color = Color(0.55, 0.56, 0.58, 1)

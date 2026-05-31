@@ -40,6 +40,10 @@ signal building_demolished(instance_id: String)
 signal building_upgrade_started(instance_id: String, target_data_id: String, complete_day: int)
 signal building_upgrade_completed(old_instance_id: String, new_instance_id: String)
 
+# ── Building Construction (new placement) ─────────────────────────────────────
+signal building_construction_started(instance_id: String, complete_day: int)
+signal building_construction_completed(instance_id: String)
+
 # ── Roads ─────────────────────────────────────────────────────────────────────
 signal road_placed(tile: Vector2i)
 signal road_removed(tile: Vector2i)
