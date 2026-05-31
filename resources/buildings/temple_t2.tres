@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "temple_t2"
+display_name = "Town Temple"
+description = "Full healing, divine blessings, and minor resurrection service."
+category = "services"
+tier = 2
+footprint = Vector2i(2, 2)
+build_cost = 0
+upkeep = 10
+base_income = 120
+staffing = 2
+healing_percent = 1.0
+morale_bonus = 10
+upgrade_from = "temple_t1"
+upgrade_to = "temple_t3"
+upgrade_cost = 500
+upgrade_resources = {"stone": 20, "cloth": 10}
+upgrade_time_days = 15
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

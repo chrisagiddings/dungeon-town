@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "tavern_t2"
+display_name = "Busy Tavern"
+description = "Good meals, cold ale, and a rumour board adventurers actually trust."
+category = "hospitality"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 15
+base_income = 150
+staffing = 3
+morale_bonus = 10
+upgrade_from = "tavern_t1"
+upgrade_to = "tavern_t3"
+upgrade_cost = 1500
+upgrade_resources = {"stone": 30, "fine_cloth": 20}
+upgrade_dungeon_depth = 4
+upgrade_patron_count = 200
+upgrade_time_days = 15
+placeholder_color = Color(0.96, 0.65, 0.14, 1)

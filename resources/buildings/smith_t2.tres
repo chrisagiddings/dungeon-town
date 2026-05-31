@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "smith_t2"
+display_name = "Town Smithy"
+description = "Iron and steel weapons and armor at Uncommon quality."
+category = "gear"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 15
+base_income = 200
+staffing = 2
+upgrade_from = "smith_t1"
+upgrade_to = "smith_t3"
+upgrade_cost = 500
+upgrade_resources = {"iron_ingot": 30}
+upgrade_prerequisites = ["mine_t1"]
+upgrade_patron_count = 100
+upgrade_time_days = 8
+placeholder_color = Color(0.55, 0.56, 0.58, 1)

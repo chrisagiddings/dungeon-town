@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "alchemist_t2"
+display_name = "Alchemist's Lab"
+description = "Health and mana potions, buff elixirs, and antidotes."
+category = "gear"
+tier = 2
+footprint = Vector2i(2, 2)
+build_cost = 0
+upkeep = 15
+base_income = 200
+staffing = 2
+upgrade_from = "alchemist_t1"
+upgrade_to = "alchemist_t3"
+upgrade_cost = 600
+upgrade_resources = {"stone": 20, "crystal": 30}
+upgrade_patron_count = 200
+upgrade_time_days = 10
+placeholder_color = Color(0.55, 0.56, 0.58, 1)

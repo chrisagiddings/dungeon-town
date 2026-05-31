@@ -1,34 +1,51 @@
 extends Node2D
 class_name BuildingLayer
 ## Draws all confirmed placed buildings as coloured isometric footprints with labels.
-## Uses placeholder_color and display_name from BuildingData via DataRegistry.
+## Under-construction buildings are drawn with a scaffold colour and "🔨 Building..." label.
 
 const TILE_W: int = 64
 const TILE_H: int = 32
-const BORDER_COLOR:  Color = Color(0.0, 0.0, 0.0, 0.55)
-const LABEL_COLOR:   Color = Color.WHITE
-const LABEL_SHADOW:  Color = Color(0.0, 0.0, 0.0, 0.7)
+const BORDER_COLOR:      Color = Color(0.0, 0.0, 0.0, 0.55)
+const LABEL_COLOR:       Color = Color.WHITE
+const LABEL_SHADOW:      Color = Color(0.0, 0.0, 0.0, 0.7)
+const CONSTRUCTION_COLOR: Color = Color(0.72, 0.68, 0.42, 0.85)
 
-var _grid: BuildingGrid = null
+var _grid:    BuildingGrid   = null
+var _manager: UpgradeManager = null
 
 func _ready() -> void:
 	await get_tree().process_frame
-	_grid = get_parent().get_node_or_null("BuildingGrid") as BuildingGrid
+	_grid    = get_parent().get_node_or_null("BuildingGrid") as BuildingGrid
+	_manager = get_tree().root.find_child("UpgradeManager", true, false) as UpgradeManager
 	if _grid == null:
 		push_error("BuildingLayer: BuildingGrid sibling not found")
 		return
-	EventBus.building_placed.connect(_on_building_placed)
+	EventBus.building_placed.connect(_on_redraw_trigger)
+	EventBus.building_demolished.connect(_on_redraw_trigger.bind(""))
+	EventBus.building_upgrade_started.connect(_on_redraw_trigger.bind("", 0))
+	EventBus.building_upgrade_completed.connect(_on_redraw_trigger.bind(""))
 
-func _on_building_placed(_id: String, _origin: Vector2i) -> void:
+func _on_redraw_trigger(_a = null, _b = null, _c = null) -> void:
 	queue_redraw()
 
 func _draw() -> void:
 	if _grid == null:
 		return
 	for placement in _grid.get_placements():
-		var data: BuildingData = DataRegistry.get_building(placement["data_id"]) as BuildingData
-		var color: Color = data.placeholder_color if data else PlaceholderColors.get_building_color(placement["category"])
-		var label: String = data.display_name if data else placement["data_id"]
+		var instance_id: String = placement["instance_id"]
+		var under_construction: bool = _manager != null and _manager.is_under_construction(instance_id)
+
+		var color:  Color
+		var label:  String
+		if under_construction:
+			color = CONSTRUCTION_COLOR
+			var days: int = _manager.days_remaining(instance_id)
+			label = "Building... (%dd)" % days
+		else:
+			var data: BuildingData = DataRegistry.get_building(placement["data_id"]) as BuildingData
+			color = data.placeholder_color if data else PlaceholderColors.get_building_color(placement["category"])
+			label = data.display_name if data else placement["data_id"]
+
 		_draw_footprint(placement["origin"] as Vector2i, placement["footprint"] as Vector2i, color, label)
 
 # ── Drawing ───────────────────────────────────────────────────────────────────
@@ -36,26 +53,20 @@ func _draw() -> void:
 func _draw_footprint(origin: Vector2i, footprint: Vector2i, color: Color, label: String) -> void:
 	for row in range(footprint.y):
 		for col in range(footprint.x):
-			var tile := origin + Vector2i(col, row)
-			_draw_iso_tile(_iso_to_screen(tile), color)
-	# Label at footprint center
-	var cx: float = float(footprint.x - 1) * 0.5
-	var cy: float = float(footprint.y - 1) * 0.5
-	var center_tile := Vector2(float(origin.x) + cx, float(origin.y) + cy)
-	var screen_center := Vector2(
-		(center_tile.x - center_tile.y) * float(TILE_W) * 0.5,
-		(center_tile.x + center_tile.y) * float(TILE_H) * 0.5
+			_draw_iso_tile(_iso_to_screen(origin + Vector2i(col, row)), color)
+	var cx: float       = float(footprint.x - 1) * 0.5
+	var cy: float       = float(footprint.y - 1) * 0.5
+	var ct := Vector2(float(origin.x) + cx, float(origin.y) + cy)
+	var sc := Vector2(
+		(ct.x - ct.y) * float(TILE_W) * 0.5,
+		(ct.x + ct.y) * float(TILE_H) * 0.5
 	)
-	var font: Font = ThemeDB.fallback_font
-	var font_size: int = 10
-	var text_size := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
-	var text_pos := screen_center + Vector2(-text_size.x * 0.5, font_size * 0.5)
-	# Shadow
-	draw_string(font, text_pos + Vector2(1, 1), label,
-		HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, LABEL_SHADOW)
-	# Label
-	draw_string(font, text_pos, label,
-		HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, LABEL_COLOR)
+	var font:      Font = ThemeDB.fallback_font
+	var font_size: int  = 10
+	var sz  := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
+	var pos := sc + Vector2(-sz.x * 0.5, font_size * 0.5)
+	draw_string(font, pos + Vector2(1, 1), label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, LABEL_SHADOW)
+	draw_string(font, pos,                 label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, LABEL_COLOR)
 
 func _draw_iso_tile(center: Vector2, fill: Color) -> void:
 	var pts := _tile_polygon(center)

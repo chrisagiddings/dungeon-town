@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "row_houses_t2"
+display_name = "Row Houses"
+description = "A row of modest homes housing up to eight townsfolk."
+category = "residential"
+tier = 2
+footprint = Vector2i(3, 2)
+build_cost = 0
+upkeep = 8
+workers_provided = 8
+upgrade_from = "bunkhouse_t1"
+upgrade_cost = 300
+upgrade_resources = {"wood": 25, "stone": 15}
+upgrade_time_days = 6
+placeholder_color = Color(0.47, 0.62, 0.45, 1)

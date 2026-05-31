@@ -64,6 +64,7 @@ class_name BuildingData
 @export var upgrade_dungeon_depth: int = 0  ## Minimum floor
 @export var upgrade_patron_count: int = 0  ## Lifetime patrons/customers
 @export var upgrade_population: int = 0  ## Town population required
+@export var upgrade_supply_chains: int = 0  ## Active production buildings required
 @export var upgrade_reputation: String = ""  ## known, renowned, legendary
 @export var upgrade_time_days: int = 5  ## In-game days to complete
 

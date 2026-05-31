@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "guard_t2"
+display_name = "Guard Barracks"
+description = "Trained guards providing improved crime prevention and town defence."
+category = "civic"
+tier = 2
+footprint = Vector2i(3, 2)
+build_cost = 0
+upkeep = 15
+staffing = 3
+upgrade_from = "guard_t1"
+upgrade_to = "guard_t3"
+upgrade_cost = 600
+upgrade_resources = {"stone": 25, "iron_ingot": 15}
+upgrade_time_days = 8
+placeholder_color = Color(0.25, 0.41, 0.88, 1)
