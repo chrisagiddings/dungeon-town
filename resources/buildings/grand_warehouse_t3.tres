@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "grand_warehouse_t3"
+display_name = "Grand Warehouse"
+description = "A grand civic warehouse — the economic heart of the town. Full resource visibility and worker routing hub."
+category = "civic"
+tier = 3
+footprint = Vector2i(4, 4)
+build_cost = 0
+upkeep = 25
+staffing = 4
+capacity = 2000
+upgrade_from = "warehouse_t2"
+upgrade_cost = 4000
+upgrade_resources = {"stone": 80, "steel": 30, "iron_ingot": 40}
+upgrade_time_days = 15
+placeholder_color = Color(0.55, 0.48, 0.35, 1)
+special_notes = "Storage capacity: 2000 units. Provides full town stockpile overview. Worker routing efficiency greatly increased."

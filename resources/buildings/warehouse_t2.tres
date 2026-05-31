@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "warehouse_t2"
+display_name = "Warehouse"
+description = "A proper warehouse with organized storage bays. Increases worker efficiency and storage."
+category = "civic"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 12
+staffing = 2
+capacity = 600
+upgrade_from = "stockroom_t1"
+upgrade_to = "grand_warehouse_t3"
+upgrade_cost = 1500
+upgrade_resources = {"stone": 40, "wood": 30, "iron_ingot": 10}
+upgrade_time_days = 10
+placeholder_color = Color(0.55, 0.48, 0.35, 1)
+special_notes = "Storage capacity: 600 units. Multiple resource types tracked separately."
