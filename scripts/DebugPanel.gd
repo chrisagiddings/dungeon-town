@@ -12,7 +12,6 @@ const MARGIN:        float = 10.0
 # ── State ─────────────────────────────────────────────────────────────────────
 var _log_output: RichTextLabel
 var _log_lines: Array[String] = []
-var _last_adv_id: String = ""
 var _place_idx: int  = 0
 var _place_btn: Button = null
 var _road_btn:  Button = null
@@ -108,9 +107,7 @@ func _btn_ref(parent: HBoxContainer, label: String, cb: Callable) -> Button:
 func _on_spawn() -> void:
 	var spawner: AdventurerSpawner = _find("AdventurerSpawner")
 	if spawner:
-		var id: String = spawner.spawn_adventurer()
-		if not id.is_empty():
-			_last_adv_id = id
+		spawner.spawn_adventurer()
 	else:
 		EventBus.debug_log_message.emit("ERROR: AdventurerSpawner not found in scene")
 
@@ -123,14 +120,18 @@ func _on_dungeon_run() -> void:
 		EventBus.debug_log_message.emit("ERROR: DungeonRunStub not found in scene")
 		return
 
-	# Auto-spawn if we have no adventurer yet
-	if _last_adv_id.is_empty():
-		_on_spawn()
+	var spawner: AdventurerSpawner = _find("AdventurerSpawner")
 
-	if not _last_adv_id.is_empty():
-		dungeon.start_run(_last_adv_id)
-		# Each press uses a fresh adventurer next time (run is async, no double-send guard here)
-		_last_adv_id = ""
+	# Prefer an existing idle adventurer; spawn a new one only if none idle
+	var adv_id: String = spawner.get_idle_adventurer() if spawner else ""
+	if adv_id.is_empty():
+		if spawner:
+			adv_id = spawner.spawn_adventurer()
+		if adv_id.is_empty():
+			EventBus.debug_log_message.emit("Dungeon Run: no idle adventurer and at capacity")
+			return
+
+	dungeon.start_run(adv_id)
 
 func _on_speed_cycle() -> void:
 	# Cycle: 1× → 2× → 4× → 0.25× → 1×

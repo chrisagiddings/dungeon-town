@@ -65,7 +65,7 @@ func get_buildings_by_tier(tier: int) -> Array[BuildingData]:
 
 # ── Resource Loading ──────────────────────────────────────────────────────────
 
-func _load_folder(path: String, registry: Dictionary, expected_class: String) -> void:
+func _load_folder(path: String, registry: Dictionary, _expected_class: String) -> void:
 	var dir := DirAccess.open(path)
 	if dir == null:
 		push_error("DataRegistry: cannot open folder: %s" % path)
@@ -78,13 +78,13 @@ func _load_folder(path: String, registry: Dictionary, expected_class: String) ->
 			var res := load(full_path)
 			if res == null:
 				push_warning("DataRegistry: failed to load %s" % full_path)
-			elif res.get_script() == null or res.get_script().get_global_name() != expected_class:
-				push_warning("DataRegistry: %s is not a %s" % [fname, expected_class])
+			elif not (res is BuildingData):
+				push_warning("DataRegistry: %s is not a BuildingData resource" % fname)
 			else:
-				var id_prop: String = res.get("id") if res.get("id") != null else ""
-				if id_prop.is_empty():
+				var data := res as BuildingData
+				if data.id.is_empty():
 					push_warning("DataRegistry: %s has empty id — skipped" % fname)
 				else:
-					registry[id_prop] = res
+					registry[data.id] = data
 		fname = dir.get_next()
 	dir.list_dir_end()
