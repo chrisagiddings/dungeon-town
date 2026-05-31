@@ -99,6 +99,26 @@ func construction_progress(instance_id: String) -> float:
 func get_construction_ids() -> Array:
 	return _constructions.keys()
 
+func cancel_construction(instance_id: String) -> void:
+	## Cancel an in-progress construction or upgrade.
+	## New builds: releases tiles from the grid (demolishes the unfinished building).
+	## Upgrades: stops the upgrade; building stays at its current tier.
+	if not _constructions.has(instance_id):
+		return
+	var info: Dictionary = _constructions[instance_id]
+	_constructions.erase(instance_id)
+
+	if info.get("kind", "") == "build":
+		# Unfinished building — remove from grid entirely
+		if _grid != null:
+			_grid.release(instance_id)
+		EventBus.debug_log_message.emit("Construction cancelled: %s (removed)" % instance_id)
+	else:
+		# Upgrade cancelled — building stays at current tier
+		EventBus.debug_log_message.emit("Upgrade cancelled: %s (reverted)" % instance_id)
+
+	EventBus.building_construction_cancelled.emit(instance_id)
+
 func get_all_constructions() -> Dictionary:
 	return _constructions.duplicate(true)
 
