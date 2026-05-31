@@ -30,10 +30,10 @@ func test_random_placement_sets_non_negative_origin() -> void:
 
 func test_random_placement_respects_margin() -> void:
 	GameState.dungeon_entrance_origin = Vector2i(-1, -1)
-	GameState.dungeon_entrance_size   = Vector2i(3, 3)
 	_manager._place_randomly()
 	var o: Vector2i = GameState.dungeon_entrance_origin
-	var margin: int = 3 + 2  # max(footprint) + 2
+	var s: Vector2i = GameState.dungeon_entrance_size  # set by _pick_entrance_size()
+	var margin: int = max(s.x, s.y) + 2
 	assert_true(o.x >= margin, "origin.x %d should be >= margin %d" % [o.x, margin])
 	assert_true(o.y >= margin, "origin.y %d should be >= margin %d" % [o.y, margin])
 

@@ -32,7 +32,15 @@ func _on_redraw_trigger(_a = null, _b = null, _c = null) -> void:
 func _draw() -> void:
 	if _grid == null:
 		return
-	for placement in _grid.get_placements():
+	# Sort by isometric depth (painter's algorithm): lower origin.x+origin.y
+	# is further from the viewer and must be drawn first.
+	var placements := _grid.get_placements().duplicate()
+	placements.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		var ao: Vector2i = a["origin"] as Vector2i
+		var bo: Vector2i = b["origin"] as Vector2i
+		return (ao.x + ao.y) < (bo.x + bo.y)
+	)
+	for placement in placements:
 		var instance_id: String = placement["instance_id"]
 		var under_construction: bool = _manager != null and _manager.is_under_construction(instance_id)
 
