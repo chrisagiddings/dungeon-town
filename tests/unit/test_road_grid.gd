@@ -114,3 +114,73 @@ func test_path_on_road_shorter_weight_than_ground() -> void:
 	# We just check the road path is found and has correct number of tiles
 	var path := _grid.find_path(Vector2i(0, 0), Vector2i(5, 0))
 	assert_true(path.size() > 0)
+
+# ── RoadPlacer straight-line logic ────────────────────────────────────────────
+# Tests via a RoadPlacer instance (line_tiles is a pure internal method we
+# invoke indirectly by setting up a painting stroke and checking results).
+
+var _placer: RoadPlacer
+
+func _make_placer() -> void:
+	_placer = RoadPlacer.new()
+	_placer._road_grid     = _grid
+	_placer._building_grid = BuildingGrid.new()
+	add_child_autofree(_placer._building_grid)
+	add_child_autofree(_placer)
+
+func test_line_horizontal_left_to_right() -> void:
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(0, 2), Vector2i(4, 2))
+	assert_eq(tiles.size(), 5)
+	for x in range(5):
+		assert_true(tiles.has(Vector2i(x, 2)), "missing (%d, 2)" % x)
+
+func test_line_horizontal_right_to_left() -> void:
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(4, 2), Vector2i(0, 2))
+	assert_eq(tiles.size(), 5)
+
+func test_line_vertical_top_to_bottom() -> void:
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(3, 0), Vector2i(3, 5))
+	assert_eq(tiles.size(), 6)
+	for y in range(6):
+		assert_true(tiles.has(Vector2i(3, y)), "missing (3, %d)" % y)
+
+func test_line_dominant_axis_horizontal() -> void:
+	# dx=5, dy=2 → horizontal wins
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(0, 0), Vector2i(5, 2))
+	for t in tiles:
+		assert_eq(t.y, 0, "all tiles should be on y=0")
+
+func test_line_dominant_axis_vertical() -> void:
+	# dx=1, dy=4 → vertical wins
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(3, 0), Vector2i(4, 4))
+	for t in tiles:
+		assert_eq(t.x, 3, "all tiles should be on x=3")
+
+func test_line_single_tile() -> void:
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(5, 5), Vector2i(5, 5))
+	assert_eq(tiles.size(), 1)
+	assert_true(tiles.has(Vector2i(5, 5)))
+
+func test_shift_stroke_removes_off_axis_tiles() -> void:
+	_make_placer()
+	# Simulate: paint start at (0,0), free-paint some tiles, then shift-lock to horizontal
+	_grid.place_road(Vector2i(0, 0))
+	_grid.place_road(Vector2i(1, 1))  # off-axis tile that should be removed
+	_grid.place_road(Vector2i(2, 2))  # off-axis tile that should be removed
+	_placer._paint_start  = Vector2i(0, 0)
+	_placer._stroke_tiles = [Vector2i(0, 0), Vector2i(1, 1), Vector2i(2, 2)]
+
+	# Shift-lock to end tile (4, 0) — horizontal line
+	_placer._paint_line_stroke(Vector2i(4, 0))
+
+	assert_false(_grid.has_road(Vector2i(1, 1)), "off-axis tile should be removed")
+	assert_false(_grid.has_road(Vector2i(2, 2)), "off-axis tile should be removed")
+	assert_true(_grid.has_road(Vector2i(0, 0)))
+	assert_true(_grid.has_road(Vector2i(1, 0)))
+	assert_true(_grid.has_road(Vector2i(4, 0)))
