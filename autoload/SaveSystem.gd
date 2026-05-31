@@ -171,6 +171,7 @@ func _collect_state() -> Dictionary:
 		"roads":            roads,
 		"constructions":    constructions,
 		"adventurers":      spawner.get_save_data() if spawner else {},
+		"resources":        ResourceInventory.get_save_data(),
 	}
 
 # ── Deserialization ───────────────────────────────────────────────────────────
@@ -243,6 +244,8 @@ func _restore_state(data: Dictionary) -> void:
 	var spawner: AdventurerSpawner = _find("AdventurerSpawner")
 	if spawner:
 		spawner.restore_from_save(data.get("adventurers", {}))
+
+	ResourceInventory.restore_from_save(data.get("resources", {}))
 
 	# Sync nav grid passability after restoring buildings
 	if road_grid:

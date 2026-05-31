@@ -26,6 +26,7 @@ GameState="*res://autoload/GameState.gd"
 EconomyState="*res://autoload/EconomyState.gd"
 DataRegistry="*res://autoload/DataRegistry.gd"
 SaveSystem="*res://autoload/SaveSystem.gd"
+ResourceInventory="*res://autoload/ResourceInventory.gd"
 
 [display]
 

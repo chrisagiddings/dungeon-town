@@ -55,6 +55,10 @@ signal road_mode_exited()
 signal road_tile_selected(tile: Vector2i)
 signal road_tile_deselected()
 
+# ── Resources ─────────────────────────────────────────────────────────────────
+signal resource_changed(resource_id: String, new_amount: int, delta: int)
+signal resource_depleted(resource_id: String)
+
 # ── Save / Load ───────────────────────────────────────────────────────────────
 signal game_saved(slot: int)
 signal game_loaded(slot: int)
