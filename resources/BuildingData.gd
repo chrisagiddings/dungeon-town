@@ -44,6 +44,12 @@ class_name BuildingData
 @export var quest_board_size: int = 0  ## For guild buildings
 @export var training_xp_bonus: float = 0.0  ## For guild buildings
 
+# ── Market Accessibility ───────────────────────────────────────────────────────
+@export_group("Market Accessibility")
+@export var cost_per_use: int = 0          ## Gold charged to the customer per visit/use
+@export var min_customer_wealth: int = 0   ## Minimum wealth bracket (0=anyone; see issue #136)
+@export var max_customer_wealth: int = 99  ## Maximum wealth bracket (99=no upper limit)
+
 # ── Unlock Conditions ─────────────────────────────────────────────────────────
 @export_group("Unlock Conditions")
 @export var unlock_at_start: bool = false
