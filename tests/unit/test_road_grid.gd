@@ -119,7 +119,8 @@ func test_path_on_road_shorter_weight_than_ground() -> void:
 # Tests via a RoadPlacer instance (line_tiles is a pure internal method we
 # invoke indirectly by setting up a painting stroke and checking results).
 
-var _placer: RoadPlacer
+var _placer:          RoadPlacer     = null
+var _building_placer: BuildingPlacer = null
 
 func _make_placer() -> void:
 	_placer = RoadPlacer.new()
@@ -127,6 +128,16 @@ func _make_placer() -> void:
 	_placer._building_grid = BuildingGrid.new()
 	add_child_autofree(_placer._building_grid)
 	add_child_autofree(_placer)
+
+func _make_building_placer() -> void:
+	## Creates a BuildingPlacer wired to the test's RoadGrid and a fresh BuildingGrid.
+	## _terrain is not needed for _has_road_conflict — left null.
+	var bgrid := BuildingGrid.new()
+	add_child_autofree(bgrid)
+	_building_placer = BuildingPlacer.new()
+	_building_placer._road_grid = _grid
+	_building_placer._grid      = bgrid
+	add_child_autofree(_building_placer)
 
 func test_line_horizontal_left_to_right() -> void:
 	_make_placer()
@@ -184,3 +195,67 @@ func test_shift_stroke_removes_off_axis_tiles() -> void:
 	assert_true(_grid.has_road(Vector2i(0, 0)))
 	assert_true(_grid.has_road(Vector2i(1, 0)))
 	assert_true(_grid.has_road(Vector2i(4, 0)))
+
+# ── _line_tiles equal-delta tie-break ────────────────────────────────────────
+
+func test_line_equal_delta_picks_horizontal() -> void:
+	# dx=3, dy=3 — tie goes to horizontal (>= condition)
+	_make_placer()
+	var tiles := _placer._line_tiles(Vector2i(0, 0), Vector2i(3, 3))
+	for t in tiles:
+		assert_eq(t.y, 0, "equal delta should resolve to horizontal (y stays at start)")
+
+# ── _has_road_conflict ────────────────────────────────────────────────────────
+
+func test_has_road_conflict_false_on_clean_ground() -> void:
+	_make_building_placer()
+	assert_false(_building_placer._has_road_conflict(Vector2i(0, 0), Vector2i(2, 2)))
+
+func test_has_road_conflict_true_when_road_under_footprint() -> void:
+	_make_building_placer()
+	_grid.place_road(Vector2i(1, 1))
+	assert_true(_building_placer._has_road_conflict(Vector2i(0, 0), Vector2i(2, 2)))
+
+func test_has_road_conflict_true_on_partial_overlap() -> void:
+	_make_building_placer()
+	# Road at (2,0) — only one tile of a 3×1 footprint overlaps
+	_grid.place_road(Vector2i(2, 0))
+	assert_true(_building_placer._has_road_conflict(Vector2i(0, 0), Vector2i(3, 1)))
+
+func test_has_road_conflict_false_when_road_adjacent_not_under() -> void:
+	_make_building_placer()
+	# Road at (3,0) — just outside a 2×2 footprint at (0,0)...(1,1)
+	_grid.place_road(Vector2i(3, 0))
+	assert_false(_building_placer._has_road_conflict(Vector2i(0, 0), Vector2i(2, 2)))
+
+func test_has_road_conflict_false_after_road_removed() -> void:
+	_make_building_placer()
+	_grid.place_road(Vector2i(1, 1))
+	_grid.remove_road(Vector2i(1, 1))
+	assert_false(_building_placer._has_road_conflict(Vector2i(0, 0), Vector2i(2, 2)))
+
+# ── Road placement blocked by building ───────────────────────────────────────
+
+func test_road_not_placed_on_occupied_building_tile() -> void:
+	_make_placer()
+	_placer._building_grid.reserve(Vector2i(2, 2), Vector2i(2, 2), "bldg", "civic")
+	_placer._try_place(Vector2i(2, 2))
+	assert_false(_grid.has_road(Vector2i(2, 2)))
+
+func test_road_not_placed_on_any_tile_of_large_footprint() -> void:
+	_make_placer()
+	_placer._building_grid.reserve(Vector2i(1, 1), Vector2i(3, 3), "big_bldg", "civic")
+	for row in range(3):
+		for col in range(3):
+			_placer._try_place(Vector2i(1 + col, 1 + row))
+	for row in range(3):
+		for col in range(3):
+			assert_false(_grid.has_road(Vector2i(1 + col, 1 + row)),
+				"road should be blocked at (%d,%d)" % [1 + col, 1 + row])
+
+func test_road_placed_normally_on_adjacent_free_tile() -> void:
+	_make_placer()
+	_placer._building_grid.reserve(Vector2i(2, 2), Vector2i(2, 2), "bldg", "civic")
+	# Tile (1,2) is free — road should place fine
+	_placer._try_place(Vector2i(1, 2))
+	assert_true(_grid.has_road(Vector2i(1, 2)))
