@@ -18,4 +18,6 @@ upgrade_cost = 1200
 upgrade_resources = {"steel": 20, "stone": 30}
 upgrade_dungeon_depth = 6
 upgrade_time_days = 10
+required_adjacent_terrain = "mountain"
+forbidden_terrain = ["water", "forest"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

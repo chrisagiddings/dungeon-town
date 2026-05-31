@@ -42,10 +42,32 @@ const MOB_ZONE_5 := Color(0.05, 0.0, 0.1)         # Void black — Void Wastes
 const ZONE_BOSS := Color(1.0, 0.84, 0.0)          # Gold — zone bosses get gold outline
 const DUNGEON_ENTRANCE := Color(0.25, 0.2, 0.35) # Dark purple-grey
 
-# ── Environment ───────────────────────────────────────────────────────────────
-const ENV_TERRAIN := Color(0.35, 0.45, 0.25)      # Grass green
-const ENV_ROAD := Color(0.45, 0.4, 0.35)          # Dusty brown
-const ENV_WATER := Color(0.2, 0.5, 0.7)           # Water blue
+# ── Terrain Types ─────────────────────────────────────────────────────────────
+const TERRAIN_PLAINS  := Color(0.60, 0.72, 0.35)  # Light grassy green — buildable, farmable
+const TERRAIN_FOREST  := Color(0.18, 0.42, 0.18)  # Deep forest green — lumber, quests, monsters
+const TERRAIN_MOUNTAIN := Color(0.52, 0.50, 0.46) # Grey-brown — mining, impassable peaks
+const TERRAIN_ROCKY   := Color(0.46, 0.44, 0.40)  # Lighter rock — quarry sites
+const TERRAIN_WATER   := Color(0.20, 0.50, 0.70)  # Water blue — impassable
+const TERRAIN_MARSH   := Color(0.30, 0.42, 0.25)  # Murky olive — slow, limited building
+const TERRAIN_SAND    := Color(0.78, 0.72, 0.50)  # Sandy yellow — poor fertility
+const TERRAIN_ROAD    := Color(0.45, 0.40, 0.35)  # Dusty brown (road tiles)
+
+static func get_terrain_color(terrain_type: String) -> Color:
+	match terrain_type.to_lower():
+		"plains":   return TERRAIN_PLAINS
+		"forest":   return TERRAIN_FOREST
+		"mountain": return TERRAIN_MOUNTAIN
+		"rocky":    return TERRAIN_ROCKY
+		"water":    return TERRAIN_WATER
+		"marsh":    return TERRAIN_MARSH
+		"sand":     return TERRAIN_SAND
+		"road":     return TERRAIN_ROAD
+		_:          return TERRAIN_PLAINS  # default to plains
+
+# ── Legacy environment names (kept for compatibility) ─────────────────────────
+const ENV_TERRAIN := TERRAIN_PLAINS
+const ENV_ROAD    := TERRAIN_ROAD
+const ENV_WATER   := TERRAIN_WATER
 
 ## Get mob color by zone number (1-5)
 static func get_mob_color(zone: int) -> Color:

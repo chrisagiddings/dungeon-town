@@ -17,4 +17,6 @@ upgrade_to = "farm_t3"
 upgrade_cost = 300
 upgrade_resources = {"wood": 20}
 upgrade_time_days = 5
+required_terrain = "plains"
+forbidden_terrain = ["water", "mountain", "rocky", "forest"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

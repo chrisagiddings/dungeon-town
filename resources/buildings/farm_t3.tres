@@ -16,4 +16,6 @@ upgrade_cost = 800
 upgrade_resources = {"arcane_dust": 20}
 upgrade_time_days = 7
 upgrade_from = "farm_t2"
+required_terrain = "plains"
+forbidden_terrain = ["water", "mountain", "rocky", "forest"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

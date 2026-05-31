@@ -17,4 +17,6 @@ upgrade_to = "herb_garden_t3"
 upgrade_cost = 600
 upgrade_resources = {"arcane_dust": 10}
 upgrade_time_days = 7
+required_terrain = "plains"
+forbidden_terrain = ["water", "mountain", "rocky"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)
