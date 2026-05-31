@@ -44,6 +44,9 @@ func _ready() -> void:
 	EventBus.building_construction_started.connect(_on_construction_started)
 	EventBus.building_construction_completed.connect(_on_construction_completed)
 	EventBus.day_started.connect(_on_day_started)
+	EventBus.gold_changed.connect(_on_state_changed)
+	EventBus.building_placed.connect(func(_id, _origin): _on_state_changed())
+	EventBus.building_demolished.connect(func(_id): _on_state_changed())
 	EventBus.road_tile_selected.connect(func(_t): hide())
 
 # ── EventBus handlers ─────────────────────────────────────────────────────────
@@ -69,6 +72,12 @@ func _on_upgrade_started(instance_id: String, _target: String, _day: int) -> voi
 func _on_upgrade_completed(old_instance_id: String, new_instance_id: String) -> void:
 	if _current_instance == old_instance_id:
 		_current_instance = new_instance_id
+		_refresh()
+
+func _on_state_changed(_a = null, _b = null) -> void:
+	## Refresh upgrade requirements whenever gold or placed buildings change.
+	if visible and _current_instance != "" and _manager != null \
+			and not _manager.is_under_construction(_current_instance):
 		_refresh()
 
 func _on_construction_started(instance_id: String, _complete_day: int) -> void:
