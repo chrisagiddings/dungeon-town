@@ -20,5 +20,6 @@ upgrade_resources = {"stone": 40, "wood": 30}
 upgrade_dungeon_depth = 3
 upgrade_population = 25
 upgrade_time_days = 15
+construction_days = 3
 placeholder_color = Color(0.25, 0.41, 0.88, 1)
 special_notes = "Increases population cap by 20"

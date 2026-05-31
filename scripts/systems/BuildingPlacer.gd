@@ -158,8 +158,14 @@ func _on_building_demolished(instance_id: String) -> void:
 		queue_redraw()
 
 func _confirm_placement() -> void:
-	_grid.reserve(_preview_origin, _active_data.footprint, _active_data.id, _active_data.category)
+	var instance_id := _grid.reserve(
+		_preview_origin, _active_data.footprint, _active_data.id, _active_data.category
+	)
 	EventBus.debug_log_message.emit("Placed: %s at %s" % [_active_data.display_name, _preview_origin])
+	if _active_data.construction_days > 0:
+		var manager: UpgradeManager = get_tree().root.find_child("UpgradeManager", true, false)
+		if manager:
+			manager.start_new_construction(instance_id, _active_data.construction_days)
 	exit_placement_mode()
 
 func _cancel_placement() -> void:

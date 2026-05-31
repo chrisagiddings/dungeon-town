@@ -23,4 +23,5 @@ upgrade_resources = {"wood": 20, "cloth": 10}
 upgrade_prerequisites = ["bakery_t1"]
 upgrade_patron_count = 30
 upgrade_time_days = 5
+construction_days = 1
 placeholder_color = Color(0.96, 0.65, 0.14, 1)

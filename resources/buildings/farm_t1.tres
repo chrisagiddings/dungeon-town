@@ -19,4 +19,5 @@ upgrade_to = "farm_t2"
 upgrade_cost = 300
 upgrade_resources = {"wood": 20}
 upgrade_time_days = 5
+construction_days = 2
 placeholder_color = Color(0.55, 0.39, 0.21, 1)
