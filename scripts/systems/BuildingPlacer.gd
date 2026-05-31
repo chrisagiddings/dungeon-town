@@ -19,15 +19,17 @@ var _active_data:     BuildingData = null
 var _preview_origin:  Vector2i     = Vector2i(-1, -1)
 var _is_valid:        bool         = false
 var _selected_instance: String     = ""
-var _grid:    BuildingGrid = null
-var _terrain: TerrainGrid  = null
+var _grid:      BuildingGrid = null
+var _road_grid: RoadGrid     = null
+var _terrain:   TerrainGrid  = null
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
 	await get_tree().process_frame
-	_grid    = get_parent().get_node_or_null("BuildingGrid") as BuildingGrid
-	_terrain = get_parent().get_node_or_null("TerrainGrid")  as TerrainGrid
+	_grid      = get_parent().get_node_or_null("BuildingGrid") as BuildingGrid
+	_road_grid = get_parent().get_node_or_null("RoadGrid")     as RoadGrid
+	_terrain   = get_parent().get_node_or_null("TerrainGrid")  as TerrainGrid
 	if _grid == null:
 		push_error("BuildingPlacer: BuildingGrid sibling not found")
 	if _terrain == null:
@@ -41,7 +43,8 @@ func _process(_delta: float) -> void:
 	var tile := _mouse_to_tile()
 	if tile != _preview_origin:
 		_preview_origin = tile
-		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint)
+		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint) \
+			and not _has_road_conflict(_preview_origin, _active_data.footprint)
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -120,18 +123,30 @@ func is_placing() -> bool:
 # ── Internal ──────────────────────────────────────────────────────────────────
 
 func _handle_selection_click() -> void:
-	var tile := _mouse_to_tile()
+	var tile        := _mouse_to_tile()
 	var instance_id := _grid.get_occupant(tile)
 	if instance_id != "":
+		# Building takes priority
 		if instance_id == _selected_instance:
-			return  # already selected — no-op
+			return
 		_selected_instance = instance_id
 		queue_redraw()
+		EventBus.road_tile_deselected.emit()
 		EventBus.building_selected.emit(instance_id)
 		EventBus.debug_log_message.emit("Selected: %s" % instance_id)
+	elif _road_grid != null and _road_grid.has_road(tile):
+		# Road tile — dismiss building selection if any
+		if _selected_instance != "":
+			_selected_instance = ""
+			queue_redraw()
+			EventBus.building_deselected.emit()
+		EventBus.road_tile_selected.emit(tile)
+		EventBus.debug_log_message.emit("Road tile selected: %s" % tile)
 	else:
+		# Empty ground — clear everything
 		if _selected_instance != "":
 			EventBus.building_deselected.emit()
+		EventBus.road_tile_deselected.emit()
 
 func _on_building_deselected() -> void:
 	_selected_instance = ""
@@ -151,6 +166,14 @@ func _cancel_placement() -> void:
 	EventBus.building_placement_cancelled.emit()
 	EventBus.debug_log_message.emit("Placement cancelled")
 	exit_placement_mode()
+
+func _has_road_conflict(origin: Vector2i, footprint: Vector2i) -> bool:
+	if _road_grid == null:
+		return false
+	for tile in _grid.get_tiles(origin, footprint):
+		if _road_grid.has_road(tile):
+			return true
+	return false
 
 func _mouse_to_tile() -> Vector2i:
 	return _terrain.screen_to_iso(_terrain.to_local(get_global_mouse_position()))
