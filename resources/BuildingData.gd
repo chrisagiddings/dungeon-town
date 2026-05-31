@@ -46,9 +46,9 @@ class_name BuildingData
 
 # ── Market Accessibility ───────────────────────────────────────────────────────
 @export_group("Market Accessibility")
-@export var cost_per_use: int = 0          ## Gold charged to the customer per visit/use
-@export var min_customer_wealth: int = 0   ## Minimum wealth bracket (0=anyone; see issue #136)
-@export var max_customer_wealth: int = 99  ## Maximum wealth bracket (99=no upper limit)
+@export var cost_per_use: int = 0          ## Gold charged per visit/use (deducted from patron daily funds)
+@export var min_patron_tier: int = 0    ## Minimum population tier that will use this building (0=anyone; T1 worker through T4 noble)
+@export var max_patron_tier: int = 99   ## Maximum tier (99=no upper limit; elite NPCs avoid T1 facilities)
 
 # ── Unlock Conditions ─────────────────────────────────────────────────────────
 @export_group("Unlock Conditions")
