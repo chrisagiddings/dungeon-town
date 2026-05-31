@@ -32,9 +32,6 @@ func _ready() -> void:
 func spawn_adventurer() -> String:
 	## Spawns one adventurer. Returns its ID, or "" if at capacity.
 	if _active_adventurers.size() >= MAX_ADVENTURERS:
-		EventBus.debug_log_message.emit(
-			"Spawn refused: at capacity (%d/%d)" % [_active_adventurers.size(), MAX_ADVENTURERS]
-		)
 		return ""
 
 	var adv_id: String = "adv_%04d" % _next_id
@@ -45,6 +42,12 @@ func spawn_adventurer() -> String:
 	EventBus.debug_log_message.emit(
 		"Adventurer arrived: %s  [%d/%d]" % [adv_id, _active_adventurers.size(), MAX_ADVENTURERS]
 	)
+
+	# Stop auto-spawn timer when roster is full
+	if _active_adventurers.size() >= MAX_ADVENTURERS:
+		_spawn_timer.stop()
+		EventBus.debug_log_message.emit("Roster full — auto-spawn paused")
+
 	return adv_id
 
 func get_idle_adventurer() -> String:
@@ -77,3 +80,6 @@ func _on_adventurer_entered_dungeon(adv_id: String) -> void:
 func _on_adventurer_returned(adv_id: String, _result: Dictionary) -> void:
 	if adv_id in _active_adventurers:
 		_active_adventurers[adv_id] = false
+		# A slot just freed up — restart auto-spawn timer if it was stopped
+		if _spawn_timer.is_stopped():
+			_spawn_timer.start()
