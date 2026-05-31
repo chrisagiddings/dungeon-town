@@ -29,7 +29,7 @@ func _draw() -> void:
 		var data: BuildingData = DataRegistry.get_building(placement["data_id"]) as BuildingData
 		var color: Color = data.placeholder_color if data else PlaceholderColors.get_building_color(placement["category"])
 		var label: String = data.display_name if data else placement["data_id"]
-		_draw_footprint(placement["origin"], placement["footprint"], color, label)
+		_draw_footprint(placement["origin"] as Vector2i, placement["footprint"] as Vector2i, color, label)
 
 # ── Drawing ───────────────────────────────────────────────────────────────────
 

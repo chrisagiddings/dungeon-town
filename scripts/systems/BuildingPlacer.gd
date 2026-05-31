@@ -88,9 +88,11 @@ func _draw() -> void:
 	if _selected_instance != "":
 		var p := _grid.get_placement_for_instance(_selected_instance)
 		if not p.is_empty():
-			for row in range(p["footprint"].y):
-				for col in range(p["footprint"].x):
-					var tile := p["origin"] + Vector2i(col, row)
+			var p_origin:    Vector2i = p["origin"]
+			var p_footprint: Vector2i = p["footprint"]
+			for row in range(p_footprint.y):
+				for col in range(p_footprint.x):
+					var tile: Vector2i = p_origin + Vector2i(col, row)
 					_draw_iso_tile(_iso_to_screen(tile), COLOR_SELECTED_FILL, COLOR_SELECTED_BORDER)
 
 # ── Public API ────────────────────────────────────────────────────────────────
