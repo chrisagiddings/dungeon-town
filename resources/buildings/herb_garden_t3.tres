@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "herb_garden_t3"
+display_name = "Herb Garden (T3)"
+description = "Arcane-enhanced garden — 40 herbs per day plus magical herbs."
+category = "production"
+tier = 3
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 12
+staffing = 3
+produces = {"herbs": 40}
+consumes = {"arcane_dust": 1}
+upgrade_from = "herb_garden_t2"
+upgrade_cost = 1500
+upgrade_resources = {"arcane_dust": 30, "crystal": 10}
+upgrade_dungeon_depth = 5
+upgrade_time_days = 10
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

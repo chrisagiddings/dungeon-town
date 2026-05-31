@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "lodging_t4"
+display_name = "Legendary Rest"
+description = "The finest lodgings in the region. Legendary adventurers will only stay here."
+category = "hospitality"
+tier = 4
+footprint = Vector2i(5, 4)
+build_cost = 0
+upkeep = 35
+income_per_guest = 10
+income_per_suite = 50
+staffing = 6
+capacity = 66
+rest_quality = 1.0
+morale_bonus = 20
+upgrade_from = "lodging_t3"
+upgrade_cost = 8000
+upgrade_resources = {"mithril": 5, "crystal": 20, "steel": 60}
+upgrade_dungeon_depth = 10
+upgrade_reputation = "renowned"
+upgrade_time_days = 30
+placeholder_color = Color(0.96, 0.65, 0.14, 1)
