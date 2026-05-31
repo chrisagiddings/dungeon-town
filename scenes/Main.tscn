@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/CameraRig.gd" id="2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/systems/RoadGrid.gd" id="14"]
 [ext_resource type="Script" path="res://scripts/systems/RoadLayer.gd" id="15"]
 [ext_resource type="Script" path="res://scripts/systems/RoadPlacer.gd" id="16"]
+[ext_resource type="Script" path="res://scripts/ui/RoadInfoPanel.gd" id="17"]
 
 ; ── Root ─────────────────────────────────────────────────────────────────────
 [node name="Main" type="Node2D"]
@@ -73,6 +74,9 @@ script = ExtResource("7")
 
 [node name="BuildingInfoPanel" type="PanelContainer" parent="UIRoot"]
 script = ExtResource("12")
+
+[node name="RoadInfoPanel" type="PanelContainer" parent="UIRoot"]
+script = ExtResource("17")
 
 [node name="DebugPanel" type="PanelContainer" parent="UIRoot"]
 script = ExtResource("8")

@@ -45,6 +45,8 @@ signal road_placed(tile: Vector2i)
 signal road_removed(tile: Vector2i)
 signal road_mode_entered()
 signal road_mode_exited()
+signal road_tile_selected(tile: Vector2i)
+signal road_tile_deselected()
 
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)

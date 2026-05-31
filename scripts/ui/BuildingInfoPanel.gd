@@ -39,6 +39,7 @@ func _ready() -> void:
 	EventBus.building_upgrade_started.connect(_on_upgrade_started)
 	EventBus.building_upgrade_completed.connect(_on_upgrade_completed)
 	EventBus.day_started.connect(_on_day_started)
+	EventBus.road_tile_selected.connect(func(_t): hide())
 
 # ── EventBus handlers ─────────────────────────────────────────────────────────
 
