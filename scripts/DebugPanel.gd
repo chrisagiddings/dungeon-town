@@ -66,6 +66,7 @@ func _build_ui() -> void:
 	vbox.add_child(row3)
 	_place_btn = _btn_ref(row3, "Place Building", _on_place_building)
 	_road_btn  = _btn_ref(row3, "Road Tool",      _on_road_tool)
+	_btn(row3, "Save/Load", _on_save_load)
 	EventBus.building_placement_cancelled.connect(_on_placement_cancelled)
 	EventBus.building_placed.connect(func(_id, _origin): _on_placement_cancelled())
 	EventBus.road_mode_exited.connect(func(): _road_btn.text = "Road Tool")
@@ -191,6 +192,14 @@ func _on_road_tool() -> void:
 		placer.enter_road_mode()
 		if _road_btn:
 			_road_btn.text = "Road Tool [ON]"
+
+func _on_save_load() -> void:
+	var panel: SaveLoadPanel = _find("SaveLoadPanel")
+	if panel:
+		if panel.visible:
+			panel.hide()
+		else:
+			panel.show()
 
 # ── Log ───────────────────────────────────────────────────────────────────────
 

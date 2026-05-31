@@ -15,6 +15,7 @@ var current_hour: float = 6.0          ## Starts at 6 AM
 var current_phase: Phase = Phase.MORNING
 var is_paused: bool = false
 var sim_speed: float = 1.0
+var town_name: String = "Dungeon Town"
 
 var _tick_accumulator: float = 0.0
 

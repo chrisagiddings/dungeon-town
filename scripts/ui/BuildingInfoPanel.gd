@@ -18,6 +18,8 @@ var _req_container: VBoxContainer
 var _upgrade_btn:   Button
 var _construction_label: Label
 var _construction_bar:   ProgressBar
+var _town_name_row:      HBoxContainer
+var _town_name_edit:     LineEdit
 var _demolish_btn:  Button
 var _confirm_row:   HBoxContainer
 
@@ -114,6 +116,12 @@ func _refresh() -> void:
 		_show_construction_state()
 		return
 
+	# Town naming (Mayor's Hall T2 only)
+	var is_mayors_t2: bool = (data_id == "mayor_t2")
+	_town_name_row.visible = is_mayors_t2
+	if is_mayors_t2:
+		_town_name_edit.text = GameState.town_name
+
 	# Upgrade / no upgrade
 	if data.upgrade_to != "":
 		_show_upgrade_requirements(data)
@@ -135,6 +143,7 @@ func _show_construction_state() -> void:
 	_construction_bar.visible   = true
 	_req_container.visible      = false
 	_upgrade_btn.visible        = false
+	_town_name_row.visible      = false
 	_demolish_btn.hide()
 
 func _show_upgrade_requirements(data: BuildingData) -> void:
@@ -227,6 +236,23 @@ func _build_ui() -> void:
 	_cap_label    = _stat(vbox)
 	_add_sep(vbox)
 
+	# Town naming row (Mayor's Hall T2 only)
+	_town_name_row = HBoxContainer.new()
+	_town_name_row.add_theme_constant_override("separation", 6)
+	_town_name_row.visible = false
+	vbox.add_child(_town_name_row)
+	var tn_lbl := Label.new()
+	tn_lbl.text = "Town Name:"
+	tn_lbl.add_theme_font_size_override("font_size", 11)
+	_town_name_row.add_child(tn_lbl)
+	_town_name_edit = LineEdit.new()
+	_town_name_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_town_name_edit.add_theme_font_size_override("font_size", 11)
+	_town_name_edit.placeholder_text = "Dungeon Town"
+	_town_name_edit.text_submitted.connect(_on_town_name_submitted)
+	_town_name_edit.focus_exited.connect(func(): _on_town_name_submitted(_town_name_edit.text))
+	_town_name_row.add_child(_town_name_edit)
+
 	# Under-construction label
 	_construction_label = Label.new()
 	_construction_label.add_theme_font_size_override("font_size", 11)
@@ -300,6 +326,15 @@ func _on_upgrade_pressed() -> void:
 	var data    := DataRegistry.get_building(data_id) as BuildingData
 	if data:
 		_manager.start_upgrade(_current_instance, data)
+
+func _on_town_name_submitted(new_name: String) -> void:
+	var trimmed := new_name.strip_edges()
+	if trimmed.is_empty():
+		trimmed = "Dungeon Town"
+	GameState.town_name = trimmed
+	_town_name_edit.text = trimmed
+	_town_name_edit.release_focus()
+	EventBus.debug_log_message.emit("Town renamed: %s" % trimmed)
 
 func _on_demolish_pressed() -> void:
 	_demolish_btn.hide()

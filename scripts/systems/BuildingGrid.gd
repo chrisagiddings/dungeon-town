@@ -99,3 +99,22 @@ func clear() -> void:
 	_occupied.clear()
 	_placements.clear()
 	_instance_counter = 0
+
+func get_instance_counter() -> int:
+	return _instance_counter
+
+func set_instance_counter(n: int) -> void:
+	_instance_counter = n
+
+func restore_placement(instance_id: String, origin: Vector2i, footprint: Vector2i,
+		data_id: String, category: String) -> void:
+	## Restores a saved placement with its original instance_id (no new ID generated).
+	for tile in get_tiles(origin, footprint):
+		_occupied[tile] = instance_id
+	_placements.append({
+		"instance_id": instance_id,
+		"data_id":     data_id,
+		"origin":      origin,
+		"footprint":   footprint,
+		"category":    category,
+	})

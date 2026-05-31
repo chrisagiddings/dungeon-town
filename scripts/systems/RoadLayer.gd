@@ -17,6 +17,7 @@ func _ready() -> void:
 		return
 	EventBus.road_placed.connect(_on_road_changed)
 	EventBus.road_removed.connect(_on_road_changed)
+	EventBus.game_loaded.connect(func(_s): queue_redraw())
 
 func _on_road_changed(_tile: Vector2i) -> void:
 	queue_redraw()
