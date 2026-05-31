@@ -2,9 +2,9 @@ extends PanelContainer
 class_name SaveLoadPanel
 ## Save/Load slot UI — 5 manual slots + autosave display.
 ## Each slot shows its save name (default: town name + day).
-## Manual slots allow renaming via an inline text field.
+## Manual slots allow renaming and deletion.
 
-const PANEL_W: float = 400.0
+const PANEL_W: float = 420.0
 const PANEL_H: float = 310.0
 const MARGIN:  float = 10.0
 
@@ -47,7 +47,7 @@ func _build_ui() -> void:
 
 	vbox.add_child(_sep())
 
-	# Autosave row (load-only, not renameable)
+	# Autosave row (load-only, not renameable or deleteable)
 	vbox.add_child(_build_slot_row(0, "Autosave", true))
 	vbox.add_child(_sep())
 
@@ -63,12 +63,11 @@ func _build_slot_row(slot: int, label: String, read_only: bool) -> HBoxContainer
 	# Slot label
 	var name_lbl := Label.new()
 	name_lbl.text = label
-	name_lbl.custom_minimum_size.x = 58
+	name_lbl.custom_minimum_size.x = 52
 	name_lbl.add_theme_font_size_override("font_size", 11)
 	row.add_child(name_lbl)
 
 	if read_only:
-		# Autosave: just a static info label
 		var info_lbl := Label.new()
 		info_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		info_lbl.add_theme_font_size_override("font_size", 11)
@@ -91,7 +90,7 @@ func _build_slot_row(slot: int, label: String, read_only: bool) -> HBoxContainer
 		var save_btn := Button.new()
 		save_btn.text = "Save"
 		save_btn.add_theme_font_size_override("font_size", 11)
-		save_btn.custom_minimum_size = Vector2(46, 26)
+		save_btn.custom_minimum_size = Vector2(44, 26)
 		save_btn.pressed.connect(func(): _do_save(slot))
 		row.add_child(save_btn)
 
@@ -99,19 +98,29 @@ func _build_slot_row(slot: int, label: String, read_only: bool) -> HBoxContainer
 	var load_btn := Button.new()
 	load_btn.text = "Load"
 	load_btn.add_theme_font_size_override("font_size", 11)
-	load_btn.custom_minimum_size = Vector2(46, 26)
+	load_btn.custom_minimum_size = Vector2(44, 26)
 	load_btn.name = "LoadButton"
 	load_btn.pressed.connect(func(): _confirm_load(slot, load_btn))
 	row.add_child(load_btn)
 
+	# Delete button (manual slots only, hidden when empty)
+	if not read_only:
+		var del_btn := Button.new()
+		del_btn.text = "🗑"
+		del_btn.add_theme_font_size_override("font_size", 11)
+		del_btn.custom_minimum_size = Vector2(30, 26)
+		del_btn.modulate = Color(1.0, 0.45, 0.45)
+		del_btn.name = "DeleteButton"
+		del_btn.pressed.connect(func(): _confirm_delete(slot, del_btn))
+		row.add_child(del_btn)
+
 	_update_row(row, slot)
 	return row
 
-# ── Save / Load actions ───────────────────────────────────────────────────────
+# ── Actions ───────────────────────────────────────────────────────────────────
 
 func _do_save(slot: int) -> void:
 	SaveSystem.save(slot)
-	# After saving, make the name field editable so the user can rename
 	var row := _slot_rows[slot]
 	var name_edit := row.get_node_or_null("NameEdit") as LineEdit
 	if name_edit:
@@ -122,26 +131,37 @@ func _do_save(slot: int) -> void:
 func _on_name_submitted(slot: int, new_text: String, edit: LineEdit) -> void:
 	var trimmed := new_text.strip_edges()
 	if trimmed.is_empty():
-		# Revert to default
 		var info := SaveSystem.get_save_info(slot)
 		trimmed = info.get("name", "")
 	SaveSystem.rename_save(slot, trimmed)
-	edit.text    = trimmed
+	edit.text     = trimmed
 	edit.editable = false
 	edit.release_focus()
 
 func _confirm_load(slot: int, btn: Button) -> void:
-	var orig_text: String = btn.text
+	var orig: String = btn.text
 	if btn.text == "Confirm?":
 		SaveSystem.load_slot(slot)
-		btn.text = orig_text
+		btn.text = orig
 	else:
 		btn.text = "Confirm?"
 		await get_tree().create_timer(3.0).timeout
 		if is_instance_valid(btn):
-			btn.text = orig_text
+			btn.text = orig
 
-# ── Slot refresh ──────────────────────────────────────────────────────────────
+func _confirm_delete(slot: int, btn: Button) -> void:
+	var orig: String = btn.text
+	if btn.text == "✓?":
+		SaveSystem.delete_save(slot)
+		_refresh_slots()
+		btn.text = orig
+	else:
+		btn.text = "✓?"
+		await get_tree().create_timer(3.0).timeout
+		if is_instance_valid(btn):
+			btn.text = orig
+
+# ── Refresh ───────────────────────────────────────────────────────────────────
 
 func _refresh_slots() -> void:
 	for i in range(_slot_rows.size()):
@@ -151,10 +171,10 @@ func _update_row(row: HBoxContainer, slot: int) -> void:
 	var info   := SaveSystem.get_save_info(slot)
 	var empty  := info.is_empty()
 
-	# Autosave uses InfoLabel; manual slots use NameEdit
 	var info_lbl  := row.get_node_or_null("InfoLabel")  as Label
 	var name_edit := row.get_node_or_null("NameEdit")   as LineEdit
 	var load_btn  := row.get_node_or_null("LoadButton") as Button
+	var del_btn   := row.get_node_or_null("DeleteButton") as Button
 
 	if info_lbl:
 		info_lbl.text = "— empty —" if empty else \
@@ -162,15 +182,18 @@ func _update_row(row: HBoxContainer, slot: int) -> void:
 
 	if name_edit:
 		if empty:
-			name_edit.text       = ""
+			name_edit.text             = ""
 			name_edit.placeholder_text = "— empty —"
-			name_edit.editable   = false
+			name_edit.editable         = false
 		else:
-			name_edit.text       = info.get("name", "")
-			name_edit.editable   = false  # editable only after Save
+			name_edit.text    = info.get("name", "")
+			name_edit.editable = false
 
 	if load_btn:
 		load_btn.disabled = empty
+
+	if del_btn:
+		del_btn.visible = not empty
 
 func _sep() -> HSeparator:
 	var s := HSeparator.new()
