@@ -20,4 +20,6 @@ upgrade_cost = 350
 upgrade_resources = {"iron_ingot": 10}
 upgrade_time_days = 5
 construction_days = 1
+required_adjacent_terrain = "forest"
+forbidden_terrain = ["water", "mountain"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

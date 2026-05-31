@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "monastery_t1"
+display_name = "Monastery"
+description = "A place of discipline and spiritual training for Monks. Sparring halls, meditation gardens, and ki mastery instruction."
+category = "services"
+tier = 1
+footprint = Vector2i(3, 3)
+build_cost = 280
+upkeep = 12
+staffing = 2
+capacity = 10
+base_income = 70
+max_instances = 1
+unlock_at_start = false
+unlock_prerequisites = ["dojo_t1"]
+upgrade_to = "monastery_t2"
+upgrade_cost = 1500
+upgrade_resources = {"stone": 30, "crystal": 5}
+upgrade_time_days = 10
+construction_days = 2
+placeholder_color = Color(0.60, 0.55, 0.40, 1)
+special_notes = "Only one Monastery per town. Attracts Monks exclusively. Sparring sessions count toward Monk level requirements."

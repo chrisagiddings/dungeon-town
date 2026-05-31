@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "forester_t1"
+display_name = "Forester's Post"
+description = "A ranger's outpost managing the town's nearby forests. Controls logging rates to prevent deforestation, tracks monster populations, and posts forest gathering contracts for adventurers."
+category = "production"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 180
+upkeep = 8
+staffing = 1
+base_income = 30
+required_adjacent_terrain = "forest"
+unlock_at_start = false
+unlock_prerequisites = ["lumber_t1"]
+upgrade_to = "forester_t2"
+upgrade_cost = 600
+upgrade_resources = {"wood": 25, "leather": 10}
+upgrade_time_days = 6
+construction_days = 1
+placeholder_color = Color(0.28, 0.50, 0.22, 1)
+special_notes = "Must be adjacent to forest terrain. Slows forest depletion rate by 30%. Posts beast-hunting and gathering contracts for adventurers. One per forest cluster recommended."

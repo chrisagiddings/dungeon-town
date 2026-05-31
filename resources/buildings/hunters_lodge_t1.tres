@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "hunters_lodge_t1"
+display_name = "Hunters Lodge"
+description = "A rustic lodge and gathering place for Rangers and Druids. Wilderness expertise, beast lore, and tracking services."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 200
+upkeep = 10
+staffing = 1
+capacity = 8
+base_income = 60
+max_instances = 1
+unlock_at_start = false
+unlock_prerequisites = ["stables_t1"]
+upgrade_to = "hunters_lodge_t2"
+upgrade_cost = 800
+upgrade_resources = {"wood": 30, "leather": 20}
+upgrade_time_days = 8
+construction_days = 1
+placeholder_color = Color(0.35, 0.55, 0.25, 1)
+special_notes = "Only one Hunters Lodge per town. Attracts Rangers and Druids. Provides beast pelt and wilderness resource bonuses."

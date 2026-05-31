@@ -16,4 +16,6 @@ upgrade_from = "lumber_t1"
 upgrade_cost = 300
 upgrade_resources = {"wood": 20, "stone": 10}
 upgrade_time_days = 5
+required_adjacent_terrain = "forest"
+forbidden_terrain = ["water", "mountain"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "hospital_t3"
+display_name = "Hospital"
+description = "A full hospital treating serious injuries, disease, and battle trauma. Requires trained staff, potions, fresh food, and clean cloth."
+category = "services"
+tier = 3
+footprint = Vector2i(3, 4)
+build_cost = 0
+upkeep = 25
+staffing = 4
+capacity = 20
+healing_percent = 0.85
+base_income = 150
+consumes = {"herbs": 10, "basic_potions": 5, "bread": 8, "cloth": 3}
+upgrade_from = "clinic_t2"
+upgrade_to = "grand_hospital_t4"
+upgrade_cost = 3000
+upgrade_resources = {"stone": 60, "steel": 20, "fine_cloth": 15, "crystal": 5}
+upgrade_dungeon_depth = 5
+upgrade_time_days = 15
+placeholder_color = Color(0.65, 0.90, 0.65, 1)
+special_notes = "Requires specialist healer for full capacity. Without fine cloth, cannot treat wounds properly. Treats disease and basic curse effects."

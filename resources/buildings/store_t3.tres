@@ -18,4 +18,5 @@ upgrade_dungeon_depth = 5
 upgrade_patron_count = 200
 upgrade_time_days = 10
 upgrade_from = "store_t2"
+gear_quality = "rare"
 placeholder_color = Color(0.93, 0.79, 0.13, 1)

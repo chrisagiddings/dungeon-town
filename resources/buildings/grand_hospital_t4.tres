@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "grand_hospital_t4"
+display_name = "Grand Hospital"
+description = "The pinnacle of mundane medicine. Full recovery, disease cures, and trauma treatment. Operates a complex supply chain of herbs, potions, food, cloth, and arcane components."
+category = "services"
+tier = 4
+footprint = Vector2i(4, 4)
+build_cost = 0
+upkeep = 50
+staffing = 8
+capacity = 40
+healing_percent = 1.0
+base_income = 350
+consumes = {"herbs": 18, "basic_potions": 10, "bread": 15, "fine_cloth": 6, "arcane_dust": 3, "ale": 4}
+upgrade_from = "hospital_t3"
+upgrade_cost = 8000
+upgrade_resources = {"steel": 40, "fine_cloth": 30, "crystal": 20, "arcane_dust": 20}
+upgrade_dungeon_depth = 8
+upgrade_time_days = 25
+placeholder_color = Color(0.55, 0.88, 0.55, 1)
+special_notes = "Requires multiple specialists (healer + alchemist). Missing any supply drops efficiency. At full operation heals all status conditions including curses. Ale used for sterilization and patient morale."

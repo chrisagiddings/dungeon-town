@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "party_lodge_t3"
+display_name = "Heroes' Bastion"
+description = "A legendary compound for the town's greatest adventuring parties. Named trophies, lore room, bonded suite, and permanent legacy effects."
+category = "residential"
+tier = 3
+footprint = Vector2i(5, 4)
+build_cost = 0
+upkeep = 50
+capacity = 5
+income_per_guest = 40
+rest_quality = 1.0
+morale_bonus = 30
+max_instances = 0
+min_patron_tier = 4
+upgrade_from = "party_lodge_t2"
+upgrade_cost = 8000
+upgrade_resources = {"mithril": 5, "crystal": 20, "soul_crystal": 5}
+upgrade_dungeon_depth = 10
+upgrade_time_days = 25
+placeholder_color = Color(0.35, 0.25, 0.55, 1)
+special_notes = "Requires party bond score 80+ and Gold rank or higher. Legendary parties only. Grants permanent town bonus while resident."

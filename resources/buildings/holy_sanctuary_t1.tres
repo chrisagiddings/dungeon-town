@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "holy_sanctuary_t1"
+display_name = "Holy Sanctuary"
+description = "A sacred retreat for Clerics and Paladins. Houses the Holy Orders chapter, provides divine training and holy mission boards."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 3)
+build_cost = 350
+upkeep = 15
+staffing = 2
+capacity = 10
+base_income = 90
+max_instances = 1
+unlock_at_start = false
+unlock_prerequisites = ["temple_t1"]
+upgrade_to = "holy_sanctuary_t2"
+upgrade_cost = 1500
+upgrade_resources = {"crystal": 5, "cloth": 20}
+upgrade_time_days = 10
+construction_days = 2
+placeholder_color = Color(0.90, 0.85, 0.40, 1)
+special_notes = "Only one Holy Sanctuary per town. Attracts Clerics and Paladins. Unlocks Holy Orders faction quests and divine blessing upgrades."

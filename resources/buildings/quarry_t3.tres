@@ -16,4 +16,6 @@ upgrade_cost = 600
 upgrade_resources = {"iron_ingot": 20}
 upgrade_time_days = 8
 upgrade_from = "quarry_t2"
+required_terrain = "rocky"
+forbidden_terrain = ["water", "forest"]
 placeholder_color = Color(0.55, 0.39, 0.21, 1)

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "smelter_t2"
+display_name = "Smelter (T2)"
+description = "Produces steel from iron and coal — 4 steel per day."
+category = "production"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 20
+staffing = 3
+produces = {"steel": 4}
+consumes = {"iron_ingot": 4, "coal": 2}
+upgrade_from = "smelter_t1"
+upgrade_cost = 1500
+upgrade_resources = {"steel": 30, "stone": 40}
+upgrade_dungeon_depth = 5
+upgrade_time_days = 12
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

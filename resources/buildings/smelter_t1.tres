@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "smelter_t1"
+display_name = "Smelter"
+description = "Smelts iron ore into usable iron ingots for the blacksmith."
+category = "production"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 200
+upkeep = 10
+staffing = 2
+produces = {"iron_ingot": 5}
+consumes = {"iron_ore": 5}
+unlock_at_start = false
+unlock_prerequisites = ["mine_t1"]
+upgrade_to = "smelter_t2"
+upgrade_cost = 800
+upgrade_resources = {"stone": 30, "iron_ingot": 20}
+upgrade_time_days = 10
+construction_days = 2
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

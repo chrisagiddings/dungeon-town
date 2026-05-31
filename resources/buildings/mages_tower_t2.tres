@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "mages_tower_t2"
+display_name = "Arcane Academy"
+description = "A full academy of magical arts. Trains Wizards and Sorcerers, researches dungeon lore, and provides advanced spell research."
+category = "services"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 35
+staffing = 4
+capacity = 16
+base_income = 350
+max_instances = 1
+upgrade_from = "mages_tower_t1"
+upgrade_cost = 5000
+upgrade_resources = {"crystal": 30, "arcane_dust": 50, "void_essence": 5}
+upgrade_dungeon_depth = 7
+upgrade_time_days = 20
+placeholder_color = Color(0.25, 0.10, 0.55, 1)

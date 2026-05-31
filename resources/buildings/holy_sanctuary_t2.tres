@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "holy_sanctuary_t2"
+display_name = "Order Chapter House"
+description = "A fortified chapter house of the Holy Orders. Advanced divine training, holy relic storage, and crusade coordination."
+category = "services"
+tier = 2
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 30
+staffing = 5
+capacity = 20
+base_income = 300
+max_instances = 1
+upgrade_from = "holy_sanctuary_t1"
+upgrade_cost = 4000
+upgrade_resources = {"steel": 20, "crystal": 15, "soul_crystal": 3}
+upgrade_dungeon_depth = 5
+upgrade_time_days = 15
+placeholder_color = Color(0.95, 0.90, 0.30, 1)

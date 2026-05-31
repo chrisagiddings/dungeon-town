@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "brewery_t1"
+display_name = "Brewery"
+description = "Turns grain into ale for the tavern and adventurer morale."
+category = "production"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 120
+upkeep = 6
+staffing = 1
+produces = {"ale": 6}
+consumes = {"grain": 3}
+unlock_at_start = false
+unlock_prerequisites = ["farm_t1"]
+upgrade_cost = 400
+upgrade_resources = {"wood": 20}
+upgrade_time_days = 5
+construction_days = 1
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

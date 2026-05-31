@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "mages_tower_t1"
+display_name = "Mages Tower"
+description = "A tower for arcane study and the Mages Circle. Attracts Wizards and Sorcerers, provides arcane training and research."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 3)
+build_cost = 400
+upkeep = 20
+staffing = 2
+capacity = 8
+base_income = 120
+max_instances = 1
+unlock_at_start = false
+unlock_dungeon_depth = 2
+upgrade_to = "mages_tower_t2"
+upgrade_cost = 2000
+upgrade_resources = {"crystal": 10, "arcane_dust": 20}
+upgrade_time_days = 12
+construction_days = 2
+placeholder_color = Color(0.30, 0.15, 0.60, 1)
+special_notes = "Only one Mages Tower per town. Unlocks Mages Circle faction quests. Wizards and Sorcerers gain +10% XP while resident."

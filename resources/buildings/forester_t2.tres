@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "forester_t2"
+display_name = "Arborist's Lodge"
+description = "A full arborist operation. Manages sustainable logging, active reforestation, soil fertility improvements, and coordinates forest expeditions. The forest can thrive and produce indefinitely under skilled management."
+category = "production"
+tier = 2
+footprint = Vector2i(3, 2)
+build_cost = 0
+upkeep = 18
+staffing = 3
+base_income = 80
+required_adjacent_terrain = "forest"
+upgrade_from = "forester_t1"
+upgrade_cost = 1500
+upgrade_resources = {"wood": 40, "stone": 20, "herbs": 15}
+upgrade_time_days = 10
+placeholder_color = Color(0.22, 0.45, 0.18, 1)
+special_notes = "Halts net forest depletion (regrowth matches harvest). Improves soil fertility for adjacent plains tiles. Posts elite monster control quests. Required to unlock Lumber Camp T3 upgrade path."

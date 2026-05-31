@@ -16,4 +16,5 @@ upgrade_to = "mayor_t3"
 upgrade_cost = 1000
 upgrade_resources = {"stone": 40, "wood": 20}
 upgrade_time_days = 10
+max_instances = 1
 placeholder_color = Color(0.25, 0.41, 0.88, 1)

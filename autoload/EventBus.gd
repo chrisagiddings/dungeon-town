@@ -59,6 +59,10 @@ signal road_tile_deselected()
 signal resource_changed(resource_id: String, new_amount: int, delta: int)
 signal resource_depleted(resource_id: String)
 
+# ── Production ────────────────────────────────────────────────────────────────
+signal production_tick(instance_id: String, outputs: Dictionary)
+signal production_halted(instance_id: String, missing_resource_id: String)
+
 # ── Save / Load ───────────────────────────────────────────────────────────────
 signal game_saved(slot: int)
 signal game_loaded(slot: int)

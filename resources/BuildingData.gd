@@ -44,6 +44,12 @@ class_name BuildingData
 @export var quest_board_size: int = 0  ## For guild buildings
 @export var training_xp_bonus: float = 0.0  ## For guild buildings
 
+# ── Market Accessibility ───────────────────────────────────────────────────────
+@export_group("Market Accessibility")
+@export var cost_per_use: int = 0          ## Gold charged per visit/use (deducted from patron daily funds)
+@export var min_patron_tier: int = 0    ## Minimum population tier that will use this building (0=anyone; T1 worker through T4 noble)
+@export var max_patron_tier: int = 99   ## Maximum tier (99=no upper limit; elite NPCs avoid T1 facilities)
+
 # ── Unlock Conditions ─────────────────────────────────────────────────────────
 @export_group("Unlock Conditions")
 @export var unlock_at_start: bool = false
@@ -81,6 +87,14 @@ class_name BuildingData
 @export_group("Special")
 @export_multiline var special_notes: String = ""  ## Any special mechanics
 @export var fixed_position: bool = false  ## Cannot be moved (dungeon entrance)
+@export var max_instances: int = 0  ## 0 = unlimited; 1 = only one allowed in town
+
+# ── Terrain Requirements ───────────────────────────────────────────────────────
+@export_group("Terrain")
+@export var required_terrain: String = ""        ## Footprint must include at least one tile of this type (e.g. "mountain" for Mine)
+@export var required_adjacent_terrain: String = "" ## At least one tile adjacent to footprint must be this type
+@export var forbidden_terrain: Array[String] = [] ## Cannot be placed on these terrain types
+@export var fertility_multiplier: float = 1.0    ## Production output multiplier based on average tile fertility (farm/herb garden)
 
 # ── Helper Methods ────────────────────────────────────────────────────────────
 

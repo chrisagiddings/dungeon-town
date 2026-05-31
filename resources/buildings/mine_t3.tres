@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "mine_t3"
+display_name = "Deep Mine"
+description = "Mithril ore seams discovered at great depth — 2 mithril ore per day."
+category = "production"
+tier = 3
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 25
+staffing = 4
+produces = {"iron_ore": 30}
+upgrade_from = "mine_t2"
+upgrade_cost = 5000
+upgrade_resources = {"steel": 50, "crystal": 20}
+upgrade_dungeon_depth = 15
+upgrade_time_days = 20
+required_adjacent_terrain = "mountain"
+forbidden_terrain = ["water", "forest"]
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

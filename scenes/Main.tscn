@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/CameraRig.gd" id="2"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/ui/RoadInfoPanel.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/ui/SaveLoadPanel.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/systems/DungeonEntranceManager.gd" id="19"]
+[ext_resource type="Script" path="res://scripts/systems/ProductionManager.gd" id="20"]
 
 ; ── Root ─────────────────────────────────────────────────────────────────────
 [node name="Main" type="Node2D"]
@@ -69,6 +70,9 @@ script = ExtResource("19")
 
 [node name="UpgradeManager" type="Node" parent="."]
 script = ExtResource("13")
+
+[node name="ProductionManager" type="Node" parent="."]
+script = ExtResource("20")
 
 ; ── UI ────────────────────────────────────────────────────────────────────────
 [node name="UIRoot" type="CanvasLayer" parent="."]
