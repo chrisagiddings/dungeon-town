@@ -1,24 +1,26 @@
 extends Node2D
 class_name BuildingPlacer
-## Handles building placement mode: preview, input, confirm, cancel.
-## Enter placement mode by calling enter_placement_mode(building_data).
-## Confirm: left-click on a valid tile.
-## Cancel: right-click or ESC.
+## Handles two mutually exclusive input modes:
+##   Placement mode — preview + confirm/cancel a new building
+##   Selection mode — click an occupied tile to select its building
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 const TILE_W: int = 64
 const TILE_H: int = 32
-const COLOR_VALID:   Color = Color(0.2, 1.0, 0.3, 0.55)
-const COLOR_INVALID: Color = Color(1.0, 0.2, 0.2, 0.55)
+const COLOR_VALID:          Color = Color(0.2, 1.0, 0.3, 0.55)
+const COLOR_INVALID:        Color = Color(1.0, 0.2, 0.2, 0.55)
 const COLOR_BORDER_VALID:   Color = Color(0.1, 0.9, 0.2, 0.9)
 const COLOR_BORDER_INVALID: Color = Color(0.9, 0.1, 0.1, 0.9)
+const COLOR_SELECTED_FILL:  Color = Color(1.0, 1.0, 0.3, 0.30)
+const COLOR_SELECTED_BORDER: Color = Color(1.0, 0.9, 0.1, 0.9)
 
 # ── State ─────────────────────────────────────────────────────────────────────
-var _active_data: BuildingData = null
-var _preview_origin: Vector2i = Vector2i(-1, -1)
-var _is_valid: bool = false
-var _grid: BuildingGrid = null
-var _terrain: TerrainGrid = null
+var _active_data:     BuildingData = null
+var _preview_origin:  Vector2i     = Vector2i(-1, -1)
+var _is_valid:        bool         = false
+var _selected_instance: String     = ""
+var _grid:    BuildingGrid = null
+var _terrain: TerrainGrid  = null
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 
@@ -30,56 +32,74 @@ func _ready() -> void:
 		push_error("BuildingPlacer: BuildingGrid sibling not found")
 	if _terrain == null:
 		push_error("BuildingPlacer: TerrainGrid sibling not found")
+	EventBus.building_deselected.connect(_on_building_deselected)
+	EventBus.building_demolished.connect(_on_building_demolished)
 
 func _process(_delta: float) -> void:
 	if not is_placing():
 		return
-	var mouse_world := get_global_mouse_position()
-	var local_pos   := _terrain.to_local(mouse_world)
-	var tile        := _terrain.screen_to_iso(local_pos)
+	var tile := _mouse_to_tile()
 	if tile != _preview_origin:
 		_preview_origin = tile
 		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint)
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not is_placing():
+	if not (event is InputEventMouseButton):
+		if event is InputEventKey:
+			var ke := event as InputEventKey
+			if ke.pressed and ke.keycode == KEY_ESCAPE:
+				if is_placing():
+					_cancel_placement()
+					get_viewport().set_input_as_handled()
+				elif _selected_instance != "":
+					EventBus.building_deselected.emit()
+					get_viewport().set_input_as_handled()
 		return
 
-	if event is InputEventMouseButton:
-		var mb := event as InputEventMouseButton
-		if not mb.pressed:
-			return
-		if mb.button_index == MOUSE_BUTTON_LEFT and _is_valid:
-			_confirm_placement()
-			get_viewport().set_input_as_handled()
-		elif mb.button_index == MOUSE_BUTTON_RIGHT:
-			_cancel_placement()
+	var mb := event as InputEventMouseButton
+	if not mb.pressed:
+		return
+
+	if mb.button_index == MOUSE_BUTTON_LEFT:
+		if is_placing():
+			if _is_valid:
+				_confirm_placement()
+				get_viewport().set_input_as_handled()
+		else:
+			_handle_selection_click()
 			get_viewport().set_input_as_handled()
 
-	elif event is InputEventKey:
-		var ke := event as InputEventKey
-		if ke.pressed and ke.keycode == KEY_ESCAPE:
+	elif mb.button_index == MOUSE_BUTTON_RIGHT:
+		if is_placing():
 			_cancel_placement()
 			get_viewport().set_input_as_handled()
 
 func _draw() -> void:
-	if not is_placing() or _preview_origin == Vector2i(-1, -1):
-		return
-	var fill   := COLOR_VALID   if _is_valid else COLOR_INVALID
-	var border := COLOR_BORDER_VALID if _is_valid else COLOR_BORDER_INVALID
-	for row in range(_active_data.footprint.y):
-		for col in range(_active_data.footprint.x):
-			var tile    := _preview_origin + Vector2i(col, row)
-			var center  := _iso_to_screen(tile)
-			_draw_iso_tile(center, fill, border)
+	# Placement preview
+	if is_placing() and _preview_origin != Vector2i(-1, -1):
+		var fill   := COLOR_VALID   if _is_valid else COLOR_INVALID
+		var border := COLOR_BORDER_VALID if _is_valid else COLOR_BORDER_INVALID
+		for row in range(_active_data.footprint.y):
+			for col in range(_active_data.footprint.x):
+				_draw_iso_tile(_iso_to_screen(_preview_origin + Vector2i(col, row)), fill, border)
+
+	# Selection highlight
+	if _selected_instance != "":
+		var p := _grid.get_placement_for_instance(_selected_instance)
+		if not p.is_empty():
+			for row in range(p["footprint"].y):
+				for col in range(p["footprint"].x):
+					var tile := p["origin"] + Vector2i(col, row)
+					_draw_iso_tile(_iso_to_screen(tile), COLOR_SELECTED_FILL, COLOR_SELECTED_BORDER)
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
 func enter_placement_mode(data: BuildingData) -> void:
-	_active_data    = data
-	_preview_origin = Vector2i(-1, -1)
-	_is_valid       = false
+	_selected_instance = ""
+	_active_data       = data
+	_preview_origin    = Vector2i(-1, -1)
+	_is_valid          = false
 	queue_redraw()
 	EventBus.building_placement_started.emit(data)
 	EventBus.debug_log_message.emit(
@@ -97,17 +117,41 @@ func is_placing() -> bool:
 
 # ── Internal ──────────────────────────────────────────────────────────────────
 
+func _handle_selection_click() -> void:
+	var tile := _mouse_to_tile()
+	var instance_id := _grid.get_occupant(tile)
+	if instance_id != "":
+		if instance_id == _selected_instance:
+			return  # already selected — no-op
+		_selected_instance = instance_id
+		queue_redraw()
+		EventBus.building_selected.emit(instance_id)
+		EventBus.debug_log_message.emit("Selected: %s" % instance_id)
+	else:
+		if _selected_instance != "":
+			EventBus.building_deselected.emit()
+
+func _on_building_deselected() -> void:
+	_selected_instance = ""
+	queue_redraw()
+
+func _on_building_demolished(instance_id: String) -> void:
+	if _selected_instance == instance_id:
+		_selected_instance = ""
+		queue_redraw()
+
 func _confirm_placement() -> void:
 	_grid.reserve(_preview_origin, _active_data.footprint, _active_data.id, _active_data.category)
-	EventBus.debug_log_message.emit(
-		"Placed: %s at %s" % [_active_data.display_name, _preview_origin]
-	)
+	EventBus.debug_log_message.emit("Placed: %s at %s" % [_active_data.display_name, _preview_origin])
 	exit_placement_mode()
 
 func _cancel_placement() -> void:
 	EventBus.building_placement_cancelled.emit()
 	EventBus.debug_log_message.emit("Placement cancelled")
 	exit_placement_mode()
+
+func _mouse_to_tile() -> Vector2i:
+	return _terrain.screen_to_iso(_terrain.to_local(get_global_mouse_position()))
 
 func _draw_iso_tile(center: Vector2, fill: Color, border: Color) -> void:
 	var pts := _tile_polygon(center)

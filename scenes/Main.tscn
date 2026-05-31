@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/CameraRig.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/systems/BuildingGrid.gd" id="9"]
 [ext_resource type="Script" path="res://scripts/systems/BuildingLayer.gd" id="10"]
 [ext_resource type="Script" path="res://scripts/systems/BuildingPlacer.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/ui/BuildingInfoPanel.gd" id="12"]
 
 ; ── Root ─────────────────────────────────────────────────────────────────────
 [node name="Main" type="Node2D"]
@@ -53,6 +54,9 @@ layer = 10
 
 [node name="TopBar" type="PanelContainer" parent="UIRoot"]
 script = ExtResource("7")
+
+[node name="BuildingInfoPanel" type="PanelContainer" parent="UIRoot"]
+script = ExtResource("12")
 
 [node name="DebugPanel" type="PanelContainer" parent="UIRoot"]
 script = ExtResource("8")

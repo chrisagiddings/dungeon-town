@@ -1,15 +1,17 @@
 extends Node
 class_name BuildingGrid
 ## Authoritative occupancy map for the town grid.
-## Tracks which tiles are reserved and by which building.
-## Pure data/logic — no drawing.
+## Each placed building gets a unique instance_id so two buildings of the same
+## type can be independently selected and demolished.
 
 # ── State ─────────────────────────────────────────────────────────────────────
-## tile → building_id (fast collision lookup)
+## tile → instance_id (fast collision lookup)
 var _occupied: Dictionary = {}
 
 ## Ordered list of placements for rendering and save/load
 var _placements: Array[Dictionary] = []
+
+var _instance_counter: int = 0
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 const GRID_SIZE: int = 20
@@ -17,7 +19,6 @@ const GRID_SIZE: int = 20
 # ── Public API ────────────────────────────────────────────────────────────────
 
 func can_place(origin: Vector2i, footprint: Vector2i) -> bool:
-	## Returns true if the footprint fits on the grid with no occupied tiles.
 	if not is_in_bounds(origin, footprint):
 		return false
 	for tile in get_tiles(origin, footprint):
@@ -25,38 +26,52 @@ func can_place(origin: Vector2i, footprint: Vector2i) -> bool:
 			return false
 	return true
 
-func reserve(origin: Vector2i, footprint: Vector2i, building_id: String, category: String) -> void:
-	## Mark all tiles in the footprint as occupied by building_id.
+func reserve(origin: Vector2i, footprint: Vector2i, data_id: String, category: String) -> String:
+	## Place a building. Returns the unique instance_id assigned to this placement.
+	_instance_counter += 1
+	var instance_id := "%s_%04d" % [data_id, _instance_counter]
 	for tile in get_tiles(origin, footprint):
-		_occupied[tile] = building_id
+		_occupied[tile] = instance_id
 	_placements.append({
-		"id":       building_id,
-		"origin":   origin,
-		"footprint": footprint,
-		"category": category,
+		"instance_id": instance_id,
+		"data_id":     data_id,
+		"origin":      origin,
+		"footprint":   footprint,
+		"category":    category,
 	})
-	EventBus.building_placed.emit(building_id, origin)
-	EventBus.debug_log_message.emit(
-		"Building placed: %s at %s" % [building_id, origin]
-	)
+	EventBus.building_placed.emit(instance_id, origin)
+	EventBus.debug_log_message.emit("Building placed: %s at %s" % [instance_id, origin])
+	return instance_id
 
-func release(building_id: String) -> void:
-	## Free all tiles held by building_id.
+func release(instance_id: String) -> void:
+	## Free all tiles held by instance_id and remove the placement record.
 	var keys_to_remove: Array = []
 	for tile in _occupied.keys():
-		if _occupied[tile] == building_id:
+		if _occupied[tile] == instance_id:
 			keys_to_remove.append(tile)
 	for tile in keys_to_remove:
 		_occupied.erase(tile)
 	for i in range(_placements.size() - 1, -1, -1):
-		if _placements[i]["id"] == building_id:
+		if _placements[i]["instance_id"] == instance_id:
 			_placements.remove_at(i)
 
 func is_tile_occupied(tile: Vector2i) -> bool:
 	return _occupied.has(tile)
 
 func get_occupant(tile: Vector2i) -> String:
+	## Returns the instance_id of the building occupying this tile, or "".
 	return _occupied.get(tile, "")
+
+func get_placement_for_instance(instance_id: String) -> Dictionary:
+	## Returns the full placement dict for instance_id, or {}.
+	for p in _placements:
+		if p["instance_id"] == instance_id:
+			return p
+	return {}
+
+func get_data_id_for_instance(instance_id: String) -> String:
+	## Returns the BuildingData id (e.g. "lodging_t1") for an instance_id.
+	return get_placement_for_instance(instance_id).get("data_id", "")
 
 func get_placements() -> Array[Dictionary]:
 	return _placements
@@ -65,7 +80,6 @@ func get_placement_count() -> int:
 	return _placements.size()
 
 func get_tiles(origin: Vector2i, footprint: Vector2i) -> Array[Vector2i]:
-	## Return all tile coordinates covered by a footprint at origin.
 	var tiles: Array[Vector2i] = []
 	for row in range(footprint.y):
 		for col in range(footprint.x):
@@ -73,7 +87,6 @@ func get_tiles(origin: Vector2i, footprint: Vector2i) -> Array[Vector2i]:
 	return tiles
 
 func is_in_bounds(origin: Vector2i, footprint: Vector2i) -> bool:
-	## True if every tile in the footprint is within the valid grid area.
 	if origin.x < 0 or origin.y < 0:
 		return false
 	if origin.x + footprint.x > GRID_SIZE:
@@ -85,3 +98,4 @@ func is_in_bounds(origin: Vector2i, footprint: Vector2i) -> bool:
 func clear() -> void:
 	_occupied.clear()
 	_placements.clear()
+	_instance_counter = 0

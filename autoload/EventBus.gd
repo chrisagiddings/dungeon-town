@@ -28,8 +28,13 @@ signal sim_paused(is_paused: bool)
 
 # ── Building Placement ────────────────────────────────────────────────────────
 signal building_placement_started(building_data: BuildingData)
-signal building_placed(building_id: String, origin: Vector2i)
+signal building_placed(instance_id: String, origin: Vector2i)
 signal building_placement_cancelled()
+
+# ── Building Selection ────────────────────────────────────────────────────────
+signal building_selected(instance_id: String)
+signal building_deselected()
+signal building_demolished(instance_id: String)
 
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)
