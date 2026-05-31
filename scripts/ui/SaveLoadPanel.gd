@@ -47,13 +47,13 @@ func _build_ui() -> void:
 	vbox.add_child(_sep())
 
 	# Autosave row (read-only load)
-	vbox.add_child(_build_slot_row(0, "Autosave", read_only_save: true))
+	vbox.add_child(_build_slot_row(0, "Autosave", true))
 
 	vbox.add_child(_sep())
 
 	# Manual slots 1–5
 	for slot in range(1, SaveSystem.MAX_SLOTS + 1):
-		vbox.add_child(_build_slot_row(slot, "Slot %d" % slot, read_only_save: false))
+		vbox.add_child(_build_slot_row(slot, "Slot %d" % slot, false))
 
 func _build_slot_row(slot: int, label: String, read_only_save: bool) -> HBoxContainer:
 	var row := HBoxContainer.new()
