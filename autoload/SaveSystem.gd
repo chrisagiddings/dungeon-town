@@ -152,6 +152,8 @@ func _collect_state() -> Dictionary:
 			constructions[iid] = entry
 
 	var default_name := "%s — Day %d" % [GameState.town_name, GameState.current_day]
+	var spawner: AdventurerSpawner = _find("AdventurerSpawner")
+
 	return {
 		"version":          SAVE_VERSION,
 		"save_name":        default_name,
@@ -166,6 +168,7 @@ func _collect_state() -> Dictionary:
 		"instance_counter": grid.get_instance_counter() if grid else 0,
 		"roads":            roads,
 		"constructions":    constructions,
+		"adventurers":      spawner.get_save_data() if spawner else {},
 	}
 
 # ── Deserialization ───────────────────────────────────────────────────────────
@@ -228,9 +231,20 @@ func _restore_state(data: Dictionary) -> void:
 				entry["category"]       = c["category"]
 			manager.restore_construction(iid, entry)
 
+	# ── Adventurers ──────────────────────────────────────────────────────────────
+	var spawner: AdventurerSpawner = _find("AdventurerSpawner")
+	if spawner:
+		spawner.restore_from_save(data.get("adventurers", {}))
+
 	# Sync nav grid passability after restoring buildings
 	if road_grid:
 		road_grid._sync_building_passability()
+
+	# ── Force UI refresh ──────────────────────────────────────────────────────
+	# Direct state writes above don't emit signals, so drive the UI explicitly.
+	EventBus.gold_changed.emit(EconomyState.gold, 0)
+	EventBus.time_tick.emit(GameState.current_hour)
+	EventBus.sim_speed_changed.emit(GameState.sim_speed)
 
 # ── Autosave ──────────────────────────────────────────────────────────────────
 

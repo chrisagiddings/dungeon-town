@@ -60,6 +60,21 @@ func get_idle_adventurer() -> String:
 func get_active_count() -> int:
 	return _active_adventurers.size()
 
+func get_save_data() -> Dictionary:
+	return {
+		"next_id":     _next_id,
+		"adventurers": _active_adventurers.duplicate(),
+	}
+
+func restore_from_save(data: Dictionary) -> void:
+	_next_id            = int(data.get("next_id", 1))
+	_active_adventurers = data.get("adventurers", {})
+	# Resume timer if roster has room; stop it if full
+	if _active_adventurers.size() >= MAX_ADVENTURERS:
+		_spawn_timer.stop()
+	elif _spawn_timer.is_stopped():
+		_spawn_timer.start()
+
 func get_idle_count() -> int:
 	var count: int = 0
 	for in_dungeon in _active_adventurers.values():
