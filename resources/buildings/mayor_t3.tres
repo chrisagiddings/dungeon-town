@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "mayor_t3"
+display_name = "Mayor's Palace"
+description = "Grand civic seat — increases population cap by 20 and attracts nobles."
+category = "civic"
+tier = 3
+footprint = Vector2i(5, 5)
+build_cost = 0
+upkeep = 35
+staffing = 3
+upgrade_cost = 3000
+upgrade_resources = {"stone": 60, "steel": 30}
+upgrade_time_days = 15
+upgrade_from = "mayor_t2"
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

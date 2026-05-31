@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "farm_t3"
+display_name = "Farm (T3)"
+description = "High-yield farming — 50 grain per day plus rare crops."
+category = "production"
+tier = 3
+footprint = Vector2i(5, 4)
+build_cost = 0
+upkeep = 15
+staffing = 4
+produces = {"grain": 50}
+upgrade_cost = 800
+upgrade_resources = {"arcane_dust": 20}
+upgrade_time_days = 7
+upgrade_from = "farm_t2"
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

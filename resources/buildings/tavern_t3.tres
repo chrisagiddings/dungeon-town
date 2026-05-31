@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "tavern_t3"
+display_name = "Grand Tavern"
+description = "Exceptional meals, premium ale, and entertainment events."
+category = "hospitality"
+tier = 3
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 25
+base_income = 400
+staffing = 4
+morale_bonus = 20
+upgrade_cost = 1500
+upgrade_resources = {"stone": 30, "fine_cloth": 20}
+upgrade_dungeon_depth = 4
+upgrade_patron_count = 200
+upgrade_time_days = 15
+upgrade_from = "tavern_t2"
+placeholder_color = Color(0.96, 0.65, 0.14, 1)

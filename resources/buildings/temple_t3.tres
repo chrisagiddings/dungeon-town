@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "temple_t3"
+display_name = "Grand Cathedral"
+description = "Full resurrection, powerful divine blessings, weekly miracle."
+category = "services"
+tier = 3
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 20
+base_income = 300
+staffing = 3
+healing_percent = 1.0
+resurrection_available = true
+morale_bonus = 20
+upgrade_cost = 2500
+upgrade_resources = {"stone": 30, "crystal": 20}
+upgrade_reputation = "friendly"
+upgrade_dungeon_depth = 6
+upgrade_time_days = 15
+upgrade_from = "temple_t2"
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

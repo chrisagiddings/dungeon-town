@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "guild_t3"
+display_name = "Grand Guild"
+description = "Epic quest board, advanced training, tournament events."
+category = "services"
+tier = 3
+footprint = Vector2i(4, 4)
+build_cost = 0
+upkeep = 30
+base_income = 600
+staffing = 4
+quest_board_size = 20
+training_xp_bonus = 0.1
+upgrade_cost = 3000
+upgrade_resources = {"stone": 40, "iron_ingot": 20}
+upgrade_dungeon_depth = 7
+upgrade_patron_count = 100
+upgrade_time_days = 15
+upgrade_from = "guild_t2"
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

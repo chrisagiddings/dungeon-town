@@ -158,6 +158,8 @@ func _collect_state() -> Dictionary:
 		"version":          SAVE_VERSION,
 		"save_name":        default_name,
 		"town_name":        GameState.town_name,
+		"dungeon_entrance_origin": [GameState.dungeon_entrance_origin.x, GameState.dungeon_entrance_origin.y],
+		"dungeon_entrance_size":   [GameState.dungeon_entrance_size.x,   GameState.dungeon_entrance_size.y],
 		"game_day":         GameState.current_day,
 		"game_hour":        GameState.current_hour,
 		"sim_speed":        GameState.sim_speed,
@@ -179,6 +181,12 @@ func _restore_state(data: Dictionary) -> void:
 	GameState.current_hour  = float(data.get("game_hour", 6.0))
 	GameState.sim_speed     = float(data.get("sim_speed", 1.0))
 	GameState.town_name     = data.get("town_name", "Dungeon Town")
+	if "dungeon_entrance_origin" in data:
+		var eo: Array = data["dungeon_entrance_origin"]
+		GameState.dungeon_entrance_origin = Vector2i(int(eo[0]), int(eo[1]))
+	if "dungeon_entrance_size" in data:
+		var es: Array = data["dungeon_entrance_size"]
+		GameState.dungeon_entrance_size = Vector2i(int(es[0]), int(es[1]))
 
 	EconomyState.gold           = int(data.get("gold",           EconomyState.STARTING_GOLD))
 	EconomyState.total_income   = int(data.get("total_income",   0))

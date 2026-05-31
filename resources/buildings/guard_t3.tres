@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "guard_t3"
+display_name = "Guard Headquarters"
+description = "Elite guards with active patrols — reduces raid damage significantly."
+category = "civic"
+tier = 3
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 25
+staffing = 4
+upgrade_cost = 1200
+upgrade_resources = {"steel": 20, "stone": 30}
+upgrade_time_days = 10
+upgrade_from = "guard_t2"
+placeholder_color = Color(0.25, 0.41, 0.88, 1)

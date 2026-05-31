@@ -17,6 +17,9 @@ var is_paused: bool = false
 var sim_speed: float = 1.0
 var town_name: String = "Dungeon Town"
 
+var dungeon_entrance_origin: Vector2i = Vector2i(-1, -1)  ## -1 = not yet placed
+var dungeon_entrance_size:   Vector2i = Vector2i(3, 3)
+
 var _tick_accumulator: float = 0.0
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────

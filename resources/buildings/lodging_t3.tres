@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "lodging_t3"
+display_name = "Grand Inn"
+description = "Full rest and private suites for discerning adventurers."
+category = "hospitality"
+tier = 3
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 20
+income_per_guest = 6
+income_per_suite = 12
+staffing = 4
+capacity = 36
+rest_quality = 1.0
+morale_bonus = 10
+upgrade_to = "lodging_t4"
+upgrade_cost = 3000
+upgrade_resources = {"stone": 60, "steel": 40, "crystal": 5}
+upgrade_dungeon_depth = 6
+upgrade_time_days = 20
+upgrade_from = "lodging_t2"
+placeholder_color = Color(0.96, 0.65, 0.14, 1)
