@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "bakery_t1"
+display_name = "Bakery"
+description = "Bakes grain into bread for the tavern and town food supply."
+category = "production"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 100
+upkeep = 5
+staffing = 1
+produces = {"bread": 8}
+consumes = {"grain": 4}
+unlock_at_start = false
+unlock_prerequisites = ["farm_t1"]
+upgrade_cost = 400
+upgrade_resources = {"wood": 15, "stone": 10}
+upgrade_time_days = 5
+construction_days = 1
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

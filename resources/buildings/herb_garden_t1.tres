@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "herb_garden_t1"
+display_name = "Herb Garden"
+description = "Cultivated beds of medicinal herbs for the apothecary and temple."
+category = "production"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 80
+upkeep = 4
+staffing = 1
+produces = {"herbs": 8}
+unlock_at_start = true
+upgrade_to = "herb_garden_t2"
+upgrade_cost = 400
+upgrade_resources = {"wood": 15}
+upgrade_time_days = 5
+construction_days = 1
+placeholder_color = Color(0.55, 0.39, 0.21, 1)
