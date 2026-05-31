@@ -24,6 +24,7 @@ func _ready() -> void:
 	EventBus.building_demolished.connect(_on_redraw_trigger.bind(""))
 	EventBus.building_upgrade_started.connect(_on_redraw_trigger.bind("", 0))
 	EventBus.building_upgrade_completed.connect(_on_redraw_trigger.bind(""))
+	EventBus.game_loaded.connect(_on_redraw_trigger.bind(0))
 
 func _on_redraw_trigger(_a = null, _b = null, _c = null) -> void:
 	queue_redraw()

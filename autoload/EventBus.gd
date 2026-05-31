@@ -52,5 +52,9 @@ signal road_mode_exited()
 signal road_tile_selected(tile: Vector2i)
 signal road_tile_deselected()
 
+# ── Save / Load ───────────────────────────────────────────────────────────────
+signal game_saved(slot: int)
+signal game_loaded(slot: int)
+
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)

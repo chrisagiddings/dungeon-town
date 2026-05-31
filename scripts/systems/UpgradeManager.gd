@@ -99,6 +99,13 @@ func construction_progress(instance_id: String) -> float:
 func get_construction_ids() -> Array:
 	return _constructions.keys()
 
+func get_all_constructions() -> Dictionary:
+	return _constructions.duplicate(true)
+
+func restore_construction(instance_id: String, data: Dictionary) -> void:
+	## Injects a saved construction entry directly — no gold deducted, no signals.
+	_constructions[instance_id] = data
+
 # ── Internal ──────────────────────────────────────────────────────────────────
 
 func _on_day_started(_day: int) -> void:
