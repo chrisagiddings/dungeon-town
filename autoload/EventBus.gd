@@ -40,5 +40,11 @@ signal building_demolished(instance_id: String)
 signal building_upgrade_started(instance_id: String, target_data_id: String, complete_day: int)
 signal building_upgrade_completed(old_instance_id: String, new_instance_id: String)
 
+# ── Roads ─────────────────────────────────────────────────────────────────────
+signal road_placed(tile: Vector2i)
+signal road_removed(tile: Vector2i)
+signal road_mode_entered()
+signal road_mode_exited()
+
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)

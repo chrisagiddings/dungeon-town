@@ -13,8 +13,9 @@ const MARGIN:        float = 10.0
 var _log_output: RichTextLabel
 var _log_lines: Array[String] = []
 var _last_adv_id: String = ""
-var _place_idx: int = 0
+var _place_idx: int  = 0
 var _place_btn: Button = null
+var _road_btn:  Button = null
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 
@@ -64,8 +65,10 @@ func _build_ui() -> void:
 	row3.add_theme_constant_override("separation", 4)
 	vbox.add_child(row3)
 	_place_btn = _btn_ref(row3, "Place Building", _on_place_building)
+	_road_btn  = _btn_ref(row3, "Road Tool",      _on_road_tool)
 	EventBus.building_placement_cancelled.connect(_on_placement_cancelled)
 	EventBus.building_placed.connect(func(_id, _origin): _on_placement_cancelled())
+	EventBus.road_mode_exited.connect(func(): _road_btn.text = "Road Tool")
 
 	# Log label
 	var log_hdr := Label.new()
@@ -170,6 +173,24 @@ func _on_place_building() -> void:
 func _on_placement_cancelled() -> void:
 	if _place_btn:
 		_place_btn.text = "Place Building"
+
+func _on_road_tool() -> void:
+	var placer: RoadPlacer = _find("RoadPlacer")
+	if not placer:
+		EventBus.debug_log_message.emit("ERROR: RoadPlacer not found in scene")
+		return
+	if placer.is_road_mode():
+		placer.exit_road_mode()
+	else:
+		# Exit building placement if active
+		var bplacer: BuildingPlacer = _find("BuildingPlacer")
+		if bplacer and bplacer.is_placing():
+			bplacer.exit_placement_mode()
+			if _place_btn:
+				_place_btn.text = "Place Building"
+		placer.enter_road_mode()
+		if _road_btn:
+			_road_btn.text = "Road Tool [ON]"
 
 # ── Log ───────────────────────────────────────────────────────────────────────
 
