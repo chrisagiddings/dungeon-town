@@ -6,7 +6,7 @@ class_name TerrainGrid
 # ── Constants ─────────────────────────────────────────────────────────────────
 const TILE_W: int = 64
 const TILE_H: int = 32
-const GRID_SIZE: int = 20
+
 
 const COLOR_EVEN:           Color = Color(0.58, 0.76, 0.48)
 const COLOR_ODD:            Color = Color(0.52, 0.69, 0.43)
@@ -34,8 +34,8 @@ func _draw() -> void:
 
 func _draw_tiles() -> void:
 	var entrance_tiles := _get_entrance_tiles()
-	for row in range(GRID_SIZE):
-		for col in range(GRID_SIZE):
+	for row in range(GameState.grid_size):
+		for col in range(GameState.grid_size):
 			var coord := Vector2i(col, row)
 			if entrance_tiles.has(coord):
 				continue  # entrance drawn separately

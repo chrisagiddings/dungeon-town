@@ -104,6 +104,49 @@ func rename_save(slot: int, new_name: String) -> void:
 		out.store_string(JSON.stringify(d, "\t"))
 		out.close()
 
+func new_game(map_size: int = GameState.MapSize.MEDIUM) -> void:
+	## Reset all state and start a fresh game with the given map size.
+	GameState.set_map_size(map_size)
+	GameState.current_day   = 1
+	GameState.current_hour  = 6.0
+	GameState.sim_speed     = 1.0
+	GameState.town_name     = "Dungeon Town"
+	GameState.dungeon_entrance_origin = Vector2i(-1, -1)
+	GameState.dungeon_entrance_size   = Vector2i(3, 3)
+
+	EconomyState.gold           = EconomyState.STARTING_GOLD
+	EconomyState.total_income   = 0
+	EconomyState.total_expenses = 0
+	EconomyState.transaction_log.clear()
+
+	var grid:      BuildingGrid   = _find("BuildingGrid")
+	var road_grid: RoadGrid       = _find("RoadGrid")
+	var manager:   UpgradeManager = _find("UpgradeManager")
+	var spawner:   AdventurerSpawner = _find("AdventurerSpawner")
+
+	if grid:
+		grid.clear()
+		grid.update_grid_size()
+	if road_grid:
+		road_grid.update_grid_size()
+	if manager:
+		for iid in manager.get_construction_ids().duplicate():
+			manager._constructions.erase(iid)
+	if spawner:
+		spawner.restore_from_save({})
+
+	var entrance: DungeonEntranceManager = _find("DungeonEntranceManager")
+	if entrance:
+		entrance._place_randomly()
+
+	# Force UI refresh
+	EventBus.gold_changed.emit(EconomyState.gold, 0)
+	EventBus.time_tick.emit(GameState.current_hour)
+	EventBus.sim_speed_changed.emit(GameState.sim_speed)
+	EventBus.debug_log_message.emit(
+		"New game started — %s" % GameState.get_map_size_name()
+	)
+
 func delete_save(slot: int) -> void:
 	var path := _slot_path(slot)
 	if FileAccess.file_exists(path):
@@ -158,6 +201,8 @@ func _collect_state() -> Dictionary:
 		"version":          SAVE_VERSION,
 		"save_name":        default_name,
 		"town_name":        GameState.town_name,
+		"map_size":         GameState.map_size,
+		"grid_size":        GameState.grid_size,
 		"dungeon_entrance_origin": [GameState.dungeon_entrance_origin.x, GameState.dungeon_entrance_origin.y],
 		"dungeon_entrance_size":   [GameState.dungeon_entrance_size.x,   GameState.dungeon_entrance_size.y],
 		"game_day":         GameState.current_day,
@@ -180,7 +225,9 @@ func _restore_state(data: Dictionary) -> void:
 	GameState.current_day   = int(data.get("game_day",   1))
 	GameState.current_hour  = float(data.get("game_hour", 6.0))
 	GameState.sim_speed     = float(data.get("sim_speed", 1.0))
-	GameState.town_name     = data.get("town_name", "Dungeon Town")
+	GameState.town_name = data.get("town_name", "Dungeon Town")
+	if "map_size" in data:
+		GameState.set_map_size(int(data["map_size"]))
 	if "dungeon_entrance_origin" in data:
 		var eo: Array = data["dungeon_entrance_origin"]
 		GameState.dungeon_entrance_origin = Vector2i(int(eo[0]), int(eo[1]))

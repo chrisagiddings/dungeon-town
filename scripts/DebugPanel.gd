@@ -10,11 +10,12 @@ const PANEL_HEIGHT:  float = 270.0
 const MARGIN:        float = 10.0
 
 # ── State ─────────────────────────────────────────────────────────────────────
-var _log_output: RichTextLabel
-var _log_lines: Array[String] = []
-var _place_idx: int  = 0
-var _place_btn: Button = null
-var _road_btn:  Button = null
+var _log_output:  RichTextLabel
+var _log_lines:   Array[String] = []
+var _place_idx:   int    = 0
+var _place_btn:   Button = null
+var _road_btn:    Button = null
+var _map_size_btn: Button = null
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 
@@ -66,6 +67,13 @@ func _build_ui() -> void:
 	_place_btn = _btn_ref(row3, "Place Building", _on_place_building)
 	_road_btn  = _btn_ref(row3, "Road Tool",      _on_road_tool)
 	_btn(row3, "Save/Load", _on_save_load)
+
+	# Row 4 — new game controls
+	var row4 := HBoxContainer.new()
+	row4.add_theme_constant_override("separation", 4)
+	vbox.add_child(row4)
+	_map_size_btn = _btn_ref(row4, "Medium (20×20)", _on_map_size_cycle)
+	_btn(row4, "New Game", _on_new_game)
 	EventBus.building_placement_cancelled.connect(_on_placement_cancelled)
 	EventBus.building_placed.connect(func(_id, _origin): _on_placement_cancelled())
 	EventBus.road_mode_exited.connect(func(): _road_btn.text = "Road Tool")
@@ -193,6 +201,17 @@ func _on_road_tool() -> void:
 		placer.enter_road_mode()
 		if _road_btn:
 			_road_btn.text = "Road Tool [ON]"
+
+func _on_map_size_cycle() -> void:
+	var next: int = (GameState.map_size + 1) % 3
+	GameState.map_size = next
+	if _map_size_btn:
+		_map_size_btn.text = GameState.get_map_size_name()
+
+func _on_new_game() -> void:
+	SaveSystem.new_game(GameState.map_size)
+	if _map_size_btn:
+		_map_size_btn.text = GameState.get_map_size_name()
 
 func _on_save_load() -> void:
 	var panel: SaveLoadPanel = _find("SaveLoadPanel")

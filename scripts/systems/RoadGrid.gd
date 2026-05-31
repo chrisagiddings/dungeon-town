@@ -9,7 +9,7 @@ class_name RoadGrid
 ##   Open ground     → weight 3.0 (slow, passable)
 ##   Building tile   → disconnected (impassable)
 
-const GRID_SIZE:    int   = 20
+var GRID_SIZE: int = 20
 const COST_ROAD:    float = 1.0
 const COST_GROUND:  float = 3.0
 
@@ -56,6 +56,13 @@ func get_road_count() -> int:
 func clear_roads() -> void:
 	for tile in _roads.keys().duplicate():
 		remove_road(tile as Vector2i)
+
+func update_grid_size() -> void:
+	## Rebuilds the navigation grid for the current GameState.grid_size.
+	GRID_SIZE = GameState.grid_size
+	_roads.clear()
+	_astar = AStar2D.new()
+	_build_nav_grid()
 
 # ── Navigation API ────────────────────────────────────────────────────────────
 
