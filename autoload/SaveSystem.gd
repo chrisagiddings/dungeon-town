@@ -68,7 +68,7 @@ func has_save(slot: int) -> bool:
 	return FileAccess.file_exists(_slot_path(slot))
 
 func get_save_info(slot: int) -> Dictionary:
-	## Returns {day, gold, timestamp} for display, or {} if no save exists.
+	## Returns {name, day, gold, buildings} for display, or {} if no save exists.
 	if not has_save(slot):
 		return {}
 	var file := FileAccess.open(_slot_path(slot), FileAccess.READ)
@@ -80,11 +80,29 @@ func get_save_info(slot: int) -> Dictionary:
 		return {}
 	var d := parsed as Dictionary
 	return {
-		"day":       d.get("game_day", 0),
-		"gold":      d.get("gold", 0),
-		"timestamp": d.get("timestamp", ""),
+		"name":      d.get("save_name", ""),
+		"day":       d.get("game_day",  0),
+		"gold":      d.get("gold",      0),
 		"buildings": (d.get("buildings", []) as Array).size(),
 	}
+
+func rename_save(slot: int, new_name: String) -> void:
+	## Update the save_name in an existing save file without rewriting all state.
+	if not has_save(slot):
+		return
+	var file := FileAccess.open(_slot_path(slot), FileAccess.READ)
+	if file == null:
+		return
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	file.close()
+	if not (parsed is Dictionary):
+		return
+	var d := parsed as Dictionary
+	d["save_name"] = new_name
+	var out := FileAccess.open(_slot_path(slot), FileAccess.WRITE)
+	if out:
+		out.store_string(JSON.stringify(d, "\t"))
+		out.close()
 
 func delete_save(slot: int) -> void:
 	var path := _slot_path(slot)
@@ -133,9 +151,11 @@ func _collect_state() -> Dictionary:
 				entry["category"]       = c["category"]
 			constructions[iid] = entry
 
+	var default_name := "%s — Day %d" % [GameState.town_name, GameState.current_day]
 	return {
 		"version":          SAVE_VERSION,
-		"timestamp":        _timestamp(),
+		"save_name":        default_name,
+		"town_name":        GameState.town_name,
 		"game_day":         GameState.current_day,
 		"game_hour":        GameState.current_hour,
 		"sim_speed":        GameState.sim_speed,
@@ -155,6 +175,7 @@ func _restore_state(data: Dictionary) -> void:
 	GameState.current_day   = int(data.get("game_day",   1))
 	GameState.current_hour  = float(data.get("game_hour", 6.0))
 	GameState.sim_speed     = float(data.get("sim_speed", 1.0))
+	GameState.town_name     = data.get("town_name", "Dungeon Town")
 
 	EconomyState.gold           = int(data.get("gold",           EconomyState.STARTING_GOLD))
 	EconomyState.total_income   = int(data.get("total_income",   0))
