@@ -17,8 +17,9 @@ var _cap_label:      Label
 var _produces_label: Label
 var _consumes_label: Label
 var _quality_label:  Label
-var _req_container:  VBoxContainer
-var _upgrade_btn:   Button
+var _req_container:   VBoxContainer
+var _upgrade_btn:     Button
+var _cancel_btn:      Button
 var _construction_label: Label
 var _construction_bar:   ProgressBar
 var _town_name_row:      HBoxContainer
@@ -175,13 +176,17 @@ func _refresh() -> void:
 		_construction_label.visible = false
 		_construction_bar.visible   = false
 
+	_cancel_btn.visible = false
 	_demolish_btn.show()
 
 func _show_construction_state() -> void:
 	_clear_requirements()
-	var days:     int   = _manager.days_remaining(_current_instance)    if _manager else 0
-	var progress: float = _manager.construction_progress(_current_instance) if _manager else 0.0
-	_construction_label.text    = "Under Construction — %d day%s remaining" % [days, "s" if days != 1 else ""]
+	var info: Dictionary = _manager.get_all_constructions().get(_current_instance, {}) if _manager else {}
+	var kind: String     = info.get("kind", "build")
+	var days: int        = _manager.days_remaining(_current_instance)        if _manager else 0
+	var progress: float  = _manager.construction_progress(_current_instance) if _manager else 0.0
+	var status: String   = "Upgrading" if kind == "upgrade" else "Building"
+	_construction_label.text    = "%s… — %d day%s remaining" % [status, days, "s" if days != 1 else ""]
 	_construction_label.visible = true
 	_construction_bar.value     = progress
 	_construction_bar.visible   = true
@@ -191,6 +196,7 @@ func _show_construction_state() -> void:
 	_produces_label.visible     = false
 	_consumes_label.visible     = false
 	_quality_label.visible      = false
+	_cancel_btn.visible         = true
 	_demolish_btn.hide()
 
 func _show_upgrade_requirements(data: BuildingData) -> void:
@@ -353,6 +359,16 @@ func _build_ui() -> void:
 
 	_add_sep(vbox)
 
+	# Cancel construction (shown only during construction/upgrade)
+	_cancel_btn = Button.new()
+	_cancel_btn.text = "Cancel Construction"
+	_cancel_btn.add_theme_font_size_override("font_size", 11)
+	_cancel_btn.custom_minimum_size.y = 28
+	_cancel_btn.modulate = Color(1.0, 0.65, 0.2)
+	_cancel_btn.visible = false
+	_cancel_btn.pressed.connect(_on_cancel_construction)
+	vbox.add_child(_cancel_btn)
+
 	# Demolish
 	_demolish_btn = Button.new()
 	_demolish_btn.text = "Demolish"
@@ -403,6 +419,19 @@ func _on_town_name_submitted(new_name: String) -> void:
 	_town_name_edit.text = trimmed
 	_town_name_edit.release_focus()
 	EventBus.debug_log_message.emit("Town renamed: %s" % trimmed)
+
+func _on_cancel_construction() -> void:
+	if _manager == null or _current_instance.is_empty():
+		return
+	var was_build: bool = _manager.get_all_constructions() \
+		.get(_current_instance, {}).get("kind", "") == "build"
+	_manager.cancel_construction(_current_instance)
+	if was_build:
+		# Building removed from grid — close the panel
+		EventBus.building_deselected.emit()
+	else:
+		# Upgrade cancelled — building remains, refresh to show its current state
+		_refresh()
 
 func _on_demolish_pressed() -> void:
 	_demolish_btn.hide()
