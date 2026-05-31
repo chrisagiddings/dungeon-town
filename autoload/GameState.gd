@@ -3,6 +3,21 @@ extends Node
 ## Owns the time tick loop and phase transitions.
 
 enum Phase { MORNING, DAY, EVENING, NIGHT }
+enum MapSize { SMALL = 0, MEDIUM = 1, LARGE = 2 }
+
+## Grid dimensions per map size
+const MAP_GRID_SIZES: Dictionary = {
+	MapSize.SMALL:  16,
+	MapSize.MEDIUM: 20,
+	MapSize.LARGE:  28,
+}
+
+## Valid dungeon entrance footprint sizes per map size
+const MAP_ENTRANCE_SIZES: Dictionary = {
+	MapSize.SMALL:  [Vector2i(1, 1), Vector2i(2, 2)],
+	MapSize.MEDIUM: [Vector2i(2, 2), Vector2i(3, 3)],
+	MapSize.LARGE:  [Vector2i(3, 3), Vector2i(5, 5)],
+}
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 const HOURS_PER_DAY: int = 24
@@ -16,6 +31,8 @@ var current_phase: Phase = Phase.MORNING
 var is_paused: bool = false
 var sim_speed: float = 1.0
 var town_name: String = "Dungeon Town"
+var map_size:  int = MapSize.MEDIUM
+var grid_size: int = MAP_GRID_SIZES[MapSize.MEDIUM]
 
 var dungeon_entrance_origin: Vector2i = Vector2i(-1, -1)  ## -1 = not yet placed
 var dungeon_entrance_size:   Vector2i = Vector2i(3, 3)
@@ -54,6 +71,17 @@ func get_time_string() -> String:
 	if display_hour == 0:
 		display_hour = 12
 	return "%02d:%02d %s" % [display_hour, minutes, period]
+
+func set_map_size(size: int) -> void:
+	map_size  = size
+	grid_size = MAP_GRID_SIZES.get(size, MAP_GRID_SIZES[MapSize.MEDIUM])
+
+func get_map_size_name() -> String:
+	match map_size:
+		MapSize.SMALL:  return "Small (16×16)"
+		MapSize.MEDIUM: return "Medium (20×20)"
+		MapSize.LARGE:  return "Large (28×28)"
+	return "Medium (20×20)"
 
 func get_phase_name() -> String:
 	match current_phase:

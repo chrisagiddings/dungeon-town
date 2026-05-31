@@ -14,7 +14,7 @@ var _placements: Array[Dictionary] = []
 var _instance_counter: int = 0
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-const GRID_SIZE: int = 20
+var GRID_SIZE: int = 20
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
@@ -94,6 +94,10 @@ func is_in_bounds(origin: Vector2i, footprint: Vector2i) -> bool:
 	if origin.y + footprint.y > GRID_SIZE:
 		return false
 	return true
+
+func update_grid_size() -> void:
+	GRID_SIZE = GameState.grid_size
+
 
 func clear() -> void:
 	_occupied.clear()

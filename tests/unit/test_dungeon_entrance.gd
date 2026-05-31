@@ -45,9 +45,9 @@ func test_random_placement_stays_inside_grid() -> void:
 		_manager._place_randomly()
 		var o: Vector2i = GameState.dungeon_entrance_origin
 		var s: Vector2i = GameState.dungeon_entrance_size
-		assert_true(o.x + s.x <= BuildingGrid.GRID_SIZE,
+		assert_true(o.x + s.x <= GameState.grid_size,
 			"Entrance x overflows grid on iteration %d (origin=%s)" % [i, o])
-		assert_true(o.y + s.y <= BuildingGrid.GRID_SIZE,
+		assert_true(o.y + s.y <= GameState.grid_size,
 			"Entrance y overflows grid on iteration %d (origin=%s)" % [i, o])
 
 func test_random_placement_emits_signal() -> void:
@@ -60,13 +60,13 @@ func test_random_placement_emits_signal() -> void:
 func test_random_placement_reserves_tiles_in_grid() -> void:
 	_grid.clear()
 	GameState.dungeon_entrance_origin = Vector2i(-1, -1)
-	GameState.dungeon_entrance_size   = Vector2i(3, 3)
 	_manager._place_randomly()
 	var o: Vector2i = GameState.dungeon_entrance_origin
+	var s: Vector2i = GameState.dungeon_entrance_size
 	assert_true(_grid.is_tile_occupied(o),
 		"Origin tile should be reserved after placement")
-	assert_true(_grid.is_tile_occupied(o + Vector2i(2, 2)),
-		"Bottom-right tile of 3x3 footprint should be reserved")
+	assert_true(_grid.is_tile_occupied(o + s - Vector2i(1, 1)),
+		"Bottom-right tile of footprint should be reserved")
 
 # ── _reserve_current ──────────────────────────────────────────────────────────
 

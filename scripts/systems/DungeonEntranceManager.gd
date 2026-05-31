@@ -39,10 +39,21 @@ func get_size() -> Vector2i:
 
 # ── Internal ──────────────────────────────────────────────────────────────────
 
+func _pick_entrance_size() -> Vector2i:
+	## Randomly select an entrance size valid for the current map size.
+	var options: Array = GameState.MAP_ENTRANCE_SIZES.get(
+		GameState.map_size,
+		GameState.MAP_ENTRANCE_SIZES[GameState.MapSize.MEDIUM]
+	)
+	return options[randi() % options.size()]
+
 func _place_randomly() -> void:
+	# Choose entrance size for the current map
+	GameState.dungeon_entrance_size = _pick_entrance_size()
+
 	var size:   Vector2i = GameState.dungeon_entrance_size
 	var margin: int      = max(size.x, size.y) + 2
-	var gs:     int      = BuildingGrid.GRID_SIZE
+	var gs:     int      = GameState.grid_size
 
 	var max_x: int = gs - size.x - margin
 	var max_y: int = gs - size.y - margin
