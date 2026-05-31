@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "clinic_t1"
+display_name = "Field Clinic"
+description = "A basic treatment room. Bandages wounds and brews simple remedies. Herbs are the only supply needed — but they must be available."
+category = "services"
+tier = 1
+footprint = Vector2i(2, 2)
+build_cost = 120
+upkeep = 6
+staffing = 1
+capacity = 4
+healing_percent = 0.3
+base_income = 20
+consumes = {"herbs": 3}
+unlock_at_start = true
+upgrade_to = "clinic_t2"
+upgrade_cost = 500
+upgrade_resources = {"stone": 20, "wood": 15}
+upgrade_time_days = 5
+construction_days = 1
+placeholder_color = Color(0.85, 0.95, 0.85, 1)
+special_notes = "Operates at full capacity only when herbs are available and staffed. No herbs = no treatment."

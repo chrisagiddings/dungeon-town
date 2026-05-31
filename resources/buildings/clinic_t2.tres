@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "clinic_t2"
+display_name = "Clinic"
+description = "A proper clinic with trained staff. Uses potions, herbs, and clean food to treat injuries and minor ailments."
+category = "services"
+tier = 2
+footprint = Vector2i(2, 3)
+build_cost = 0
+upkeep = 12
+staffing = 2
+capacity = 8
+healing_percent = 0.6
+base_income = 60
+consumes = {"herbs": 5, "basic_potions": 2, "bread": 3}
+upgrade_from = "clinic_t1"
+upgrade_to = "hospital_t3"
+upgrade_cost = 1200
+upgrade_resources = {"stone": 35, "iron_ingot": 10, "cloth": 15}
+upgrade_time_days = 8
+placeholder_color = Color(0.75, 0.92, 0.75, 1)
+special_notes = "Missing potions reduces healing rate by 50%. Missing food slows patient recovery. Understaffed = half capacity."
