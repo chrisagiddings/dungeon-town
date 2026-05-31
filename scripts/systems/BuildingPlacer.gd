@@ -43,7 +43,8 @@ func _process(_delta: float) -> void:
 	var tile := _mouse_to_tile()
 	if tile != _preview_origin:
 		_preview_origin = tile
-		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint)
+		_is_valid = _grid.can_place(_preview_origin, _active_data.footprint) \
+			and not _has_road_conflict(_preview_origin, _active_data.footprint)
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -165,6 +166,14 @@ func _cancel_placement() -> void:
 	EventBus.building_placement_cancelled.emit()
 	EventBus.debug_log_message.emit("Placement cancelled")
 	exit_placement_mode()
+
+func _has_road_conflict(origin: Vector2i, footprint: Vector2i) -> bool:
+	if _road_grid == null:
+		return false
+	for tile in _grid.get_tiles(origin, footprint):
+		if _road_grid.has_road(tile):
+			return true
+	return false
 
 func _mouse_to_tile() -> Vector2i:
 	return _terrain.screen_to_iso(_terrain.to_local(get_global_mouse_position()))
