@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "house_t2"
+display_name = "Workers' Housing"
+description = "Modest housing for up to four townsfolk."
+category = "residential"
+tier = 2
+footprint = Vector2i(2, 2)
+build_cost = 0
+upkeep = 5
+workers_provided = 4
+upgrade_from = "house_t1"
+upgrade_cost = 150
+upgrade_resources = {"wood": 15, "stone": 10}
+upgrade_time_days = 4
+placeholder_color = Color(0.47, 0.62, 0.45, 1)

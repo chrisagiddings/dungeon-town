@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "lumber_t2"
+display_name = "Lumber Camp (T2)"
+description = "Expanded logging operation — 35 wood per day."
+category = "production"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 8
+staffing = 3
+produces = {"wood": 35}
+upgrade_from = "lumber_t1"
+upgrade_cost = 300
+upgrade_resources = {"wood": 20, "stone": 10}
+upgrade_time_days = 5
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

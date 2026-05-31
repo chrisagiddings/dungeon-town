@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "lodging_t2"
+display_name = "Wayfarers Inn"
+description = "A proper inn with beds, hot meals, and a common room for swapping tales."
+category = "hospitality"
+tier = 2
+footprint = Vector2i(3, 3)
+build_cost = 0
+upkeep = 10
+income_per_guest = 3
+staffing = 2
+capacity = 16
+rest_quality = 0.75
+morale_bonus = 5
+upgrade_from = "lodging_t1"
+upgrade_to = "lodging_t3"
+upgrade_cost = 800
+upgrade_resources = {"stone": 40, "iron_ingot": 20}
+upgrade_prerequisites = ["tavern_t2"]
+upgrade_population = 20
+upgrade_patron_count = 60
+upgrade_time_days = 10
+placeholder_color = Color(0.96, 0.65, 0.14, 1)

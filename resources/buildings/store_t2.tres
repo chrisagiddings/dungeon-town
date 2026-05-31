@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "store_t2"
+display_name = "Trading Post"
+description = "Broader supplies, better potions, maps, and gear accessories."
+category = "commerce"
+tier = 2
+footprint = Vector2i(2, 2)
+build_cost = 0
+upkeep = 10
+base_income = 150
+staffing = 2
+upgrade_from = "store_t1"
+upgrade_to = "store_t3"
+upgrade_cost = 400
+upgrade_resources = {"wood": 20, "cloth": 10}
+upgrade_supply_chains = 3
+upgrade_patron_count = 50
+upgrade_time_days = 7
+placeholder_color = Color(0.93, 0.79, 0.13, 1)

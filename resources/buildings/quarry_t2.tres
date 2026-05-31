@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://resources/BuildingData.gd" id="1_script"]
+[resource]
+script = ExtResource("1_script")
+id = "quarry_t2"
+display_name = "Quarry (T2)"
+description = "Deeper excavation — 30 stone per day."
+category = "production"
+tier = 2
+footprint = Vector2i(4, 3)
+build_cost = 0
+upkeep = 10
+staffing = 3
+produces = {"stone": 30}
+upgrade_from = "quarry_t1"
+upgrade_to = "quarry_t3"
+upgrade_cost = 400
+upgrade_resources = {"iron_ingot": 15}
+upgrade_time_days = 7
+placeholder_color = Color(0.55, 0.39, 0.21, 1)

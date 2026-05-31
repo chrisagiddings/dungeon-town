@@ -36,5 +36,9 @@ signal building_selected(instance_id: String)
 signal building_deselected()
 signal building_demolished(instance_id: String)
 
+# ── Building Upgrades ─────────────────────────────────────────────────────────
+signal building_upgrade_started(instance_id: String, target_data_id: String, complete_day: int)
+signal building_upgrade_completed(old_instance_id: String, new_instance_id: String)
+
 # ── Debug / UI ───────────────────────────────────────────────────────────────
 signal debug_log_message(message: String)
