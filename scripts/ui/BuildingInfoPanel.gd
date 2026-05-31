@@ -8,13 +8,15 @@ const PANEL_H: float = 380.0
 const MARGIN:  float = 10.0
 
 # ── Node refs ─────────────────────────────────────────────────────────────────
-var _title_label:   Label
-var _sub_label:     Label
-var _income_label:  Label
-var _upkeep_label:  Label
-var _staff_label:   Label
-var _cap_label:     Label
-var _req_container: VBoxContainer
+var _title_label:    Label
+var _sub_label:      Label
+var _income_label:   Label
+var _upkeep_label:   Label
+var _staff_label:    Label
+var _cap_label:      Label
+var _produces_label: Label
+var _consumes_label: Label
+var _req_container:  VBoxContainer
 var _upgrade_btn:   Button
 var _construction_label: Label
 var _construction_bar:   ProgressBar
@@ -119,6 +121,30 @@ func _refresh() -> void:
 	_staff_label.text  = "Staff:    %d" % data.staffing
 	_cap_label.text    = "Capacity: %d" % data.capacity if data.capacity > 0 else "Capacity: —"
 
+	# Production output
+	if not data.produces.is_empty():
+		var parts: Array[String] = []
+		for res_id in data.produces.keys():
+			var amt: int = int(data.produces[res_id])
+			parts.append("%s ×%d" % [ResourceInventory.get_display_name(res_id), amt])
+		_produces_label.text    = "Produces: %s /day" % ", ".join(parts)
+		_produces_label.visible = true
+	else:
+		_produces_label.visible = false
+
+	# Production input (consumes)
+	if not data.consumes.is_empty():
+		var parts: Array[String] = []
+		for res_id in data.consumes.keys():
+			var amt:     int  = int(data.consumes[res_id])
+			var stock:   int  = ResourceInventory.get_amount(res_id)
+			var has_enough: bool = stock >= amt
+			parts.append("%s ×%d (%d)" % [ResourceInventory.get_display_name(res_id), amt, stock])
+		_consumes_label.text    = "Needs:    %s /day" % ", ".join(parts)
+		_consumes_label.visible = true
+	else:
+		_consumes_label.visible = false
+
 	# Under construction state
 	var under_construction: bool = _manager != null and _manager.is_under_construction(_current_instance)
 	if under_construction:
@@ -153,6 +179,8 @@ func _show_construction_state() -> void:
 	_req_container.visible      = false
 	_upgrade_btn.visible        = false
 	_town_name_row.visible      = false
+	_produces_label.visible     = false
+	_consumes_label.visible     = false
 	_demolish_btn.hide()
 
 func _show_upgrade_requirements(data: BuildingData) -> void:
@@ -239,10 +267,26 @@ func _build_ui() -> void:
 	vbox.add_child(_sub_label)
 
 	_add_sep(vbox)
-	_income_label = _stat(vbox)
-	_upkeep_label = _stat(vbox)
-	_staff_label  = _stat(vbox)
-	_cap_label    = _stat(vbox)
+	_income_label  = _stat(vbox)
+	_upkeep_label  = _stat(vbox)
+	_staff_label   = _stat(vbox)
+	_cap_label     = _stat(vbox)
+
+	# Production stats (hidden for non-production buildings)
+	_produces_label = Label.new()
+	_produces_label.add_theme_font_size_override("font_size", 11)
+	_produces_label.modulate = Color(0.6, 1.0, 0.6)
+	_produces_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	_produces_label.visible = false
+	vbox.add_child(_produces_label)
+
+	_consumes_label = Label.new()
+	_consumes_label.add_theme_font_size_override("font_size", 11)
+	_consumes_label.modulate = Color(1.0, 0.8, 0.5)
+	_consumes_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	_consumes_label.visible = false
+	vbox.add_child(_consumes_label)
+
 	_add_sep(vbox)
 
 	# Town naming row (Mayor's Hall T2 only)
